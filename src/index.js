@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import Quiz from './components/quiz-container';
+import registerServiceWorker from './utils/registerServiceWorker';
+import './styles/index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const props = {
+	quizzes: [],
+	user: {},
+	isAuthenticated: true,
+	submitScore: () => null
+};
+
+ReactDOM.render(<Quiz {...props} />, document.getElementById('root'));
 registerServiceWorker();
