@@ -9,7 +9,7 @@ body {
   font-family: 'Esteban', serif; }
 
 body .errorsBox {
-  color: #E71A3A; }
+  color: #F63150; }
 
 .studyComponent {
   width: 550px;
@@ -112,7 +112,7 @@ body .errorsBox {
   color: black; }
 
 .studyWrapper .studyContainer #wrongLoser {
-  background: #E71A3A;
+  background: #F63150;
   border: 1px solid black;
   color: black; }
 
@@ -120,7 +120,7 @@ body .errorsBox {
   color: #1AF59D; }
 
 .studyWrapper .studyContainer .wrongAnswer {
-  color: #E71A3A; }
+  color: #F63150; }
 
 .studyWrapper .studyContainer button {
   border: none;

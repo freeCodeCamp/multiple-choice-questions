@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Study from './practice-view';
+import Study from './Practice';
 
 import sources from '../source/challenges';
 
@@ -18,9 +18,9 @@ export default class Quiz extends React.Component {
 	}
 	componentDidMount() {
 
-		const request = (sources) => sources.map(src => axios.get(src));
+		const fetch = sources => sources.map(src => axios.get(src));
 
-		axios.all(request(sources)).then(response => {
+		axios.all(fetch(sources)).then(response => {
 			const quizzes = response.map(({ data }) => data);
 			this.setState({
 				quizzes,
@@ -29,7 +29,7 @@ export default class Quiz extends React.Component {
 				loading: false
 			});
 		}).catch(err => {
-			console.warn(err);
+			console.warn(`Something went wrong trying to fetch the quizzes... ${err}`);
 		});
 
 	}
@@ -51,35 +51,37 @@ export default class Quiz extends React.Component {
 		console.log('end of quiz, you scored: ', score);
 	}
 	render() {
-		console.log(this.state)
 		if (this.state.session && !this.state.loading) {
 			return (
 				<Study
-					endStudy = {this.endStudy}
-					quiz = {this.state.quiz} />
+					endStudy={this.endStudy}
+					quiz={this.state.quiz} />
 			)
 		} else {
 			return (
-				<div className = 'studyComponent'>
+				<div className='studyComponent'>
 					<h1>freeCodeCamp Interview Beta</h1>
 					<p>Select a quiz to practice:</p>
-					<select onChange = {this.selectQuiz.bind(this)} value = {this.state.selectedQuiz}>
+					<select onChange={this.selectQuiz.bind(this)} value={this.state.selectedQuiz}>
 						{this.state.quizzes.map((quiz, idx) => {
 							return (
 								<option
-									value = {quiz.title}
-									key = {idx} >
+									value={quiz.title}
+									key={idx} >
 									{quiz.title}
 								</option>
 							);
 						}) }
 					</select>
 					{this.state.length !== null &&
-						<p className = 'quizInfo'>This quiz has a total of {this.state.length} questions</p> }
-					<button className = 'studyBtn' onClick = {this.startStudy}>Begin Quiz</button>
+						<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p> }
+					<button className='studyBtn' onClick={this.startStudy}>Begin Quiz</button>
 					<div>
 						<h5>
 							<a href="https://github.com/freeCodeCamp/multiple-choice-questions">Visit GitHub to Contribute</a>
+						</h5>
+						<h5>
+							<a href="https://github.com/bonham000/fcc-multiple-choice">View Source of this App</a>
 						</h5>
 					</div>
 				</div>

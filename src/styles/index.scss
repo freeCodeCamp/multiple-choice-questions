@@ -1,5 +1,5 @@
 
-$error: #E71A3A;
+$error: #F63150;
 $blue: #06C1FF;
 $blueHover: #05D7FF;
 $mint: #1AF59D;
@@ -14,7 +14,7 @@ body {
 	font-size: 30px;
 	font-family: 'Esteban', serif;
 	.errorsBox {
-		color: #E71A3A;
+		color: $error;
 	}
 }
 
