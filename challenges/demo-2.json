@@ -1,26 +1,26 @@
 {	
+	"title": "Data Quiz",
+	"category": "Data",
 	"challenges": [
 		{
-			"title": "Question A",
-			"answer": "4",
-			"answers": [
+			"title": "Question 1",
+			"choices": [
 				"answer 1",
 				"answer 2",
 				"answer 3",
 				"answer 4"
 			],
-			"category": "Data"
+			"solution": "0",
 		},
 		{
-			"title": "Question B",
-			"answer": "2",
-			"answers": [
+			"title": "Question 2",
+			"choices": [
 				"answer 1",
 				"answer 2",
 				"answer 3",
 				"answer 4"
 			],
-			"category": "Data"
+			"solution": "3",
 		}
 	]
 }
