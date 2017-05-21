@@ -61,8 +61,8 @@ export default class Quiz extends React.Component {
 		} else {
 			return (
 				<div className = 'studyComponent'>
-					<h1>Select a Quiz to Study</h1>
-					<p>These are practice for freeCodeCamp Interview Beta</p>
+					<h1>freeCodeCamp Interview Beta</h1>
+					<p>Select a quiz to practice:</p>
 					<select onChange = {this.selectQuiz.bind(this)} value = {this.state.selectedQuiz}>
 						{this.state.quizzes.map((quiz, idx) => {
 							return (
