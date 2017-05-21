@@ -1,37 +1,17 @@
 import React from 'react';
-import axios from 'axios';
+import quizzes from '../challenges';
 import Study from './Practice';
-
-import sources from '../source/challenges';
 
 export default class Quiz extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			loading: true,
 			session: false,
-			selectedQuiz: '',
+			length: quizzes[0].challenges.length,
+			selectedQuiz: quizzes[0].title,
 			quiz: [],
-			quizzes: [],
-			length: null
+			quizzes
 		}
-	}
-	componentDidMount() {
-
-		const fetch = sources => sources.map(src => axios.get(src));
-
-		axios.all(fetch(sources)).then(response => {
-			const quizzes = response.map(({ data }) => data);
-			this.setState({
-				quizzes,
-				length: quizzes[0].challenges.length,
-				selectedQuiz: quizzes[0].title,
-				loading: false
-			});
-		}).catch(err => {
-			console.warn(`Something went wrong trying to fetch the quizzes... ${err}`);
-		});
-
 	}
 	selectQuiz = (e) => {
 		const title = e.target.value;

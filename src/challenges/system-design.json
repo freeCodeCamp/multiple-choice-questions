@@ -1,0 +1,26 @@
+{
+	"title": "Data Quiz",
+	"category": "Data Science",
+	"challenges": [
+		{
+			"title": "Question 1",
+			"choices": [
+				"answer 1",
+				"answer 2",
+				"answer 3",
+				"answer 4"
+			],
+			"solution": "0"
+		},
+		{
+			"title": "Question 2",
+			"choices": [
+				"answer 1",
+				"answer 2",
+				"answer 3",
+				"answer 4"
+			],
+			"solution": "3"
+		}
+	]
+}
