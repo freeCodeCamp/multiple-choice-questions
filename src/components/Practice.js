@@ -49,7 +49,7 @@ export default class extends React.Component {
 					{!this.state.complete &&
 						<div>
 							<h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
-							<h1 className='questionTitle'>{question.questionTitle}</h1>
+							<h1 className='questionTitle'>{question.title}</h1>
 						</div>}
 
 						{!this.state.complete && question.choices.map((answer, idx) => {

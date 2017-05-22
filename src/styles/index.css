@@ -82,7 +82,9 @@ body .errorsBox {
 
 .studyWrapper .studyContainer .subTitle {
   font-size: 22px;
-  margin: 0;
+  margin: 0 auto;
+  width: 950px;
+  text-align: center;
   color: #afafaf; }
 
 .studyWrapper .studyContainer .quizLength {
@@ -91,8 +93,10 @@ body .errorsBox {
 
 .studyWrapper .studyContainer .questionTitle {
   font-size: 30px;
-  width: 650px;
-  margin: 30px auto; }
+  width: 950px;
+  padding-top: 25px;
+  margin: 30px auto;
+  border-top: 1px solid rgba(250, 250, 250, 0.6); }
 
 .studyWrapper .studyContainer .choice {
   width: 650px;
@@ -100,7 +104,8 @@ body .errorsBox {
   margin: 12px auto;
   padding-bottom: 5px;
   text-align: left;
-  border: 1px solid rgba(250, 250, 250, 0.2); }
+  border: 1px solid rgba(250, 250, 250, 0.2);
+  color: rgba(250, 250, 250, 0.6); }
 
 .studyWrapper .studyContainer .choice p {
   padding-top: 8px;
@@ -125,23 +130,19 @@ body .errorsBox {
 .studyWrapper .studyContainer .choice.solution:hover {
   cursor: default; }
 
-.studyWrapper .studyContainer .reviewTitle {
-  width: 755px;
-  margin: 45px auto;
-  border-top: 1px solid rgba(250, 250, 250, 0.6); }
-
 .studyWrapper .studyContainer #correctWinner {
   background: #05D7FF;
   border: 1px solid #05D7FF;
   color: black; }
 
 .studyWrapper .studyContainer #wrongWinner {
-  border: 1px solid #05D7FF; }
+  border: 1px solid #05D7FF;
+  color: white; }
 
 .studyWrapper .studyContainer #correctLoser {
   background: #05D7FF;
   border: 1px solid black;
-  color: black; }
+  color: white; }
 
 .studyWrapper .studyContainer #wrongLoser {
   background: #F63150;
