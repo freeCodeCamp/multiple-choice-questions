@@ -1,5 +1,8 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+#compiled styles
+/src/styles/index.css
+
 # dependencies
 /node_modules
 
