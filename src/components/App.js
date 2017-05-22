@@ -20,11 +20,8 @@ export default class extends React.Component {
 	}
 	selectQuiz = (e) => {
 		const title = e.target.value;
-		let { length } = this.state;
-		this.setState({
-			length,
-			selectedQuiz: title
-		});
+		const length = this.state.quizzes.filter(quiz => quiz.title === title )[0].challenges.length;
+		this.setState({ selectedQuiz: title, length });
 	}
 	triggerPractice = () => {
 		const { selectedQuiz } = this.state;
@@ -54,7 +51,7 @@ export default class extends React.Component {
 		default:
 			return (
 			<div className='studyComponent'>
-				<h1>freeCodeCamp Interview Beta</h1>
+				<h1><strong>freeCodeCamp Interview Beta</strong></h1>
 				<p>Select a quiz to practice:</p>
 				<select value={this.state.selectedQuiz} onChange={this.selectQuiz.bind(this)}>
 					{this.state.quizzes.map(quiz => {
@@ -63,8 +60,7 @@ export default class extends React.Component {
 						);
 					})}
 				</select>
-				{this.state.length !== null &&
-					<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p> }
+				<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p>
 				<button className='studyBtn' onClick={this.triggerPractice}>Practice Quiz</button>
 				<button className='reviewBtn' onClick={this.triggerReview}>View Questions</button>
 				<div>

@@ -3,24 +3,24 @@
 	"category": "JavaScript",
 	"challenges": [
 		{
-			"title": "Question 1",
+			"title": "Is JavaScript single-threaded or multi-threaded?",
 			"choices": [
-				"answer 1",
-				"answer 2",
-				"answer 3",
-				"answer 4"
+				"JavaScript is single-threaded.",
+				"JavaScript is multi-threaded.",
+				"Threading only applies in staticly typed languages.",
+				"Threading only applies to compiled languages."
 			],
 			"solution": "0"
 		},
 		{
-			"title": "Question 2",
+			"title": "Which of the following is a feature provided by ES6 arrow functions?",
 			"choices": [
-				"answer 1",
-				"answer 2",
-				"answer 3",
-				"answer 4"
+				"They allow for functional composition.",
+				"They are prone to fewer memory leaks.",
+				"Arrow functions implicitly bind 'this' to the context where the function is written.",
+				"The only advantage is shorter syntax."
 			],
-			"solution": "3"
+			"solution": "2"
 		}
 	]
 }
