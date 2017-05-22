@@ -1,9 +1,9 @@
 import React from 'react';
 import quizzes from '../challenges';
-import View from './View';
-import Study from './Practice';
+import Review from './Review';
+import Practice from './Practice';
 
-export default class Quiz extends React.Component {
+export default class extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -26,28 +26,28 @@ export default class Quiz extends React.Component {
 			selectedQuiz: title
 		});
 	}
-	startStudy= () => {
+	triggerPractice = () => {
 		const { selectedQuiz } = this.state;
 		const quiz = this.state.quizzes.filter(quiz => quiz.title === selectedQuiz )[0];
 		this.setState({ quiz: quiz, session: 'practice' });
 	}
-	close = () => this.setState({ session: null })
-	viewQuiz = () => {
+	triggerReview = () => {
 		const { selectedQuiz } = this.state;
 		const quiz = this.state.quizzes.filter(quiz => quiz.title === selectedQuiz )[0];
 		this.setState({ quiz: quiz, session: 'review' });
 	}
+	close = () => this.setState({ session: null })
 	render() {
 		switch(this.state.session) {
 		case 'review':
 			return (
-				<View
+				<Review
 					quiz={this.state.quiz}
 					close={this.close} />
 			);
 		case 'practice':
 			return (
-				<Study
+				<Practice
 					quiz={this.state.quiz}
 					close={this.close} />
 			);
@@ -65,8 +65,8 @@ export default class Quiz extends React.Component {
 				</select>
 				{this.state.length !== null &&
 					<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p> }
-				<button className='studyBtn' onClick={this.startStudy}>Practice Quiz</button>
-				<button className='reviewBtn' onClick={this.viewQuiz}>View Questions</button>
+				<button className='studyBtn' onClick={this.triggerPractice}>Practice Quiz</button>
+				<button className='reviewBtn' onClick={this.triggerReview}>View Questions</button>
 				<div>
 					<h4>
 						<a

@@ -183,6 +183,9 @@ body {
 		color: $blueHover;
 		cursor: pointer;
 	}
+	.scoreMessage {
+		margin: 45px auto;
+	}
 }
 
 @media only screen and (max-width: 650px) {
