@@ -11,11 +11,16 @@ export default class Study extends React.Component {
 			score: 0
 		}
 	}
-	correctAnswer = () => { this.setState({ answer: true, score: this.state.score + 1 }) }
+	correctAnswer = () => {
+		this.setState({
+			answer: true,
+			score: this.state.score + 1
+		});
+	}
 	wrongAnswer = () => { this.setState({ answer: false }) }
 	nextQuestion = () => {
-		const { length } = this.props.quiz.challenges;
 		const { index } = this.state;
+		const { length } = this.props.quiz.challenges;
 		if (index === length - 1) {
 			this.setState({ complete: true });
 		} else {
@@ -32,22 +37,23 @@ export default class Study extends React.Component {
 		const percentage = this.state.score / this.props.quiz.challenges.length;
 		return (
 			<div className='studyWrapper'>
+				<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
 				<div className='studyContainer'>
 					<h1 className='quizTitle'>{this.props.quiz.title}</h1>
 
-					{ !this.state.complete &&
+					{!this.state.complete &&
 						<div>
 							<h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
 							<h1 className='questionTitle'>{currentQuestion.questionTitle}</h1>
-						</div> }
+						</div>}
 
-						{ !this.state.complete && currentQuestion.choices.map((answer, idx) => {
+						{!this.state.complete && currentQuestion.choices.map((answer, idx) => {
 							if (this.state.answer === null) {
 								if (solution === idx) {
 									return (
 										<div
-											key={idx}
-											className='answerContainer'
+											key={answer + idx}
+											className='choice'
 											onClick={this.correctAnswer}>
 											<p>{answer}</p>
 										</div>
@@ -55,8 +61,8 @@ export default class Study extends React.Component {
 								} else {
 									return (
 										<div
-											key={idx}
-											className='answerContainer'
+											key={answer + idx}
+											className='choice'
 											onClick={this.wrongAnswer}>
 											<p>{answer}</p>
 										</div>
@@ -66,16 +72,16 @@ export default class Study extends React.Component {
 								if (solution === idx) {
 									return (
 										<div
-											key={idx}
-											className='answerContainer' id='correctWinner'>
+											key={answer + idx}
+											className='choice' id='correctWinner'>
 											<p>{answer}</p>
 										</div>
 									)
 								} else {
 									return (
 										<div
-											key={idx}
-											className='answerContainer' id='wrongWinner'>
+											key={answer + idx}
+											className='choice' id='wrongWinner'>
 											<p>{answer}</p>
 										</div>
 									)
@@ -84,37 +90,42 @@ export default class Study extends React.Component {
 								if (solution === idx) {
 									return (
 										<div
-											key={idx}
-											className='answerContainer' id='correctLoser'>
+											key={answer + idx}
+											className='choice' id='correctLoser'>
 											<p>{answer}</p>
 										</div>
 									)
 								} else {
 									return (
 										<div
-											key={idx}
-											className='answerContainer' id='wrongLoser'>
+											key={answer + idx}
+											className='choice' id='wrongLoser'>
 											<p>{answer}</p>
 										</div>
 									)
 								}
 							}
-						}) }
+						})}
 
-					{ this.state.answer !== null && !this.state.complete &&
+					{this.state.answer !== null && !this.state.complete &&
 						<div className='messageDiv'>
-							{ this.state.answer ? <h1 className='correctAnswer'>Correct, nice job!</h1> : <h1 className='wrongAnswer'>Sorry, that is not correct!</h1> }
-							{ this.state.index + 1 === quiz.challenges.length ?
-								<button onClick={this.nextQuestion}>View Results</button>
-								:
-								<button onClick={this.nextQuestion}>Next Question</button> }
-						</div> }
+							{this.state.answer
+								? <h1 className='correctAnswer'>Correct, nice job!</h1>
+								: <h1 className='wrongAnswer'>Sorry, that is not correct!</h1>}
+							{this.state.index + 1 === quiz.challenges.length
+								? <button onClick={this.nextQuestion}>View Results</button>
+								: <button onClick={this.nextQuestion}>Next Question</button>}
+						</div>}
 
-					{ this.state.complete &&
+					{this.state.complete &&
 						<div>
-							<h1 className='scoreMessage'>You scored {this.state.score} correct out of {this.props.quiz.challenges.length} questions! { percentage > 0.75 ? 'Nice work!' : 'Better luck next time!'}</h1>
-							<button className='finishBtn' onClick = {this.props.endStudy.bind(this, this.state.score / this.props.quiz.challenges.length * 100 )}>Return to Quiz Page</button>
-						</div> }
+							<h1 className='scoreMessage'>
+								You scored {this.state.score} correct out of {this.props.quiz.challenges.length} questions! { percentage > 0.75 ? 'Nice work!' : 'Better luck next time!'}
+							</h1>
+							<button className='finishBtn' onClick={this.props.close.bind(this, this.state.score / this.props.quiz.challenges.length * 100 )}>
+								Return to Quiz Page
+							</button>
+						</div>}
 
 				</div>
 			</div>

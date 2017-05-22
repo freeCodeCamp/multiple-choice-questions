@@ -1,17 +1,22 @@
 import React from 'react';
 import quizzes from '../challenges';
+import View from './View';
 import Study from './Practice';
 
 export default class Quiz extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			session: false,
+			session: null,
 			length: quizzes[0].challenges.length,
 			selectedQuiz: quizzes[0].title,
-			quiz: [],
+			quiz: quizzes[0],
 			quizzes
 		}
+		document.addEventListener('keydown', this.handleKeyDown);
+	}
+	handleKeyDown = (k) => {
+		if (k.code === 'Escape') this.close();
 	}
 	selectQuiz = (e) => {
 		const title = e.target.value;
@@ -24,48 +29,55 @@ export default class Quiz extends React.Component {
 	startStudy= () => {
 		const { selectedQuiz } = this.state;
 		const quiz = this.state.quizzes.filter(quiz => quiz.title === selectedQuiz )[0];
-		this.setState({ quiz: quiz, session: true });
+		this.setState({ quiz: quiz, session: 'practice' });
 	}
-	endStudy = (score) => {
-		this.setState({ session: false });
-		console.log('end of quiz, you scored: ', score);
+	close = () => this.setState({ session: null })
+	viewQuiz = () => {
+		const { selectedQuiz } = this.state;
+		const quiz = this.state.quizzes.filter(quiz => quiz.title === selectedQuiz )[0];
+		this.setState({ quiz: quiz, session: 'review' });
 	}
 	render() {
-		if (this.state.session && !this.state.loading) {
+		switch(this.state.session) {
+		case 'review':
+			return (
+				<View
+					quiz={this.state.quiz}
+					close={this.close} />
+			);
+		case 'practice':
 			return (
 				<Study
-					endStudy={this.endStudy}
-					quiz={this.state.quiz} />
-			)
-		} else {
-			return (
-				<div className='studyComponent'>
-					<h1>freeCodeCamp Interview Beta</h1>
-					<p>Select a quiz to practice:</p>
-					<select onChange={this.selectQuiz.bind(this)} value={this.state.selectedQuiz}>
-						{this.state.quizzes.map((quiz, idx) => {
-							return (
-								<option
-									value={quiz.title}
-									key={idx} >
-									{quiz.title}
-								</option>
-							);
-						}) }
-					</select>
-					{this.state.length !== null &&
-						<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p> }
-					<button className='studyBtn' onClick={this.startStudy}>Begin Quiz</button>
-					<div>
-						<h5>
-							<a href="https://github.com/freeCodeCamp/multiple-choice-questions">Visit GitHub to Contribute</a>
-						</h5>
-						<h5>
-							<a href="https://github.com/bonham000/fcc-multiple-choice">View Source of this App</a>
-						</h5>
-					</div>
-				</div>
+					quiz={this.state.quiz}
+					close={this.close} />
 			);
-		}
+		default:
+			return (
+			<div className='studyComponent'>
+				<h1>freeCodeCamp Interview Beta</h1>
+				<p>Select a quiz to practice:</p>
+				<select value={this.state.selectedQuiz} onChange={this.selectQuiz.bind(this)}>
+					{this.state.quizzes.map(quiz => {
+						return (
+							<option key={quiz.title} value={quiz.title}>{quiz.title}</option>
+						);
+					})}
+				</select>
+				{this.state.length !== null &&
+					<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p> }
+				<button className='studyBtn' onClick={this.startStudy}>Practice Quiz</button>
+				<button className='reviewBtn' onClick={this.viewQuiz}>View Questions</button>
+				<div>
+					<h4>
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://github.com/freeCodeCamp/multiple-choice-questions">
+							Contribute on GitHub
+						</a>
+					</h4>
+				</div>
+			</div>
+		)}
 	}
 };
