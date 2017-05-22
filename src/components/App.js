@@ -4,8 +4,8 @@ import Review from './Review';
 import Practice from './Practice';
 
 export default class extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			session: null,
 			length: quizzes[0].challenges.length,
