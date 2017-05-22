@@ -78,7 +78,7 @@ body {
 	overflow: scroll;
 	.studyContainer {
 		padding-top: 15px;
-		padding-bottom: 50px;
+		padding-bottom: 85px;
 		font-family: 'Nunito', serif;
 		.quizTitle {
 			font-size: 50px;
@@ -135,6 +135,7 @@ body {
 			cursor: default;
 		}
 		.choice.solution:hover {
+			border: 1px solid $mint;
 			cursor: default;
 		}
 		#correctWinner {
