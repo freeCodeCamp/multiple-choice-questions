@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class Study extends React.Component {
+export default class extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,14 +10,19 @@ export default class Study extends React.Component {
 			answer: null,
 			score: 0
 		}
+		document.addEventListener('keydown', this.handleKeyDown);
 	}
+	handleKeyDown = (k) => {
+		const { answer } = this.state;
+		if (k.code === 'Space' && answer !== null) this.nextQuestion();
+	}
+	wrongAnswer = () => { this.setState({ answer: false }) }
 	correctAnswer = () => {
 		this.setState({
 			answer: true,
 			score: this.state.score + 1
 		});
 	}
-	wrongAnswer = () => { this.setState({ answer: false }) }
 	nextQuestion = () => {
 		const { index } = this.state;
 		const { length } = this.props.quiz.challenges;
@@ -32,8 +37,8 @@ export default class Study extends React.Component {
 	}
 	render() {
 		const { index, quiz } = this.state;
-		const currentQuestion = quiz.challenges[index];
-		const solution = +currentQuestion.solution;
+		const question = quiz.challenges[index];
+		const solution = +question.solution;
 		const percentage = this.state.score / this.props.quiz.challenges.length;
 		return (
 			<div className='studyWrapper'>
@@ -44,10 +49,10 @@ export default class Study extends React.Component {
 					{!this.state.complete &&
 						<div>
 							<h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
-							<h1 className='questionTitle'>{currentQuestion.questionTitle}</h1>
+							<h1 className='questionTitle'>{question.questionTitle}</h1>
 						</div>}
 
-						{!this.state.complete && currentQuestion.choices.map((answer, idx) => {
+						{!this.state.complete && question.choices.map((answer, idx) => {
 							if (this.state.answer === null) {
 								if (solution === idx) {
 									return (
@@ -110,7 +115,7 @@ export default class Study extends React.Component {
 					{this.state.answer !== null && !this.state.complete &&
 						<div className='messageDiv'>
 							{this.state.answer
-								? <h1 className='correctAnswer'>Correct, nice job!</h1>
+								? <h1 className='correctAnswer'>Correct, great work!</h1>
 								: <h1 className='wrongAnswer'>Sorry, that is not correct!</h1>}
 							{this.state.index + 1 === quiz.challenges.length
 								? <button onClick={this.nextQuestion}>View Results</button>
@@ -122,7 +127,7 @@ export default class Study extends React.Component {
 							<h1 className='scoreMessage'>
 								You scored {this.state.score} correct out of {this.props.quiz.challenges.length} questions! { percentage > 0.75 ? 'Nice work!' : 'Better luck next time!'}
 							</h1>
-							<button className='finishBtn' onClick={this.props.close.bind(this, this.state.score / this.props.quiz.challenges.length * 100 )}>
+							<button className='finishBtn' onClick={this.props.close}>
 								Return to Quiz Page
 							</button>
 						</div>}

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Quiz from './components/Quiz';
+import App from './components/App';
 import registerServiceWorker from './utils/registerServiceWorker';
 import './styles/index.css';
 
-ReactDOM.render(<Quiz />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
