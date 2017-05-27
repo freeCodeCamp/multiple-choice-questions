@@ -13,10 +13,6 @@ export default class extends React.Component {
 			quiz: quizzes[0],
 			quizzes
 		}
-		document.addEventListener('keydown', this.handleKeyDown);
-	}
-	handleKeyDown = (k) => {
-		if (k.code === 'Escape') this.close();
 	}
 	selectQuiz = (e) => {
 		const title = e.target.value;

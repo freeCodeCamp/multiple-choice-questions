@@ -19,6 +19,15 @@ const renderQuestion = (question) => {
 };
 
 export default class extends React.Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown, false);
+  }
+  handleKeyDown = ({ code }) => {
+		if (code === 'Escape') this.props.close();
+	}
   render() {
     const { quiz } = this.props;
     return (

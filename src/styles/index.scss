@@ -130,6 +130,9 @@ body {
 			border: 1px solid $blue;
 			cursor: pointer;
 		}
+		.selected {
+			border: 1px solid $blue;
+		}
 		.choice.review:hover {
 			border: 1px solid rgba(250,250,250,0.75);
 			cursor: default;
@@ -175,14 +178,24 @@ body {
 		button:hover {
 			background: $mint;
 		}
+		#infoBox {
+			position: absolute;
+			right: 15px;
+			bottom: 5px;
+			p {
+				font-size: 15px;
+				color: rgb(100,100,100);
+			}
+		}
 	}
 	#return {
 		position: absolute;
 		right: 15px;
 		top: 15px;
+		color: rgb(100,100,100);
 	}
 	#return:hover {
-		color: $blueHover;
+		color: $mint;
 		cursor: pointer;
 	}
 	.scoreMessage {
