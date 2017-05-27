@@ -99,6 +99,11 @@ export default class extends React.Component {
 			});
 		}
 	}
+	renderMarkup = (html) => {
+		return (
+			<span dangerouslySetInnerHTML={{__html: html}}></span>
+		);
+	}
 	render() {
 		const { index, quiz, selection } = this.state;
 		const question = quiz.challenges[index];
@@ -114,7 +119,9 @@ export default class extends React.Component {
 					{!this.state.complete &&
 						<div>
 							<h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
-							<h1 className='questionTitle'>{question.title}</h1>
+							<h1 className='questionTitle'>
+								{this.renderMarkup(question.title)}
+							</h1>
 						</div>}
 
 						{!this.state.complete && question.choices.map((answer, idx) => {
@@ -125,7 +132,7 @@ export default class extends React.Component {
 										className={markClass(idx)}
 										onMouseEnter={this.onHover}
 										onClick={() => this.handleAnswer(idx, solution)}>
-										<p>{answer}</p>
+										<p>{this.renderMarkup(answer)}</p>
 									</div>
 								)
 							} else if (this.state.answer) {
@@ -134,7 +141,7 @@ export default class extends React.Component {
 										<div
 											key={answer + idx}
 											className='choice' id='correctWinner'>
-											<p>{answer}</p>
+											<p>{this.renderMarkup(answer)}</p>
 										</div>
 									)
 								} else {
@@ -142,7 +149,7 @@ export default class extends React.Component {
 										<div
 											key={answer + idx}
 											className='choice' id='wrongWinner'>
-											<p>{answer}</p>
+											<p>{this.renderMarkup(answer)}</p>
 										</div>
 									)
 								}
@@ -152,7 +159,7 @@ export default class extends React.Component {
 										<div
 											key={answer + idx}
 											className='choice' id='correctLoser'>
-											<p>{answer}</p>
+											<p>{this.renderMarkup(answer)}</p>
 										</div>
 									)
 								} else {
@@ -160,7 +167,7 @@ export default class extends React.Component {
 										<div
 											key={answer + idx}
 											className='choice' id='wrongLoser'>
-											<p>{answer}</p>
+											<p>{this.renderMarkup(answer)}</p>
 										</div>
 									)
 								}
