@@ -117,17 +117,19 @@ export default class extends React.Component {
 		};
 		return (
 			<div className='studyWrapper'>
-				<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
 				<div className='studyContainer'>
-					<h1 className='quizTitle'>{this.props.quiz.title}</h1>
 
-					{!this.state.complete &&
-						<div>
-							<h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
-							<h1 className='questionTitle'>
-								{this.renderMarkup(question.title)}
-							</h1>
-						</div>}
+						<div className='quizHeader'>
+							<h1 className='quizTitle'>{this.props.quiz.title}</h1>
+							{!this.state.complete
+								? <h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
+								: <h3>Quiz Complete</h3>}
+							<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
+						</div>
+
+						<h1 className='questionTitle'>
+							{this.renderMarkup(question.title)}
+						</h1>
 
 						{!this.state.complete && question.choices.map((answer, idx) => {
 							if (this.state.answer === null) {

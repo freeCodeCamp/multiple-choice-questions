@@ -1,17 +1,10 @@
 
-$error: #F63150;
-$blue: #06C1FF;
-$blueHover: #05D7FF;
-$mint: #1AF59D;
-$mintHover: #29FF92;
-$orange: #FF8957;
-$orangeHover: #FF7338;
-
-
+// freeCodeCamp theme colors:
 $green: #007E00;
 $darkGreen: #006400;
 $lightBlue: #2DB9FF;
 $lightRed: #FF6D58;
+$yellow: #FFEE18;
 $black: #2A2A2A;
 $grey: #E0E0E0;
 $darkGrey: #939393;
@@ -25,11 +18,7 @@ body {
 	text-align: center;
 	font-size: 30px;
 	.errorsBox {
-		color: $error;
-	}
-	code {
-		background: white;
-		color: red;
+		color: $lightRed;
 	}
 }
 
@@ -53,14 +42,17 @@ body {
 	}
 	.contributeLink {
 		position: absolute;
-		right: 15px;
+		height: 60px;
+		right: 0;
+		padding: 9px 15px 0 15px;
 		color: white;
 		i {
 			margin-left: 5px;
 		}
 		&:hover {
 			text-decoration: none;
-			color: $lightBlue;
+			background: white;
+			color: $green;
 		}
 	}
 }
@@ -125,37 +117,58 @@ body {
 	top: 0;
 	left: 0;
 	z-index: 5;
-	background: rgb(25,25,25);
-	color: white;
+	color: $black;
 	overflow: scroll;
 	.studyContainer {
 		padding-top: 15px;
 		padding-bottom: 85px;
 		font-family: 'Nunito', serif;
-		.quizTitle {
-			font-size: 50px;
-			width: 700px;
-			border-bottom: 1px solid rgba(250,250,250,0.25);
-			padding-bottom: 15px;
-			margin: 35px auto 15px auto;
+		.quizHeader {
+			position: fixed;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			top: 0;
+			width: 100%;
+			height: 60px;
+			border-bottom: 1px solid $black;
+			background: $darkGreen;
+			color: white;
+			.quizTitle {
+				font-size: 32px;
+				width: 30%;
+				text-align: left;
+				padding-left: 10px;
+				padding-bottom: 5px;
+			}
+			.quizLength {
+				width: 40%;
+				font-size: 22px;
+				text-align: center;
+			}
+			#return {
+				width: 30%;
+				padding-right: 10px;
+				text-align: right;
+			}
+			#return:hover {
+				color: $lightRed;
+				cursor: pointer;
+			}
 		}
+
 		.subTitle {
 			font-size: 22px;
 			margin: 0 auto;
 			width: 950px;
 			text-align: center;
-			color: rgb(175,175,175);
-		}
-		.quizLength {
-			font-size: 20px;
-			color: rgb(175,175,175);
+			color: $black;
 		}
 		.questionTitle {
 			font-size: 30px;
 			width: 950px;
-			padding-top: 25px;
+			padding-top: 50px;
 			margin: 30px auto;
-			border-top: 1px solid rgba(250,250,250,0.60);
 		}
 		.choice {
 			width: 650px;
@@ -163,8 +176,8 @@ body {
 			margin: 12px auto;
 			padding-bottom: 5px;
 			text-align: left;
-			border: 1px solid rgba(250,250,250,0.20);
-			color: rgba(250,250,250,0.60);
+			border: 1px solid $black;
+			color: $black;
 			p {
 				padding-top: 8px;
 				padding-left: 12px;
@@ -176,79 +189,71 @@ body {
 			}
 		}
 		.choice.solution {
-			border: 1px solid $mint;
+			color: white;
+			background: $green;
 		}
 		.desktop:hover {
-			border: 1px solid $blue;
+			color: white;
+			background: $green;
 			cursor: pointer;
 		}
 		.selected {
-			border: 1px solid $blue;
+			color: white;
+			background: $green;
 		}
 		.choice.review:hover {
-			border: 1px solid rgba(250,250,250,0.75);
 			cursor: default;
 		}
 		.choice.solution:hover {
-			border: 1px solid $mint;
+			border: 1px solid $green;
 			cursor: default;
 		}
 		#correctWinner {
-			background: $blueHover;
-			border: 1px solid $blueHover;
-			color: black;
+			background: $green;
+			color: white;
 		}
 		#wrongWinner {
-			border: 1px solid $blueHover;
+			background: $lightRed;
 			color: white;
 		}
 		#correctLoser {
-			background: $blueHover;
+			background: $green;
 			border: 1px solid black;
 			color: white;
 		}
 		#wrongLoser {
-			background: $error;
+			background: $lightRed;
 			border: 1px solid black;
 			color: black;
 		}
 		.correctAnswer {
-			color: $mint;
+			color: $green;
 		}
 		.wrongAnswer {
-			color: $error;
+			color: $lightRed;
 		}
 		button {
-			border: none;
-			background: white;
-			color: black;
 			padding: 2px 4px;
 			width: 350px;
 			margin: 15px;
+			background: white;
+			color: $green;
+			border: 1px solid $green;
 			border-radius: 30px;
 		}
 		button:hover {
-			background: $mint;
+			background: $green;
+			color: white;
 		}
 		#infoBox {
-			position: absolute;
+			position: fixed;
 			right: 15px;
 			bottom: 5px;
 			p {
 				font-size: 15px;
-				color: rgb(100,100,100);
+				color: $black;
 			}
 		}
-	}
-	#return {
-		position: absolute;
-		right: 15px;
-		top: 15px;
-		color: rgb(100,100,100);
-	}
-	#return:hover {
-		color: $mint;
-		cursor: pointer;
 	}
 	.scoreMessage {
 		margin: 45px auto;
@@ -306,14 +311,24 @@ body {
 	.studyWrapper {
 		.studyContainer {
 			padding-bottom: 45px;
-			.quizTitle {
-				font-size: 40px;
-				width: 90vw;
-				padding-bottom: 15px;
-				margin: 35px auto;
-			}
-			.quizLength {
-				font-size: 20px;
+			.quizHeader {
+				height: 50px;
+				.quizTitle {
+					font-size: 15px;
+					padding-left: 6px;
+					padding-bottom: 4px;
+					width: 30%;
+				}
+				.quizLength {
+					width: 40%;
+					font-size: 12px;
+				}
+				#return {
+					width: 30%;
+					padding-right: 6px;
+					padding-top: 5px;
+					font-size: 22px;
+				}
 			}
 			.subTitle {
 				width: 85vw;
@@ -333,7 +348,7 @@ body {
 				}
 			}
 			.choice:hover {
-				border: 1px solid $blue;
+				border: 1px solid $lightBlue;
 				cursor: pointer;
 			}
 			.reviewTitle {
