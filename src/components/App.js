@@ -4,7 +4,7 @@ import quizzes from '../challenges';
 import Review from './Review';
 import Practice from './Practice';
 
-/* Helper Functions */
+/* Given an array, shuffle it's contents */
 const shuffle = (array) => {
 	const cached = {};
 	const max = array.length - 1;
@@ -19,15 +19,26 @@ const shuffle = (array) => {
 	};
 	return array.reduce((shuffled, element) => {
 		const index = generateIndex();
-		shuffled[index] = Object.assign({}, element);
+		shuffled[index] = element;
 		return shuffled;
 	}, []);
 };
 
+/* Given a quiz, shuffle the answer options and reassign the correct solution */
+const shuffleAnswers = (challenge) => {
+	const solution = challenge.choices[+challenge.solution];
+	challenge.choices = shuffle(challenge.choices);
+	const newSolutionIndex = challenge.choices.indexOf(solution);
+	challenge.solution = newSolutionIndex;
+	return challenge;
+};
+
+/* Given an array of quizes and a title, find the titled quiz in the array */
 const findQuiz = (selected, quizzes) => {
 	return quizzes.filter(quiz => quiz.title === selected)[0];
 };
 
+/* Screen size helper */
 const mapScreenSizeToProps = (screenSize) => {
   return { screen: {
     isTablet: screenSize['small'],
@@ -53,6 +64,7 @@ class Quiz extends React.Component {
 		const { quizzes } = this.state;
 		const quiz = findQuiz(title, quizzes);
 		quiz.challenges = shuffle(quiz.challenges);
+		quiz.challenges = quiz.challenges.map(shuffleAnswers);
 		this.setState({ quiz: quiz, session: 'practice' });
 	}
 	triggerReview = (title) => {
