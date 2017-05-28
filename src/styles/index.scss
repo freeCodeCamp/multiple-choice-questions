@@ -7,6 +7,10 @@ $mintHover: #29FF92;
 $orange: #FF8957;
 $orangeHover: #FF7338;
 
+$green: #007E00;
+$darkGreen: #006400;
+$lightBlue: #2DB9FF;
+
 body {
 	padding-bottom: 65px;
 	margin: 0;
@@ -15,13 +19,43 @@ body {
 	color: rgb(20,20,20);
 	text-align: center;
 	font-size: 30px;
-	font-family: 'Esteban', serif;
 	.errorsBox {
 		color: $error;
 	}
 	code {
 		background: white;
 		color: red;
+	}
+	.header {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		height: 60px;
+		text-align: left;
+		background: $darkGreen;
+		display: flex;
+		align-items: center;
+		font-family: 'Nunito', serif;
+		img {
+			width: 275px;
+			margin-left: 10px;
+		}
+		span {
+			margin-left: 12px;
+			color: white;
+		}
+		.contributeLink {
+			position: absolute;
+			right: 15px;
+			color: white;
+			i {
+				margin-left: 5px;
+			}
+			&:hover {
+				text-decoration: none;
+				color: $lightBlue;
+			}
+		}
 	}
 }
 

@@ -90,29 +90,37 @@ class Quiz extends React.Component {
 			);
 		default:
 			return (
-			<div className='studyComponent'>
-				<h1><strong>freeCodeCamp Interview Beta</strong></h1>
-				<p>Select a quiz to practice:</p>
-				<select value={this.state.selectedQuiz} onChange={this.selectQuiz.bind(this)}>
-					{this.state.quizzes.map(quiz => {
-						return (
-							<option key={quiz.title} value={quiz.title}>{quiz.title}</option>
-						);
-					})}
-				</select>
-				<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p>
-				<button className='studyBtn' onClick={this.triggerPractice}>Practice Quiz</button>
-				<button className='shuffleBtn' onClick={this.shuffleQuiz}>Shuffle Questions</button>
-				<button className='reviewBtn' onClick={this.triggerReview}>Review Questions</button>
-				<div>
-					<h4>
+			<div>
+				<div className='header'>
+					<a
+						target="_blank"
+						rel="noopener noreferrer"
+						className="fccLink"
+						href="http://freecodecamp.com/">
+						<img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
+					</a>
+					<span>Interview Quiz Beta</span>
 						<a
 							target="_blank"
 							rel="noopener noreferrer"
+							className="contributeLink"
 							href="https://github.com/freeCodeCamp/multiple-choice-questions">
-							Contribute on GitHub
+							Contribute <i className='fa fa-github'></i>
 						</a>
-					</h4>
+				</div>
+				<div className='studyComponent'>
+					<p>Select a quiz to practice:</p>
+					<select value={this.state.selectedQuiz} onChange={this.selectQuiz.bind(this)}>
+						{this.state.quizzes.map(quiz => {
+							return (
+								<option key={quiz.title} value={quiz.title}>{quiz.title}</option>
+							);
+						})}
+					</select>
+					<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p>
+					<button className='studyBtn' onClick={this.triggerPractice}>Practice Quiz</button>
+					<button className='shuffleBtn' onClick={this.shuffleQuiz}>Shuffle Questions</button>
+					<button className='reviewBtn' onClick={this.triggerReview}>Review Questions</button>
 				</div>
 			</div>
 		)}
