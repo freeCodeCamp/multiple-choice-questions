@@ -1,5 +1,6 @@
 import React from 'react'
 
+/* Practice Quiz Component */
 export default class extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,10 +18,9 @@ export default class extends React.Component {
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyDown, false);
 	}
-	onHover = () => {
-		this.setState({ selection: null });
-	}
+	onHover = () => this.setState({ selection: null });
 	handleKeyDown = ({ code }) => {
+
 		let {
 			quiz,
 			answer,
@@ -109,7 +109,7 @@ export default class extends React.Component {
 		const question = quiz.challenges[index];
 		const solution = +question.solution;
 		const percentage = this.state.score / this.props.quiz.challenges.length;
-		const markClass = (i) => (selection === i) ? 'choice selected' : 'choice';
+		const renderClassName = (i) => (selection === i) ? 'choice selected' : 'choice';
 		return (
 			<div className='studyWrapper'>
 				<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
@@ -129,7 +129,7 @@ export default class extends React.Component {
 								return (
 									<div
 										key={answer + idx}
-										className={markClass(idx)}
+										className={renderClassName(idx)}
 										onMouseEnter={this.onHover}
 										onClick={() => this.handleAnswer(idx, solution)}>
 										<p>{this.renderMarkup(answer)}</p>

@@ -3,6 +3,7 @@ import quizzes from '../challenges';
 import Review from './Review';
 import Practice from './Practice';
 
+/* Helper Functions */
 const shuffle = (array) => {
 	const cached = {};
 	const max = array.length - 1;
@@ -26,6 +27,7 @@ const findQuiz = (selected, quizzes) => {
 	return quizzes.filter(quiz => quiz.title === selected)[0];
 };
 
+/* Main Quiz Component */
 export default class extends React.Component {
 	constructor(props) {
 		super(props);
@@ -38,8 +40,9 @@ export default class extends React.Component {
 		}
 	}
 	selectQuiz = (e) => {
+		const { quizzes } = this.state;
 		const title = e.target.value;
-		const length = this.state.quizzes.filter(quiz => quiz.title === title)[0].challenges.length;
+		const length = findQuiz(title, quizzes).challenges.length;
 		this.setState({ selectedQuiz: title, length });
 	}
 	shuffleQuiz = () => {

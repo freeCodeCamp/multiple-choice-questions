@@ -19,6 +19,10 @@ body {
 	.errorsBox {
 		color: $error;
 	}
+	code {
+		background: white;
+		color: red;
+	}
 }
 
 .studyComponent {
@@ -237,7 +241,7 @@ body {
 			font-size: 22px;
 			font-family: 'Nunito', serif;
 		}
-		.studyBtn {
+		.studyBtn, .shuffleBtn, .reviewBtn, {
 			width: 75vw;
 			margin: 12px auto;
 			font-size: 22px;

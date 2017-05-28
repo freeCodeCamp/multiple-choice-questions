@@ -24,6 +24,7 @@ const renderQuestion = (question) => {
   );
 };
 
+/* Review Quiz Questions Component */
 export default class extends React.Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
