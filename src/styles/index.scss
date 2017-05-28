@@ -4,6 +4,8 @@ $blue: #06C1FF;
 $blueHover: #05D7FF;
 $mint: #1AF59D;
 $mintHover: #29FF92;
+$orange: #FF8957;
+$orangeHover: #FF7338;
 
 body {
 	padding-bottom: 65px;
@@ -36,7 +38,7 @@ body {
 	}
 	.studyBtn {
 		width: 350px;
-		margin: 15px auto;
+		margin: 10px auto;
 		padding: 4px;
 		font-size: 30px;
 		border: 1px solid black;
@@ -46,9 +48,21 @@ body {
 		background: #05D7FF;
 		cursor: pointer;
 	}
+	.shuffleBtn {
+		width: 350px;
+		margin: 10px auto;
+		padding: 4px;
+		font-size: 30px;
+		border: 1px solid black;
+		background: $orange;
+	}
+	.shuffleBtn:hover {
+		background: $orangeHover;
+		cursor: pointer;
+	}
 	.reviewBtn {
 		width: 350px;
-		margin: 15px auto;
+		margin: 10px auto;
 		padding: 4px;
 		font-size: 30px;
 		border: 1px solid black;
