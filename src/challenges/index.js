@@ -2,6 +2,6 @@
 /* Export all the quizzes as an array */
 
 export default [
-	require('./javascript.json'),
-	require('./system-design.json'),
+	require('./01_javascript.json'),
+	require('./05_system-design.json'),
 ];
