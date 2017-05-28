@@ -11,7 +11,7 @@ The purpose of these challenges is to cover material that is currently not cover
 - **Design Principles (OOP, FP, etc)**
 - **Application & Web Security Questions**
 - **Algorithm design/efficiency, time complexity, dynamic programming, etc.**
-- **DevOps, knowledge of various cloud & server technologies (e.g. Heroku, AWS, Elasticsearch, memcached, etc.)
+- **DevOps, knowledge of various cloud & server technologies (e.g. Heroku, AWS, Elasticsearch, memcached, etc.)**
 - **... and more**
 
 ---
