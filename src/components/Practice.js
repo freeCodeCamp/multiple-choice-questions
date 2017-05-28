@@ -105,6 +105,7 @@ export default class extends React.Component {
 		);
 	}
 	render() {
+		const { isMobile } = this.props;
 		const { index, quiz, selection } = this.state;
 		const question = quiz.challenges[index];
 		const solution = +question.solution;
@@ -194,9 +195,9 @@ export default class extends React.Component {
 							</button>
 						</div>}
 
-						<div id='infoBox'>
+						{!isMobile && <div id='infoBox'>
 							<p>Use <i className='fa fa-long-arrow-up'></i> <i className='fa fa-long-arrow-down'></i> space and esc</p>
-						</div>
+						</div>}
 
 				</div>
 			</div>
