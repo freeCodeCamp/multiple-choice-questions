@@ -1,31 +1,95 @@
 import React from 'react'
 
+/* Practice Quiz Component */
 export default class extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			index: 0,
+			length: this.props.quiz.challenges.length,
 			quiz: this.props.quiz,
 			complete: false,
+			selection: null,
 			answer: null,
 			score: 0
 		}
 		document.addEventListener('keydown', this.handleKeyDown);
 	}
-	handleKeyDown = (k) => {
-		const { answer } = this.state;
-		if (k.code === 'Space' && answer !== null) this.nextQuestion();
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.handleKeyDown, false);
 	}
-	wrongAnswer = () => { this.setState({ answer: false }) }
-	correctAnswer = () => {
-		this.setState({
-			answer: true,
-			score: this.state.score + 1
-		});
+	onHover = () => this.setState({ selection: null });
+	handleKeyDown = ({ code }) => {
+
+		let {
+			quiz,
+			answer,
+			index,
+			selection,
+			complete
+		} = this.state;
+
+		const question = quiz.challenges[index];
+		const questions = question.choices.length;
+		const solution = +question.solution;
+
+		switch(code) {
+		case 'Space':
+			if (complete) {
+				this.props.close();
+			} else if (selection !== null) {
+				this.handleAnswer(selection, solution);
+			} else if (answer !== null) {
+				this.nextQuestion();
+			}
+			break;
+		case 'ArrowDown':
+			if (selection === null) {
+				this.setState({ selection: 0 });
+			} else {
+				selection++;
+				if (selection === questions) {
+					this.setState({ selection: 0 });
+				} else {
+					this.setState({ selection });
+				}
+			}
+			break;
+		case 'ArrowUp':
+			if (selection === null) {
+				this.setState({ selection: questions - 1 });
+			} else {
+				selection--;
+				if (selection === -1) {
+					this.setState({ selection: questions - 1 });
+				} else {
+					this.setState({ selection });
+				}
+			}
+			break;
+		case 'Escape':
+			this.props.close();
+			break;
+		default:
+			return;
+		}
+	}
+	handleAnswer = (choice, solution) => {
+		if (choice === solution) {
+			this.setState({
+				answer: true,
+				selection: null,
+				score: this.state.score + 1
+			});
+		} else {
+			this.setState({
+				answer: false,
+				selection: null
+			});
+		}
 	}
 	nextQuestion = () => {
-		const { index } = this.state;
-		const { length } = this.props.quiz.challenges;
+		const { index, length } = this.state;
 		if (index === length - 1) {
 			this.setState({ complete: true });
 		} else {
@@ -35,11 +99,17 @@ export default class extends React.Component {
 			});
 		}
 	}
+	renderMarkup = (html) => {
+		return (
+			<span dangerouslySetInnerHTML={{__html: html}}></span>
+		);
+	}
 	render() {
-		const { index, quiz } = this.state;
+		const { index, quiz, selection } = this.state;
 		const question = quiz.challenges[index];
 		const solution = +question.solution;
 		const percentage = this.state.score / this.props.quiz.challenges.length;
+		const renderClassName = (i) => (selection === i) ? 'choice selected' : 'choice';
 		return (
 			<div className='studyWrapper'>
 				<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
@@ -49,37 +119,29 @@ export default class extends React.Component {
 					{!this.state.complete &&
 						<div>
 							<h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
-							<h1 className='questionTitle'>{question.title}</h1>
+							<h1 className='questionTitle'>
+								{this.renderMarkup(question.title)}
+							</h1>
 						</div>}
 
 						{!this.state.complete && question.choices.map((answer, idx) => {
 							if (this.state.answer === null) {
-								if (solution === idx) {
-									return (
-										<div
-											key={answer + idx}
-											className='choice'
-											onClick={this.correctAnswer}>
-											<p>{answer}</p>
-										</div>
-									)
-								} else {
-									return (
-										<div
-											key={answer + idx}
-											className='choice'
-											onClick={this.wrongAnswer}>
-											<p>{answer}</p>
-										</div>
-									)
-								}
+								return (
+									<div
+										key={answer + idx}
+										className={renderClassName(idx)}
+										onMouseEnter={this.onHover}
+										onClick={() => this.handleAnswer(idx, solution)}>
+										<p>{this.renderMarkup(answer)}</p>
+									</div>
+								)
 							} else if (this.state.answer) {
 								if (solution === idx) {
 									return (
 										<div
 											key={answer + idx}
 											className='choice' id='correctWinner'>
-											<p>{answer}</p>
+											<p>{this.renderMarkup(answer)}</p>
 										</div>
 									)
 								} else {
@@ -87,7 +149,7 @@ export default class extends React.Component {
 										<div
 											key={answer + idx}
 											className='choice' id='wrongWinner'>
-											<p>{answer}</p>
+											<p>{this.renderMarkup(answer)}</p>
 										</div>
 									)
 								}
@@ -97,7 +159,7 @@ export default class extends React.Component {
 										<div
 											key={answer + idx}
 											className='choice' id='correctLoser'>
-											<p>{answer}</p>
+											<p>{this.renderMarkup(answer)}</p>
 										</div>
 									)
 								} else {
@@ -105,7 +167,7 @@ export default class extends React.Component {
 										<div
 											key={answer + idx}
 											className='choice' id='wrongLoser'>
-											<p>{answer}</p>
+											<p>{this.renderMarkup(answer)}</p>
 										</div>
 									)
 								}
@@ -131,6 +193,10 @@ export default class extends React.Component {
 								Return to Quiz Page
 							</button>
 						</div>}
+
+						<div id='infoBox'>
+							<p>Use <i className='fa fa-long-arrow-up'></i> <i className='fa fa-long-arrow-down'></i> space and esc</p>
+						</div>
 
 				</div>
 			</div>
