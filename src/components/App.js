@@ -45,35 +45,24 @@ class Quiz extends React.Component {
 		this.state = {
 			session: null,
 			length: quizzes[0].challenges.length,
-			selectedQuiz: quizzes[0].title,
 			quiz: quizzes[0],
 			quizzes
 		}
 	}
-	selectQuiz = (e) => {
+	triggerPractice = (title) => {
 		const { quizzes } = this.state;
-		const title = e.target.value;
-		const length = findQuiz(title, quizzes).challenges.length;
-		this.setState({ selectedQuiz: title, length });
-	}
-	shuffleQuiz = () => {
-		const { selectedQuiz, quizzes } = this.state;
-		const quiz = findQuiz(selectedQuiz, quizzes);
+		const quiz = findQuiz(title, quizzes);
 		quiz.challenges = shuffle(quiz.challenges);
 		this.setState({ quiz: quiz, session: 'practice' });
 	}
-	triggerPractice = () => {
-		const { selectedQuiz, quizzes } = this.state;
-		const quiz = findQuiz(selectedQuiz, quizzes);
-		this.setState({ quiz: quiz, session: 'practice' });
-	}
-	triggerReview = () => {
-		const { selectedQuiz, quizzes } = this.state;
-		const quiz = findQuiz(selectedQuiz, quizzes);
+	triggerReview = (title) => {
+		const { quizzes } = this.state;
+		const quiz = findQuiz(title, quizzes);
 		this.setState({ quiz: quiz, session: 'review' });
 	}
 	close = () => this.setState({ session: null })
 	render() {
+		const { isDesktop } = this.props.screen;
 		switch(this.state.session) {
 		case 'review':
 			return (
@@ -100,27 +89,29 @@ class Quiz extends React.Component {
 						<img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
 					</a>
 					<span>Interview Quiz Beta</span>
-						<a
+						{isDesktop && <a
 							target="_blank"
 							rel="noopener noreferrer"
 							className="contributeLink"
 							href="https://github.com/freeCodeCamp/multiple-choice-questions">
 							Contribute <i className='fa fa-github'></i>
-						</a>
+					</a>}
 				</div>
 				<div className='studyComponent'>
-					<p>Select a quiz to practice:</p>
-					<select value={this.state.selectedQuiz} onChange={this.selectQuiz.bind(this)}>
-						{this.state.quizzes.map(quiz => {
-							return (
-								<option key={quiz.title} value={quiz.title}>{quiz.title}</option>
-							);
-						})}
-					</select>
-					<p className='quizInfo'>This quiz has a total of {this.state.length} questions</p>
-					<button className='studyBtn' onClick={this.triggerPractice}>Practice Quiz</button>
-					<button className='shuffleBtn' onClick={this.shuffleQuiz}>Shuffle Questions</button>
-					<button className='reviewBtn' onClick={this.triggerReview}>Review Questions</button>
+					{this.state.quizzes.map(quiz => {
+						const { title, challenges } = quiz;
+						return (
+							<div key={title} className='quizContainer'>
+								{process.env.NODE_ENV === 'development' &&
+									<div className='review' onClick={() => this.triggerReview(title)}>
+										<i className='fa fa-search'></i>
+									</div>}
+								<div className={`title ${isDesktop ? 'titleHover' : ''}`} onClick={() => this.triggerPractice(title)}>
+									{title} <span>({challenges.length} questions)</span>
+								</div>
+							</div>
+						)
+					})}
 				</div>
 			</div>
 		)}
