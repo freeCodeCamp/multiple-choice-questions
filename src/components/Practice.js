@@ -127,9 +127,10 @@ export default class extends React.Component {
 							<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
 						</div>
 
-						<h1 className='questionTitle'>
+
+						{!this.state.complete && <h1 className='questionTitle'>
 							{this.renderMarkup(question.title)}
-						</h1>
+						</h1>}
 
 						{!this.state.complete && question.choices.map((answer, idx) => {
 							if (this.state.answer === null) {

@@ -120,8 +120,6 @@ body {
 	color: $black;
 	overflow: scroll;
 	.studyContainer {
-		padding-top: 15px;
-		padding-bottom: 85px;
 		font-family: 'Nunito', serif;
 		.quizHeader {
 			position: fixed;
@@ -167,8 +165,7 @@ body {
 		.questionTitle {
 			font-size: 30px;
 			width: 950px;
-			padding-top: 50px;
-			margin: 30px auto;
+			margin: 100px auto 50px auto;
 		}
 		.choice {
 			width: 650px;
@@ -256,7 +253,7 @@ body {
 		}
 	}
 	.scoreMessage {
-		margin: 45px auto;
+		margin: 125px auto 50px auto;
 	}
 }
 
@@ -276,7 +273,6 @@ body {
 	}
 	.studyComponent {
 		width: 95vw;
-		margin: 90px auto;
 		h1 {
 			width: 90vw;
 			margin: 20px auto;
@@ -310,7 +306,6 @@ body {
 	}
 	.studyWrapper {
 		.studyContainer {
-			padding-bottom: 45px;
 			.quizHeader {
 				height: 50px;
 				.quizTitle {
