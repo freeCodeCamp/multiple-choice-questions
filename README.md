@@ -7,10 +7,12 @@ This app is the client side shell of [this quiz app](https://github.com/bonham00
 The purpose of these challenges is to cover material that is currently not covered in the FCC Curriculum but nevertheless plays an important role in software engineering. In addition, these topics commonly appear in interview questions. Primary categories would be:
 
 - **Common JavaScript Interview Questions**
+- **Web Technologies & Web Standards**
+- **Algorithm design/efficiency, time complexity, dynamic programming, etc.**
+- **Data Structures and Database Technologies**
 - **System Design**
 - **Design Principles (OOP, FP, etc)**
 - **Application & Web Security Questions**
-- **Algorithm design/efficiency, time complexity, dynamic programming, etc.**
 - **DevOps, knowledge of cloud & server technologies (e.g. Heroku, AWS, Elasticsearch, memcached, etc.)**
 - **... and more**
 
