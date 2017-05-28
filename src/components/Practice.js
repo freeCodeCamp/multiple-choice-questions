@@ -110,7 +110,11 @@ export default class extends React.Component {
 		const question = quiz.challenges[index];
 		const solution = +question.solution;
 		const percentage = this.state.score / this.props.quiz.challenges.length;
-		const renderClassName = (i) => (selection === i) ? 'choice selected' : 'choice';
+		const renderClassName = (i) => {
+			return (selection === i)
+				? `choice selected ${isMobile ? 'mobile' : 'desktop'}`
+				: `choice ${isMobile ? 'mobile' : 'desktop'}`;
+		};
 		return (
 			<div className='studyWrapper'>
 				<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
