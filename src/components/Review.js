@@ -41,8 +41,11 @@ export default class extends React.Component {
       <div className='studyWrapper'>
         <i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
 				<div className='studyContainer'>
-					<h1 className='quizTitle'>{quiz.title}</h1>
-          <p className='subTitle'>{quiz.challenges.length} total questions</p>
+          <div className='quizHeader'>
+            <h1 className='quizTitle'>{quiz.title}</h1>
+            <h3 className='quizLength'>{quiz.challenges.length} total questions</h3>
+            <i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
+          </div>
           {quiz.challenges.map(renderQuestion)}
 				</div>
 			</div>
