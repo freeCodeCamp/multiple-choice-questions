@@ -4,14 +4,14 @@ This app is the client side shell of [this quiz app](https://github.com/bonham00
 
 **[It's running live here for you to practice on.](http://fcc-quiz.surge.sh/)**
 
-The purpose of these challenges is to cover material that is currently not covered in the FCC Curriculum but nevertheless plays an important role in software engineering. In addition, these topics commonly appear in interview questions. Some topics include:
+The purpose of these challenges is to cover material that is currently not covered in the FCC Curriculum but nevertheless plays an important role in software engineering. In addition, these topics commonly appear in interview questions. Primary categories would be:
 
-- **System design**
-- **Algorithm design/algorithm efficiency**
-- **OOP design principles**
-- **FP design principles**
-- **Security questions**
-- **Common JavaScript questions**
+- **Common JavaScript Interview Questions**
+- **System Design**
+- **Design Principles (OOP, FP, etc)**
+- **Application & Web Security Questions**
+- **Algorithm design/efficiency, time complexity, dynamic programming, etc.**
+- **DevOps, knowledge of various cloud & server technologies (e.g. Heroku, AWS, Elasticsearch, memcached, etc.)
 - **... and more**
 
 ---
