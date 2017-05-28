@@ -105,11 +105,16 @@ export default class extends React.Component {
 		);
 	}
 	render() {
+		const { isMobile } = this.props;
 		const { index, quiz, selection } = this.state;
 		const question = quiz.challenges[index];
 		const solution = +question.solution;
 		const percentage = this.state.score / this.props.quiz.challenges.length;
-		const renderClassName = (i) => (selection === i) ? 'choice selected' : 'choice';
+		const renderClassName = (i) => {
+			return (selection === i)
+				? `choice selected ${isMobile ? 'mobile' : 'desktop'}`
+				: `choice ${isMobile ? 'mobile' : 'desktop'}`;
+		};
 		return (
 			<div className='studyWrapper'>
 				<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
@@ -194,9 +199,9 @@ export default class extends React.Component {
 							</button>
 						</div>}
 
-						<div id='infoBox'>
+						{!isMobile && <div id='infoBox'>
 							<p>Use <i className='fa fa-long-arrow-up'></i> <i className='fa fa-long-arrow-down'></i> space and esc</p>
-						</div>
+						</div>}
 
 				</div>
 			</div>

@@ -1,4 +1,4 @@
-  {
+{
   "name": "fcc-multiple-choice",
   "version": "0.0.1",
   "private": true,
@@ -10,7 +10,8 @@
   "dependencies": {
     "axios": "^0.16.1",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-screen-size": "^1.0.1"
   },
   "scripts": {
     "build-css": "node-sass src/ -o src/",

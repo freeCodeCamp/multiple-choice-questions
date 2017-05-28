@@ -144,7 +144,7 @@ body {
 		.choice.solution {
 			border: 1px solid $mint;
 		}
-		.choice:hover {
+		.desktop:hover {
 			border: 1px solid $blue;
 			cursor: pointer;
 		}
@@ -264,9 +264,12 @@ body {
 			.quizLength {
 				font-size: 20px;
 			}
+			.subTitle {
+				width: 85vw;
+			}
 			.questionTitle {
 				font-size: 22px;
-				width: 95vw;
+				width: 90vw;
 				margin: 25px auto;
 			}
 			.choice {
@@ -285,7 +288,6 @@ body {
 			.reviewTitle {
 				width: 90vw;
 				margin: 45px auto;
-				border-top: 1px solid rgba(250,250,250,0.50);
 			}
 			button {
 				width: 80vw;

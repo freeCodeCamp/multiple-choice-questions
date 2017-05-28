@@ -1,4 +1,5 @@
 import React from 'react';
+import { connectScreenSize } from 'react-screen-size';
 import quizzes from '../challenges';
 import Review from './Review';
 import Practice from './Practice';
@@ -27,8 +28,18 @@ const findQuiz = (selected, quizzes) => {
 	return quizzes.filter(quiz => quiz.title === selected)[0];
 };
 
+const mapScreenSizeToProps = (screenSize) => {
+  return { screen: {
+    isTablet: screenSize['small'],
+    isMobile: screenSize['mobile'],
+    isDesktop: screenSize['> small']
+  }}
+};
+
 /* Main Quiz Component */
-export default class extends React.Component {
+export default connectScreenSize(
+	mapScreenSizeToProps)(
+class Quiz extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -73,8 +84,9 @@ export default class extends React.Component {
 		case 'practice':
 			return (
 				<Practice
-					quiz={this.state.quiz}
-					close={this.close} />
+					close={this.close}
+				quiz={this.state.quiz}
+				isMobile={this.props.screen.isMobile} />
 			);
 		default:
 			return (
@@ -105,4 +117,4 @@ export default class extends React.Component {
 			</div>
 		)}
 	}
-};
+});
