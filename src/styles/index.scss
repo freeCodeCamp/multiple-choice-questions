@@ -133,6 +133,7 @@ body {
 	}
 	.studyContainer {
 		font-family: 'Nunito', serif;
+		padding-bottom: 50px;
 		#score-tower {
 			position: fixed;
 			top: 60px;
@@ -144,7 +145,7 @@ body {
 				height: 5px;
 			}
 			.blank {
-				background: grey;
+				background: $darkGrey;
 			}
 			.success {
 				background: $lightBlue;
@@ -205,6 +206,12 @@ body {
 			font-size: 30px;
 			width: 950px;
 			margin: 100px auto 50px auto;
+			pre {
+				margin-top: 15px;
+				padding: 25px;
+				text-align: left;
+				line-height: 10px;
+			}
 		}
 		.choice {
 			width: 650px;

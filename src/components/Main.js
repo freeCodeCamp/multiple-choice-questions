@@ -132,7 +132,7 @@ class extends React.Component {
 				})}
 				<div className='quizContainer'>
 					<Link to='practice/shuffle' className={renderClassName(maxOptions - 1)} onMouseEnter={this.onHover}>
-						Practice All <span>({totalQuestions} questions)</span>
+						Shuffle All Quizzes <span>({totalQuestions} questions)</span>
 					</Link>
 				</div>
 				<div className='quizContainer'>
