@@ -119,10 +119,11 @@ class extends React.Component {
 					const challenges = quiz.get('challenges');
 					return (
 						<div key={title} className='quizContainer' title='Review All Questions'>
-							{process.env.NODE_ENV === 'development' &&
-								<Link className='review' to={`/review/${title}`}>
-									<i className='fa fa-search'></i>
-								</Link>}
+							{/* We could limit the review link to development with this:
+							 * process.env.NODE_ENV === 'development' */}
+							<Link className='review' to={`/review/${title}`}>
+								<i className='fa fa-search'></i>
+							</Link>
 							<Link to={`/practice/${title}`} className={renderClassName(index)} onMouseEnter={this.onHover}>
 								{title} <span>({challenges.size} questions)</span>
 							</Link>
