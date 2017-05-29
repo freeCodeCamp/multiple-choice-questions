@@ -52,7 +52,7 @@ class extends React.Component {
 			const { quizzes } = this.props;
 			if (selection !== null) {
 				let target;
-				if (selection <= this.props.quizzes.size) {
+				if (selection <= this.props.quizzes.size - 1) {
 					target = `practice/${quizzes
 						.find((v, k) => k === selection)
 						.get('title')}`;

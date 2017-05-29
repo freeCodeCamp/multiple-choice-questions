@@ -9,6 +9,7 @@ import {
 	startQuizByQuestion,
 	startAllQuestionQuiz,
 	correct,
+	viewResults,
 	finishQuiz
 } from '../redux/actions';
 
@@ -75,6 +76,7 @@ const dispatchProps = {
 	startAllQuestionQuiz,
 	nextQuestion,
 	correct,
+	viewResults,
 	finishQuiz,
 };
 

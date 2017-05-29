@@ -133,6 +133,26 @@ body {
 	}
 	.studyContainer {
 		font-family: 'Nunito', serif;
+		#score-tower {
+			position: fixed;
+			top: 60px;
+			height: 5px;
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			div {
+				height: 5px;
+			}
+			.blank {
+				background: grey;
+			}
+			.success {
+				background: $lightBlue;
+			}
+			.failure {
+				background: $lightRed;
+			}
+		}
 		.quizHeader {
 			position: fixed;
 			display: flex;
@@ -397,6 +417,9 @@ body {
 		}
 		.studyContainer {
 			padding-bottom: 50px;
+			#score-tower {
+				top: 75px;
+			}
 			.questionTitle {
 				font-size: 22px;
 				width: 90vw;
