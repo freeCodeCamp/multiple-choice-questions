@@ -1,11 +1,13 @@
 
-$error: #F63150;
-$blue: #06C1FF;
-$blueHover: #05D7FF;
-$mint: #1AF59D;
-$mintHover: #29FF92;
-$orange: #FF8957;
-$orangeHover: #FF7338;
+// freeCodeCamp theme colors:
+$green: #007E00;
+$darkGreen: #006400;
+$lightBlue: #2DB9FF;
+$lightRed: #FF6D58;
+$yellow: #FFEE18;
+$black: #2A2A2A;
+$grey: #E0E0E0;
+$darkGrey: #939393;
 
 body {
 	padding-bottom: 65px;
@@ -15,19 +17,51 @@ body {
 	color: rgb(20,20,20);
 	text-align: center;
 	font-size: 30px;
-	font-family: 'Esteban', serif;
 	.errorsBox {
-		color: $error;
+		color: $lightRed;
 	}
-	code {
-		background: white;
-		color: red;
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 60px;
+	text-align: left;
+	background: $darkGreen;
+	display: flex;
+	align-items: center;
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
+	img {
+		width: 275px;
+		margin-left: 10px;
+		margin-top: -1px;
+	}
+	span {
+		margin-left: 12px;
+		color: white;
+	}
+	.contributeLink {
+		position: absolute;
+		height: 60px;
+		right: 0;
+		padding: 9px 15px 0 15px;
+		color: white;
+		i {
+			margin-left: 5px;
+		}
+		&:hover {
+			text-decoration: none;
+			background: white;
+			color: $green;
+		}
 	}
 }
 
 .studyComponent {
 	width: 550px;
-	margin: 85px auto;
+	margin: 100px auto;
 	h1 {
 		margin: 25px auto;
 		font-family: 'Nunito', serif;
@@ -35,46 +69,47 @@ body {
 	p {
 		font-family: 'Nunito', serif;
 	}
-	select {
+	.quizContainer {
+		display: flex;
 		width: 500px;
-		margin: 5px auto;
-		font-family: 'Nunito', serif;
-	}
-	.studyBtn {
-		width: 350px;
-		margin: 10px auto;
-		padding: 4px;
+		margin: 15px auto;
 		font-size: 30px;
 		border: 1px solid black;
-		background: $blue;
-	}
-	.studyBtn:hover {
-		background: #05D7FF;
-		cursor: pointer;
-	}
-	.shuffleBtn {
-		width: 350px;
-		margin: 10px auto;
-		padding: 4px;
-		font-size: 30px;
-		border: 1px solid black;
-		background: $orange;
-	}
-	.shuffleBtn:hover {
-		background: $orangeHover;
-		cursor: pointer;
-	}
-	.reviewBtn {
-		width: 350px;
-		margin: 10px auto;
-		padding: 4px;
-		font-size: 30px;
-		border: 1px solid black;
-		background: $mint;
-	}
-	.reviewBtn:hover {
-		background: $mintHover;
-		cursor: pointer;
+		font-family: 'Lato';
+		color: $black;
+		.review {
+			padding: 5px 15px 5px 15px;
+			color: $black;
+			&:hover {
+				text-decoration: none;
+				background: $green;
+				color: white;
+			}
+		}
+		.title {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 5px;
+			padding-left: 15px;
+			width: 100%;
+			text-align: left;
+			color: $black;
+			span {
+				margin-right: 5px;
+				font-size: 18px;
+			}
+			&:hover {
+				text-decoration: none;
+				background: $green;
+				color: white;
+			}
+		}
+		.titleHover:hover {
+			background: $green;
+			color: white;
+			cursor: pointer;
+		}
 	}
 	.quizInfo {
 		width: 500px;
@@ -91,37 +126,78 @@ body {
 	top: 0;
 	left: 0;
 	z-index: 5;
-	background: rgb(25,25,25);
-	color: white;
+	color: $black;
 	overflow: scroll;
-	.studyContainer {
-		padding-top: 15px;
-		padding-bottom: 85px;
-		font-family: 'Nunito', serif;
-		.quizTitle {
-			font-size: 50px;
-			width: 700px;
-			border-bottom: 1px solid rgba(250,250,250,0.25);
-			padding-bottom: 15px;
-			margin: 35px auto 15px auto;
+	.about {
+		margin-top: 85px;
+		padding: 5px 25px;
+		p {
+			max-width: 625px;
+			margin: 20px auto;
+			font-size: 22px;
 		}
+	}
+	.studyContainer {
+		font-family: 'Nunito', serif;
+		.quizHeader {
+			position: fixed;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			top: 0;
+			width: 100%;
+			height: 60px;
+			border-bottom: 1px solid $black;
+			background: $darkGreen;
+			color: white;
+			font-family: 'Lato', sans-serif;
+			font-weight: bold;
+			.quizTitle {
+				font-size: 28px;
+				width: 40%;
+				text-align: left;
+				padding-top: 5px;
+				padding-left: 10px;
+				padding-bottom: 5px;
+				span {
+					font-size: 30px;
+				}
+				img {
+					width: 275px;
+					margin-right: 15px;
+					margin-top: -1px;
+				}
+			}
+			.quizMeta {
+				width: 20%;
+				font-size: 22px;
+				text-align: center;
+			}
+			#return {
+				width: 40%;
+				padding-right: 10px;
+				text-align: right;
+				a {
+					color: white;
+					&:hover {
+						color: $lightRed;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+
 		.subTitle {
 			font-size: 22px;
 			margin: 0 auto;
 			width: 950px;
 			text-align: center;
-			color: rgb(175,175,175);
-		}
-		.quizLength {
-			font-size: 20px;
-			color: rgb(175,175,175);
+			color: $black;
 		}
 		.questionTitle {
 			font-size: 30px;
 			width: 950px;
-			padding-top: 25px;
-			margin: 30px auto;
-			border-top: 1px solid rgba(250,250,250,0.60);
+			margin: 100px auto 50px auto;
 		}
 		.choice {
 			width: 650px;
@@ -129,8 +205,8 @@ body {
 			margin: 12px auto;
 			padding-bottom: 5px;
 			text-align: left;
-			border: 1px solid rgba(250,250,250,0.20);
-			color: rgba(250,250,250,0.60);
+			border: 1px solid $black;
+			color: $black;
 			p {
 				padding-top: 8px;
 				padding-left: 12px;
@@ -142,89 +218,107 @@ body {
 			}
 		}
 		.choice.solution {
-			border: 1px solid $mint;
+			color: white;
+			background: $green;
 		}
 		.desktop:hover {
-			border: 1px solid $blue;
+			color: white;
+			background: $green;
 			cursor: pointer;
 		}
 		.selected {
-			border: 1px solid $blue;
+			color: white;
+			background: $green;
 		}
 		.choice.review:hover {
-			border: 1px solid rgba(250,250,250,0.75);
 			cursor: default;
 		}
 		.choice.solution:hover {
-			border: 1px solid $mint;
+			border: 1px solid $green;
 			cursor: default;
 		}
 		#correctWinner {
-			background: $blueHover;
-			border: 1px solid $blueHover;
-			color: black;
+			background: $green;
+			color: white;
 		}
 		#wrongWinner {
-			border: 1px solid $blueHover;
+			background: $lightRed;
 			color: white;
 		}
 		#correctLoser {
-			background: $blueHover;
+			background: $green;
 			border: 1px solid black;
 			color: white;
 		}
 		#wrongLoser {
-			background: $error;
+			background: $lightRed;
 			border: 1px solid black;
 			color: black;
 		}
 		.correctAnswer {
-			color: $mint;
+			color: $green;
 		}
 		.wrongAnswer {
-			color: $error;
+			color: $lightRed;
+		}
+		.explanation {
+			width: 600px;
+			margin: 15px auto;
+			h3 {
+				font-weight: bold;
+			}
+			p {
+				font-size: 20px;
+			}
 		}
 		button {
-			border: none;
-			background: white;
-			color: black;
 			padding: 2px 4px;
 			width: 350px;
 			margin: 15px;
+			background: white;
+			color: $green;
+			border: 1px solid $green;
 			border-radius: 30px;
 		}
 		button:hover {
-			background: $mint;
+			background: $green;
+			color: white;
 		}
 		#infoBox {
-			position: absolute;
+			position: fixed;
 			right: 15px;
 			bottom: 5px;
 			p {
 				font-size: 15px;
-				color: rgb(100,100,100);
+				color: $black;
 			}
 		}
 	}
-	#return {
-		position: absolute;
-		right: 15px;
-		top: 15px;
-		color: rgb(100,100,100);
-	}
-	#return:hover {
-		color: $mint;
-		cursor: pointer;
-	}
 	.scoreMessage {
-		margin: 45px auto;
+		margin: 125px auto 50px auto;
 	}
 }
 
+.reviewContainer {
+	padding-bottom: 75px;
+}
+
 @media only screen and (max-width: 650px) {
+	.header {
+		height: 60px;
+		justify-content: center;
+		img {
+			width: 150px;
+			margin-left: 10px;
+		}
+		span {
+			margin-left: 12px;
+			font-size: 15px;
+			padding-top: 7px;
+		}
+	}
 	.studyComponent {
 		width: 95vw;
-		margin: 12px auto;
 		h1 {
 			width: 90vw;
 			margin: 20px auto;
@@ -235,34 +329,65 @@ body {
 			margin: 5px auto;
 			font-size: 22px;
 		}
-		select {
-			width: 90vw;
-			margin: 12px auto;
-			font-size: 22px;
-			font-family: 'Nunito', serif;
-		}
-		.studyBtn, .shuffleBtn, .reviewBtn, {
-			width: 75vw;
-			margin: 12px auto;
-			font-size: 22px;
-		}
 		.quizInfo {
 			width: 85vw;
 			font-size: 18px;
 			margin: 12px auto;
 		}
+		.quizContainer {
+			width: 300px;
+			margin: 15px auto;
+			font-size: 20px;
+			.review {
+				padding: 5px 5px 5px 20px;
+			}
+			.title {
+				padding: 5px;
+				padding-left: 15px;
+				span {
+					font-size: 14px;
+				}
+			}
+		}
 	}
 	.studyWrapper {
-		.studyContainer {
-			padding-bottom: 45px;
-			.quizTitle {
-				font-size: 40px;
-				width: 90vw;
-				padding-bottom: 15px;
-				margin: 35px auto;
+		.about {
+			p {
+				font-size: 16px;
 			}
-			.quizLength {
-				font-size: 20px;
+		}
+		.studyContainer {
+			.quizHeader {
+				height: 75px;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				.quizTitle {
+					text-align: center;
+					padding: 2px;
+					margin: 0;
+					width: 100%;
+					img {
+						width: 150px;
+						padding-top: 3px;
+					}
+					span {
+						font-size: 18px;
+					}
+				}
+				.quizMeta {
+					width: 100%;
+					font-size: 12px;
+				}
+				h3 {
+					margin: 8px 0 15px 0;
+				}
+				#return {
+					width: 30%;
+					padding-right: 6px;
+					padding-top: 5px;
+					font-size: 22px;
+				}
 			}
 			.subTitle {
 				width: 85vw;
@@ -270,7 +395,6 @@ body {
 			.questionTitle {
 				font-size: 22px;
 				width: 90vw;
-				margin: 25px auto;
 			}
 			.choice {
 				width: 95vw;
@@ -282,7 +406,7 @@ body {
 				}
 			}
 			.choice:hover {
-				border: 1px solid $blue;
+				border: 1px solid $lightBlue;
 				cursor: pointer;
 			}
 			.reviewTitle {
@@ -291,7 +415,6 @@ body {
 			}
 			button {
 				width: 80vw;
-				margin: 12px;
 				font-size: 26px;
 			}
 			.messageDiv {
@@ -301,8 +424,8 @@ body {
 			}
 			.scoreMessage {
 				width: 90vw;
-				margin: 8px auto;
-				font-size: 24px;
+				margin: 125px auto 25px auto;
+				font-size: 20px;
 			}
 		}
 	}

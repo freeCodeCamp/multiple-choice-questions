@@ -1,17 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 /* Practice Quiz Component */
-export default class extends React.Component {
+export default class Quiz extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			index: 0,
-			length: this.props.quiz.challenges.length,
-			quiz: this.props.quiz,
 			complete: false,
 			selection: null,
 			answer: null,
-			score: 0
 		}
 		document.addEventListener('keydown', this.handleKeyDown);
 	}
@@ -22,21 +19,22 @@ export default class extends React.Component {
 	handleKeyDown = ({ code }) => {
 
 		let {
-			quiz,
 			answer,
-			index,
 			selection,
 			complete
 		} = this.state;
 
-		const question = quiz.challenges[index];
-		const questions = question.choices.length;
-		const solution = +question.solution;
+		const { meta } = this.props;
+
+		const question = meta.get('currentQuestion');
+		const questions = question.get('choices').size;
+		const solution = +question.get('solution');
 
 		switch(code) {
 		case 'Space':
 			if (complete) {
-				this.props.close();
+				this.props.finishQuiz();
+				this.props.history.push('/');
 			} else if (selection !== null) {
 				this.handleAnswer(selection, solution);
 			} else if (answer !== null) {
@@ -68,7 +66,8 @@ export default class extends React.Component {
 			}
 			break;
 		case 'Escape':
-			this.props.close();
+			this.props.finishQuiz();
+			this.props.history.push('/');
 			break;
 		default:
 			return;
@@ -76,10 +75,10 @@ export default class extends React.Component {
 	}
 	handleAnswer = (choice, solution) => {
 		if (choice === solution) {
+			this.props.correct();
 			this.setState({
 				answer: true,
 				selection: null,
-				score: this.state.score + 1
 			});
 		} else {
 			this.setState({
@@ -89,13 +88,21 @@ export default class extends React.Component {
 		}
 	}
 	nextQuestion = () => {
-		const { index, length } = this.state;
+		const { meta, title } = this.props;
+		const index = meta.get('index');
+		const length = meta.getIn(['quiz', 'challenges']).size;
 		if (index === length - 1) {
 			this.setState({ complete: true });
 		} else {
+			this.props.nextQuestion();
+			const nextTitle = meta
+				.getIn(['quiz', 'challenges'])
+				.find((v, k) => k === (index + 1))
+				.get('title');
+			this.props.history.replace(`/practice/${title}/${nextTitle}`);
 			this.setState({
-				index: this.state.index + 1,
-				answer: null
+				answer: null,
+				selection: null
 			});
 		}
 	}
@@ -105,98 +112,131 @@ export default class extends React.Component {
 		);
 	}
 	render() {
-		const { isMobile } = this.props;
-		const { index, quiz, selection } = this.state;
-		const question = quiz.challenges[index];
-		const solution = +question.solution;
-		const percentage = this.state.score / this.props.quiz.challenges.length;
+		const { selection, answer, complete } = this.state;
+		const { meta, screen } = this.props;
+		const { isMobile } = screen;
+
+		const quiz = meta.get('quiz');
+		const score = meta.get('score');
+		const index = meta.get('index');
+		const numberOfQuestions = quiz.get('challenges').size;
+		const currentQuestion = meta.get('currentQuestion');
+		const solution = +currentQuestion.get('solution');
+		const percentage = score / meta.getIn(['quiz', 'challenges']).size;
+
 		const renderClassName = (i) => {
 			return (selection === i)
 				? `choice selected ${isMobile ? 'mobile' : 'desktop'}`
 				: `choice ${isMobile ? 'mobile' : 'desktop'}`;
 		};
+
 		return (
 			<div className='studyWrapper'>
-				<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
 				<div className='studyContainer'>
-					<h1 className='quizTitle'>{this.props.quiz.title}</h1>
 
-					{!this.state.complete &&
-						<div>
-							<h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
-							<h1 className='questionTitle'>
-								{this.renderMarkup(question.title)}
-							</h1>
-						</div>}
+						<div className='quizHeader'>
+							<div className='quizTitle'>
+								<a
+									target="_blank"
+									rel="noopener noreferrer"
+									className="fccLink"
+									href="http://freecodecamp.com/">
+									<img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
+								</a>
+								<span>{quiz.get('title')}</span>
+							</div>
+							{!this.state.complete
+								? <h3 className='quizMeta'>Question {index + 1} of {numberOfQuestions}</h3>
+								: <h3 className='quizMeta'>Quiz Complete</h3>}
+								{!isMobile && <span id="return">
+									<Link to='/'>
+										<i className="fa fa-times-circle" aria-hidden="true"></i>
+									</Link>
+								</span>}
+						</div>
 
-						{!this.state.complete && question.choices.map((answer, idx) => {
-							if (this.state.answer === null) {
+						{!complete && <h1 className='questionTitle'>
+							{this.renderMarkup(currentQuestion.get('title'))}
+						</h1>}
+
+						{!complete && currentQuestion.get('choices').map((choice, idx) => {
+							const key = (choice + idx);
+							/* User has not selected an answer yet: */
+							if (answer === null) {
 								return (
 									<div
-										key={answer + idx}
+										key={key}
 										className={renderClassName(idx)}
 										onMouseEnter={this.onHover}
 										onClick={() => this.handleAnswer(idx, solution)}>
-										<p>{this.renderMarkup(answer)}</p>
+										<p>{this.renderMarkup(choice)}</p>
 									</div>
 								)
-							} else if (this.state.answer) {
+							/* User selected the correct answer: */
+							} else if (answer) {
 								if (solution === idx) {
 									return (
 										<div
-											key={answer + idx}
+											key={key}
 											className='choice' id='correctWinner'>
-											<p>{this.renderMarkup(answer)}</p>
+											<p>{this.renderMarkup(choice)}</p>
 										</div>
 									)
 								} else {
 									return (
 										<div
-											key={answer + idx}
+											key={key}
 											className='choice' id='wrongWinner'>
-											<p>{this.renderMarkup(answer)}</p>
+											<p>{this.renderMarkup(choice)}</p>
 										</div>
 									)
 								}
+							/* User selected the wrong answer: */
 							} else {
 								if (solution === idx) {
 									return (
 										<div
-											key={answer + idx}
+											key={key}
 											className='choice' id='correctLoser'>
-											<p>{this.renderMarkup(answer)}</p>
+											<p>{this.renderMarkup(choice)}</p>
 										</div>
 									)
 								} else {
 									return (
 										<div
-											key={answer + idx}
+											key={key}
 											className='choice' id='wrongLoser'>
-											<p>{this.renderMarkup(answer)}</p>
+											<p>{this.renderMarkup(choice)}</p>
 										</div>
 									)
 								}
 							}
 						})}
 
-					{this.state.answer !== null && !this.state.complete &&
+					{answer !== null && !complete &&
 						<div className='messageDiv'>
-							{this.state.answer
+							{answer
 								? <h1 className='correctAnswer'>Correct, great work!</h1>
 								: <h1 className='wrongAnswer'>Sorry, that is not correct!</h1>}
-							{this.state.index + 1 === quiz.challenges.length
+							{answer !== null && !answer && currentQuestion.get('explanation') && (
+								<div className='explanation'>
+									<h3>Explanation:</h3>
+									<p>{currentQuestion.get('explanation')}</p>
+								</div>
+							)}
+							{index + 1 === numberOfQuestions
 								? <button onClick={this.nextQuestion}>View Results</button>
 								: <button onClick={this.nextQuestion}>Next Question</button>}
 						</div>}
 
-					{this.state.complete &&
+					{complete &&
 						<div>
 							<h1 className='scoreMessage'>
-								You scored {this.state.score} correct out of {this.props.quiz.challenges.length} questions! { percentage > 0.75 ? 'Nice work!' : 'Better luck next time!'}
+								You scored {score} correct out of {numberOfQuestions} questions! { percentage > 0.75 ? 'Nice work!' : 'Better luck next time!'}
 							</h1>
-							<button className='finishBtn' onClick={this.props.close}>
-								Return to Quiz Page
-							</button>
+							<Link className='finishBtn' to='/' onClick={() => this.props.finishQuiz()}>
+								<button>Return to Quiz Page</button>
+							</Link>
 						</div>}
 
 						{!isMobile && <div id='infoBox'>
