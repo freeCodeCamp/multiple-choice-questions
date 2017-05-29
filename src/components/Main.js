@@ -28,7 +28,7 @@ const renderHeader = (isDesktop) => (
 /* Main Quiz Component */
 export default connectScreenSize(
 	mapScreenSizeToProps)(connect(
-	state => ({ quizzes: state.quizzes }))(
+	state => ({ quizzes: state.get('quizzes') }))(
 class extends React.Component {
 	render() {
 		const { isDesktop } = this.props.screen;

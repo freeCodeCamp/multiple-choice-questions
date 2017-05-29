@@ -24,11 +24,11 @@ export default class Quiz extends React.Component {
 			complete
 		} = this.state;
 
-		let { index, quiz } = this.props;
+		const { index, meta } = this.props;
 
-		const question = quiz.challenges[index];
-		const questions = question.choices.length;
-		const solution = +question.solution;
+		const question = meta.get('currentQuestion');
+		const questions = question.get('choices').size;
+		const solution = +question.get('solution');
 
 		switch(code) {
 		case 'Space':
@@ -88,14 +88,18 @@ export default class Quiz extends React.Component {
 		}
 	}
 	nextQuestion = () => {
-		const length = this.props.quiz.challenges.length;
-		const { index, title } = this.props;
+		const { meta, title } = this.props;
+		const index = meta.get('index');
+		const length = meta.getIn(['quiz', 'challenges']).size;
 		if (index === length - 1) {
 			this.setState({ complete: true });
 		} else {
 			this.props.nextQuestion();
-			const nextQuestion = this.props.quiz.challenges[index + 1];
-			this.props.history.push(`${title}/${nextQuestion.title}`);
+			const nextTitle = meta
+				.getIn(['quiz', 'challenges'])
+				.find((v, k) => k === (index + 1))
+				.get('title');
+			this.props.history.replace(`/practice/${title}/${nextTitle}`);
 			this.setState({
 				answer: null,
 				selection: null
@@ -108,9 +112,9 @@ export default class Quiz extends React.Component {
 		);
 	}
 	render() {
-		const { isMobile } = this.props.screen;
-		const { meta } = this.props;
 		const { selection, answer, complete } = this.state;
+		const { meta, screen } = this.props;
+		const { isMobile } = screen;
 
 		const quiz = meta.get('quiz');
 		const score = meta.get('score');
@@ -230,7 +234,7 @@ export default class Quiz extends React.Component {
 							<h1 className='scoreMessage'>
 								You scored {score} correct out of {numberOfQuestions} questions! { percentage > 0.75 ? 'Nice work!' : 'Better luck next time!'}
 							</h1>
-							<Link className='finishBtn' to='/'>
+							<Link className='finishBtn' to='/' onClick={() => this.props.finishQuiz()}>
 								<button>Return to Quiz Page</button>
 							</Link>
 						</div>}

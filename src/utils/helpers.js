@@ -30,6 +30,8 @@ export const shuffleAnswers = (challenge) => {
 	return challenge;
 };
 
+/* Higher level function to shuffle the questions in a quiz and the answer
+ * choices for each question */
 export const shuffleQuiz = (quiz) => {
 	const JSquiz = quiz.toJS();
 	JSquiz.challenges = shuffle(JSquiz.challenges);
@@ -41,6 +43,25 @@ export const shuffleQuiz = (quiz) => {
 export const findQuiz = (selected, quizzes) => {
 	return quizzes.filter(quiz => quiz.get('title') === selected).first();
 };
+
+/* Given a quiz title and possible question, see if the question is valid */
+export const validateQuestionName = (title, question, quizzes) => {
+	const quiz = findQuiz(title, quizzes);
+	if (!quiz) return false;
+	const challenges = quiz.get('challenges');
+	return challenges.reduce((answer, challenge) => {
+		if (answer) return answer;
+		const challengeTitle = challenge.get('title');
+		if (challengeTitle === question) return question;
+		const end = challengeTitle.length - 1;
+		if (challengeTitle.charAt(end) === '?') {
+			if (question === challengeTitle.slice(0, end)) {
+				return challengeTitle;
+			}
+		}
+		return false;
+	}, false);
+}
 
 /* Screen size helper */
 export const mapScreenSizeToProps = (screenSize) => {
