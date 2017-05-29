@@ -36,6 +36,7 @@ body {
 	img {
 		width: 275px;
 		margin-left: 10px;
+		margin-top: -1px;
 	}
 	span {
 		margin-left: 12px;
@@ -45,7 +46,7 @@ body {
 		position: absolute;
 		height: 60px;
 		right: 0;
-		padding: 6px 15px 0 15px;
+		padding: 9px 15px 0 15px;
 		color: white;
 		i {
 			margin-left: 5px;
@@ -127,6 +128,15 @@ body {
 	z-index: 5;
 	color: $black;
 	overflow: scroll;
+	.about {
+		margin-top: 85px;
+		padding: 5px 25px;
+		p {
+			max-width: 625px;
+			margin: 20px auto;
+			font-size: 22px;
+		}
+	}
 	.studyContainer {
 		font-family: 'Nunito', serif;
 		.quizHeader {
@@ -155,6 +165,7 @@ body {
 				img {
 					width: 275px;
 					margin-right: 15px;
+					margin-top: -1px;
 				}
 			}
 			.quizMeta {
@@ -340,6 +351,11 @@ body {
 		}
 	}
 	.studyWrapper {
+		.about {
+			p {
+				font-size: 16px;
+			}
+		}
 		.studyContainer {
 			.quizHeader {
 				height: 75px;

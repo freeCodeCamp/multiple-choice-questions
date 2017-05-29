@@ -57,7 +57,7 @@ class Review extends React.Component {
                 href="http://freecodecamp.com/">
                 <img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
               </a>
-              <span>{quiz.title}</span>
+              <span>{quiz.get('title')}</span>
             </div>
             <h3 className='quizMeta'>
               {challenges.size > 1 ? `${challenges.size} total questions` : ''}

@@ -60,6 +60,11 @@ class extends React.Component {
 						Practice All <span>({totalQuestions} questions)</span>
 					</Link>
 				</div>
+				<div className='quizContainer'>
+					<Link to="/about" className={`title ${isDesktop ? 'titleHover' : ''}`}>
+						Additional Information
+					</Link>
+				</div>
 			</div>
 		</div>
 	)}

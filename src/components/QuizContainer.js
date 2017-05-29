@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { connectScreenSize } from 'react-screen-size';
-import Quiz from './Quiz';
+import Quiz from './PracticeQuiz';
 import { validateQuestionName, mapScreenSizeToProps } from '../utils/helpers';
 import {
 	nextQuestion,
