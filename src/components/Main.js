@@ -45,11 +45,7 @@ class extends React.Component {
 	onHover = () => this.setState({ selection: null });
 	handleKeyDown = ({ code }) => {
 
-		let {
-			answer,
-			selection,
-			maxOptions,
-		} = this.state;
+		let { selection, maxOptions } = this.state;
 
 		switch(code) {
 		case 'Space':

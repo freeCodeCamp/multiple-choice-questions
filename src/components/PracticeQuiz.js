@@ -114,7 +114,7 @@ export default class Quiz extends React.Component {
 	render() {
 		const { selection, answer, complete } = this.state;
 		const { meta, screen } = this.props;
-		const { isMobile } = screen;
+		const { isMobile, isDesktop } = screen;
 
 		const quiz = meta.get('quiz');
 		const score = meta.get('score');
@@ -148,7 +148,7 @@ export default class Quiz extends React.Component {
 							{!this.state.complete
 								? <h3 className='quizMeta'>Question {index + 1} of {numberOfQuestions}</h3>
 								: <h3 className='quizMeta'>Quiz Complete</h3>}
-								{!isMobile && <span id="return">
+								{isDesktop && <span id="return">
 									<Link to='/'>
 										<i className="fa fa-times-circle" aria-hidden="true"></i>
 									</Link>

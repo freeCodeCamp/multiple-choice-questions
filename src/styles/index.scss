@@ -303,6 +303,63 @@ body {
 	padding-bottom: 75px;
 }
 
+@media only screen and (max-width: 1275px) {
+	.studyWrapper {
+		.studyContainer {
+			.quizHeader {
+				.quizTitle {
+					img {
+						width: 150px;
+						padding-top: 3px;
+					}
+					span {
+						font-size: 18px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.studyWrapper {
+		.studyContainer {
+			.quizHeader {
+				height: 75px;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				.quizTitle {
+					text-align: center;
+					padding: 2px;
+					margin: 0;
+					width: 100%;
+					img {
+						width: 150px;
+						padding-top: 3px;
+					}
+					span {
+						font-size: 18px;
+					}
+				}
+				.quizMeta {
+					width: 100%;
+					font-size: 12px;
+				}
+				h3 {
+					margin: 8px 0 15px 0;
+				}
+				#return {
+					width: 30%;
+					padding-right: 6px;
+					padding-top: 5px;
+					font-size: 22px;
+				}
+			}
+		}
+	}
+}
+
 @media only screen and (max-width: 650px) {
 	.header {
 		height: 60px;
@@ -357,44 +414,14 @@ body {
 			}
 		}
 		.studyContainer {
-			.quizHeader {
-				height: 75px;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				.quizTitle {
-					text-align: center;
-					padding: 2px;
-					margin: 0;
-					width: 100%;
-					img {
-						width: 150px;
-						padding-top: 3px;
-					}
-					span {
-						font-size: 18px;
-					}
-				}
-				.quizMeta {
-					width: 100%;
-					font-size: 12px;
-				}
-				h3 {
-					margin: 8px 0 15px 0;
-				}
-				#return {
-					width: 30%;
-					padding-right: 6px;
-					padding-top: 5px;
-					font-size: 22px;
-				}
-			}
+			padding-bottom: 50px;
 			.subTitle {
 				width: 85vw;
 			}
 			.questionTitle {
 				font-size: 22px;
 				width: 90vw;
+				margin-bottom: 25px;
 			}
 			.choice {
 				width: 95vw;
@@ -416,6 +443,16 @@ body {
 			button {
 				width: 80vw;
 				font-size: 26px;
+			}
+			.explanation {
+				width: 85vw;
+				margin: 15px auto;
+				h3 {
+					font-weight: bold;
+				}
+				p {
+					font-size: 18px;
+				}
 			}
 			.messageDiv {
 				h1 {

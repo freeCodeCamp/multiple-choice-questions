@@ -84,6 +84,7 @@ export default (state = defaultState, action) => {
     return defaultState;
   }
 
+  /* eslint-disable no-unreachable */
   default:
     return state;
   };
