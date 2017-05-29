@@ -21,7 +21,8 @@
 				"Arrow functions implicitly bind <code>this</code> to the context where the function is written.",
 				"The only advantage is shorter syntax."
 			],
-			"solution": "2"
+			"solution": "2",
+			"explanation": ""
 		},
 		{
 			"title": "The use of <code>const</code> prevents the modification of arrays and objects.",
@@ -29,7 +30,8 @@
 				"True, these are now constant values.",
 				"False, they are only references. The actual values in the array of object can still be mutated."
 			],
-			"solution": "1"
+			"solution": "1",
+			"explanation": ""
 		}
 	]
 }
