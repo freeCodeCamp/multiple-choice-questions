@@ -19,8 +19,11 @@ export default class Quiz extends React.Component {
 	onHover = () => this.setState({ selection: null });
 	handleKeyDown = (event) => {
 
-		event.preventDefault();
 		const { code } = event;
+
+		if (code === 'Space' || code === 'ArrowDown' || code === 'ArrowUp') {
+			event.preventDefault();
+		}
 
 		let {
 			answer,
