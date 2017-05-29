@@ -111,12 +111,6 @@ body {
 			cursor: pointer;
 		}
 	}
-	.quizInfo {
-		width: 500px;
-		font-size: 22px;
-		margin: 15px auto;
-		font-family: 'Nunito', serif;
-	}
 }
 
 .studyWrapper {
@@ -187,13 +181,6 @@ body {
 			}
 		}
 
-		.subTitle {
-			font-size: 22px;
-			margin: 0 auto;
-			width: 950px;
-			text-align: center;
-			color: $black;
-		}
 		.questionTitle {
 			font-size: 30px;
 			width: 950px;
@@ -386,11 +373,6 @@ body {
 			margin: 5px auto;
 			font-size: 22px;
 		}
-		.quizInfo {
-			width: 85vw;
-			font-size: 18px;
-			margin: 12px auto;
-		}
 		.quizContainer {
 			width: 300px;
 			margin: 15px auto;
@@ -415,9 +397,6 @@ body {
 		}
 		.studyContainer {
 			padding-bottom: 50px;
-			.subTitle {
-				width: 85vw;
-			}
 			.questionTitle {
 				font-size: 22px;
 				width: 90vw;
