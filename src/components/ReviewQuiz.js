@@ -62,7 +62,7 @@ class Review extends React.Component {
             <h3 className='quizMeta'>
               {challenges.size > 1 ? `${challenges.size} total questions` : ''}
             </h3>
-            {!screen.isMobile && <span id="return">
+            {screen.isDesktop && <span id="return">
               <Link to='/'>
                 <i className="fa fa-times-circle" aria-hidden="true"></i>
               </Link>

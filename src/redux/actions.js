@@ -5,6 +5,7 @@ export const START_QUIZ_BY_QUESTION = 'START_QUIZ_BY_QUESTION';
 
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const SCORE = 'SCORE';
+export const RESULTS = 'RESULTS';
 export const FINISH_QUIZ = 'FINISH_QUIZ';
 
 export const startAllQuestionQuiz = () => ({ type: START_ALL });
@@ -23,4 +24,5 @@ export const startQuizByQuestion = (title, question) => ({
 
 export const correct = () => ({ type: SCORE });
 export const nextQuestion = () => ({ type: NEXT_QUESTION });
+export const viewResults = () => ({ type: RESULTS });
 export const finishQuiz = () => ({ type: FINISH_QUIZ });

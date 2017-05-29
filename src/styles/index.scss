@@ -105,17 +105,11 @@ body {
 				color: white;
 			}
 		}
-		.titleHover:hover {
+		.titleHover {
 			background: $green;
 			color: white;
 			cursor: pointer;
 		}
-	}
-	.quizInfo {
-		width: 500px;
-		font-size: 22px;
-		margin: 15px auto;
-		font-family: 'Nunito', serif;
 	}
 }
 
@@ -139,6 +133,26 @@ body {
 	}
 	.studyContainer {
 		font-family: 'Nunito', serif;
+		#score-tower {
+			position: fixed;
+			top: 60px;
+			height: 5px;
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			div {
+				height: 5px;
+			}
+			.blank {
+				background: grey;
+			}
+			.success {
+				background: $lightBlue;
+			}
+			.failure {
+				background: $lightRed;
+			}
+		}
 		.quizHeader {
 			position: fixed;
 			display: flex;
@@ -187,13 +201,6 @@ body {
 			}
 		}
 
-		.subTitle {
-			font-size: 22px;
-			margin: 0 auto;
-			width: 950px;
-			text-align: center;
-			color: $black;
-		}
 		.questionTitle {
 			font-size: 30px;
 			width: 950px;
@@ -303,59 +310,26 @@ body {
 	padding-bottom: 75px;
 }
 
-@media only screen and (max-width: 650px) {
-	.header {
-		height: 60px;
-		justify-content: center;
-		img {
-			width: 150px;
-			margin-left: 10px;
-		}
-		span {
-			margin-left: 12px;
-			font-size: 15px;
-			padding-top: 7px;
-		}
-	}
-	.studyComponent {
-		width: 95vw;
-		h1 {
-			width: 90vw;
-			margin: 20px auto;
-			font-size: 28px;
-		}
-		p {
-			width: 65vw;
-			margin: 5px auto;
-			font-size: 22px;
-		}
-		.quizInfo {
-			width: 85vw;
-			font-size: 18px;
-			margin: 12px auto;
-		}
-		.quizContainer {
-			width: 300px;
-			margin: 15px auto;
-			font-size: 20px;
-			.review {
-				padding: 5px 5px 5px 20px;
-			}
-			.title {
-				padding: 5px;
-				padding-left: 15px;
-				span {
-					font-size: 14px;
+@media only screen and (max-width: 1275px) {
+	.studyWrapper {
+		.studyContainer {
+			.quizHeader {
+				.quizTitle {
+					img {
+						width: 150px;
+						padding-top: 3px;
+					}
+					span {
+						font-size: 18px;
+					}
 				}
 			}
 		}
 	}
+}
+
+@media only screen and (max-width: 800px) {
 	.studyWrapper {
-		.about {
-			p {
-				font-size: 16px;
-			}
-		}
 		.studyContainer {
 			.quizHeader {
 				height: 75px;
@@ -389,12 +363,67 @@ body {
 					font-size: 22px;
 				}
 			}
-			.subTitle {
-				width: 85vw;
+		}
+	}
+}
+
+@media only screen and (max-width: 650px) {
+	.header {
+		height: 60px;
+		justify-content: center;
+		img {
+			width: 150px;
+			margin-left: 10px;
+		}
+		span {
+			margin-left: 12px;
+			font-size: 15px;
+			padding-top: 7px;
+		}
+	}
+	.studyComponent {
+		width: 95vw;
+		h1 {
+			width: 90vw;
+			margin: 20px auto;
+			font-size: 28px;
+		}
+		p {
+			width: 65vw;
+			margin: 5px auto;
+			font-size: 22px;
+		}
+		.quizContainer {
+			width: 300px;
+			margin: 15px auto;
+			font-size: 20px;
+			.review {
+				padding: 5px 5px 5px 20px;
+			}
+			.title {
+				padding: 5px;
+				padding-left: 15px;
+				span {
+					font-size: 14px;
+				}
+			}
+		}
+	}
+	.studyWrapper {
+		.about {
+			p {
+				font-size: 16px;
+			}
+		}
+		.studyContainer {
+			padding-bottom: 50px;
+			#score-tower {
+				top: 75px;
 			}
 			.questionTitle {
 				font-size: 22px;
 				width: 90vw;
+				margin-bottom: 25px;
 			}
 			.choice {
 				width: 95vw;
@@ -416,6 +445,16 @@ body {
 			button {
 				width: 80vw;
 				font-size: 26px;
+			}
+			.explanation {
+				width: 85vw;
+				margin: 15px auto;
+				h3 {
+					font-weight: bold;
+				}
+				p {
+					font-size: 18px;
+				}
 			}
 			.messageDiv {
 				h1 {

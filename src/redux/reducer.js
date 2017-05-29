@@ -8,6 +8,7 @@ import {
   START_QUIZ_BY_QUESTION,
   NEXT_QUESTION,
   SCORE,
+  RESULTS,
   FINISH_QUIZ
 } from './actions';
 
@@ -80,10 +81,15 @@ export default (state = defaultState, action) => {
     return state.update('score', s => s + 1);
   }
 
+  case RESULTS: {
+    return state.update('index', i => i + 1);
+  }
+
   case FINISH_QUIZ: {
     return defaultState;
   }
 
+  /* eslint-disable no-unreachable */
   default:
     return state;
   };

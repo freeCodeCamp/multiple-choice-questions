@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { createScoreMeter } from '../utils/helpers';
 
 /* Practice Quiz Component */
 export default class Quiz extends React.Component {
@@ -75,7 +76,6 @@ export default class Quiz extends React.Component {
 	}
 	handleAnswer = (choice, solution) => {
 		if (choice === solution) {
-			this.props.correct();
 			this.setState({
 				answer: true,
 				selection: null,
@@ -91,7 +91,9 @@ export default class Quiz extends React.Component {
 		const { meta, title } = this.props;
 		const index = meta.get('index');
 		const length = meta.getIn(['quiz', 'challenges']).size;
+		if (this.state.answer) this.props.correct();
 		if (index === length - 1) {
+			this.props.viewResults();
 			this.setState({ complete: true });
 		} else {
 			this.props.nextQuestion();
@@ -114,7 +116,7 @@ export default class Quiz extends React.Component {
 	render() {
 		const { selection, answer, complete } = this.state;
 		const { meta, screen } = this.props;
-		const { isMobile } = screen;
+		const { isMobile, isDesktop } = screen;
 
 		const quiz = meta.get('quiz');
 		const score = meta.get('score');
@@ -130,9 +132,22 @@ export default class Quiz extends React.Component {
 				: `choice ${isMobile ? 'mobile' : 'desktop'}`;
 		};
 
+		const tower = createScoreMeter(score, index, numberOfQuestions);
+		const widthPercentage = (100 / numberOfQuestions);
+
 		return (
 			<div className='studyWrapper'>
 				<div className='studyContainer'>
+
+						<div id='score-tower'>
+							{tower.map((type, i) => (
+								<div
+									className={type}
+									key={quiz.get('challenges').find((v,k) => k === i)}
+									style={{ width: `${widthPercentage}%` }}>
+								</div>
+							))}
+						</div>
 
 						<div className='quizHeader'>
 							<div className='quizTitle'>
@@ -148,7 +163,7 @@ export default class Quiz extends React.Component {
 							{!this.state.complete
 								? <h3 className='quizMeta'>Question {index + 1} of {numberOfQuestions}</h3>
 								: <h3 className='quizMeta'>Quiz Complete</h3>}
-								{!isMobile && <span id="return">
+								{isDesktop && <span id="return">
 									<Link to='/'>
 										<i className="fa fa-times-circle" aria-hidden="true"></i>
 									</Link>

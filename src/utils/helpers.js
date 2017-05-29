@@ -61,7 +61,31 @@ export const validateQuestionName = (title, question, quizzes) => {
 		}
 		return false;
 	}, false);
-}
+};
+
+/* Create an array filled with values representing the current
+ * correct and incorrect answers during a quiz session, given
+ * the user's current score, the current question index, and
+ * the total number of questions. This is used to construct
+ * the score meter in the UI. */
+export const createScoreMeter = (correct, current, total) => {
+	let count = 0;
+	let tower = [];
+	while (correct > 0) {
+		tower.push('success');
+		correct--;
+		count++;
+	}
+	while (count < current) {
+		tower.push('failure');
+		count++;
+	}
+	while (count < total) {
+		tower.push('blank');
+		count++;
+	}
+	return tower;
+};
 
 /* Screen size helper */
 export const mapScreenSizeToProps = (screenSize) => {
