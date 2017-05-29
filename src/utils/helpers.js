@@ -36,7 +36,7 @@ export const shuffleQuiz = (quiz) => {
 	const JSquiz = quiz.toJS();
 	JSquiz.challenges = shuffle(JSquiz.challenges);
 	JSquiz.challenges = JSquiz.challenges.map(shuffleAnswers);
-	return fromJS(quiz);
+	return fromJS(JSquiz);
 };
 
 /* Given an array of quizes and a title, find the titled quiz in the array */

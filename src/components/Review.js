@@ -78,7 +78,7 @@ class Review extends React.Component {
 const mapStateToProps = (state, props) => {
 
 	const { title } = props.match.params;
-  const quizzes = state.quizzes;
+  const quizzes = state.get('quizzes');
 
 	const quiz = findQuiz(title, quizzes);
 

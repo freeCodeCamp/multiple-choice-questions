@@ -31,12 +31,16 @@ export default connectScreenSize(
 	state => ({ quizzes: state.get('quizzes') }))(
 class extends React.Component {
 	render() {
-		const { isDesktop } = this.props.screen;
+		const { screen, quizzes } = this.props;
+		const { isDesktop } = screen;
+		const totalQuestions = quizzes.reduce((t, q) => {
+			return t + q.get('challenges').size;
+		}, 0);
 		return (
 		<div>
 			{renderHeader(isDesktop)}
 			<div className='studyComponent'>
-				{this.props.quizzes.map(quiz => {
+				{quizzes.map(quiz => {
 					const title = quiz.get('title');
 					const challenges = quiz.get('challenges');
 					return (
@@ -51,6 +55,11 @@ class extends React.Component {
 						</div>
 					)
 				})}
+				<div className='quizContainer'>
+					<Link to={`practice/shuffle`} className={`title ${isDesktop ? 'titleHover' : ''}`}>
+						Practice All <span>({totalQuestions} questions)</span>
+					</Link>
+				</div>
 			</div>
 		</div>
 	)}

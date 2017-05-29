@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { connectScreenSize } from 'react-screen-size';
 import Quiz from './Quiz';
@@ -8,6 +7,7 @@ import {
 	nextQuestion,
 	startQuiz,
 	startQuizByQuestion,
+	startAllQuestionQuiz,
 	correct,
 	finishQuiz
 } from '../redux/actions';
@@ -28,7 +28,9 @@ class QuizContainer extends React.Component {
 		const active = meta.get('active');
 		const quizzes = meta.get('quizzes');
 		if (!active) {
-			if (title && !question) {
+			if (title === 'shuffle') {
+				this.props.startAllQuestionQuiz();
+			} else if (title && !question) {
 				this.props.startQuiz(title);
 			} else if (title && question) {
 				const questionTitle = validateQuestionName(title, question, quizzes);
@@ -70,6 +72,7 @@ const mapStateToProps = (state, props) => {
 const dispatchProps = {
 	startQuiz,
 	startQuizByQuestion,
+	startAllQuestionQuiz,
 	nextQuestion,
 	correct,
 	finishQuiz,

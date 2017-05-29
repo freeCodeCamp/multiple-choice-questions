@@ -3,6 +3,7 @@ import quizzes from '../challenges';
 
 import { findQuiz, shuffleQuiz } from '../utils/helpers';
 import {
+  START_ALL,
   START_QUIZ,
   START_QUIZ_BY_QUESTION,
   NEXT_QUESTION,
@@ -24,6 +25,20 @@ export default (state = defaultState, action) => {
 
   switch(type) {
 
+  case START_ALL: {
+    const quizzes = state.get('quizzes').map(shuffleQuiz);
+    const quiz = fromJS({
+      title: 'All Categories',
+      challenges: quizzes.reduce((all, quiz) => {
+        return all.concat(quiz.get('challenges'));
+      }, List())
+    });
+    return state
+      .set('active', true)
+      .set('quiz', quiz)
+      .set('currentQuestion', quiz.get('challenges').first());
+  }
+
   case START_QUIZ: {
     const quizzes = state.get('quizzes');
     const quiz = shuffleQuiz(findQuiz(payload, quizzes));
@@ -31,7 +46,6 @@ export default (state = defaultState, action) => {
       .set('active', true)
       .set('quiz', quiz)
       .set('currentQuestion', quiz.get('challenges').first());
-    break;
   }
 
   case START_QUIZ_BY_QUESTION: {
@@ -50,7 +64,6 @@ export default (state = defaultState, action) => {
       .set('active', true)
       .set('quiz', quiz)
       .set('currentQuestion', quiz.get('challenges').first());
-    break;
   }
 
   case NEXT_QUESTION: {
@@ -61,7 +74,6 @@ export default (state = defaultState, action) => {
       .update('currentQuestion', () => {
         return quiz.get('challenges').find((v, k) => k === index);
       });
-    break;
   }
 
   case SCORE: {
@@ -70,7 +82,6 @@ export default (state = defaultState, action) => {
 
   case FINISH_QUIZ: {
     return defaultState;
-    break;
   }
 
   default:

@@ -24,7 +24,7 @@ export default class Quiz extends React.Component {
 			complete
 		} = this.state;
 
-		const { index, meta } = this.props;
+		const { meta } = this.props;
 
 		const question = meta.get('currentQuestion');
 		const questions = question.get('choices').size;
