@@ -250,6 +250,16 @@ body {
 		.wrongAnswer {
 			color: $lightRed;
 		}
+		.explanation {
+			width: 600px;
+			margin: 15px auto;
+			h3 {
+				font-weight: bold;
+			}
+			p {
+				font-size: 20px;
+			}
+		}
 		button {
 			padding: 2px 4px;
 			width: 350px;

@@ -10,7 +10,8 @@
 				"Threading only applies in staticly typed languages.",
 				"Threading only applies to compiled languages."
 			],
-			"solution": "0"
+			"solution": "0",
+			"explanation": "JavaScript runs on a single thread."
 		},
 		{
 			"title": "Which of the following is a feature provided by ES6 arrow functions?",

@@ -1,4 +1,6 @@
 
+import { fromJS } from 'immutable';
+
 /* Given an array, shuffle it's contents */
 export const shuffle = (array) => {
 	const cached = {};
@@ -28,9 +30,16 @@ export const shuffleAnswers = (challenge) => {
 	return challenge;
 };
 
+export const shuffleQuiz = (quiz) => {
+	const JSquiz = quiz.toJS();
+	JSquiz.challenges = shuffle(JSquiz.challenges);
+	JSquiz.challenges = JSquiz.challenges.map(shuffleAnswers);
+	return fromJS(quiz);
+};
+
 /* Given an array of quizes and a title, find the titled quiz in the array */
 export const findQuiz = (selected, quizzes) => {
-	return quizzes.filter(quiz => quiz.title === selected)[0];
+	return quizzes.filter(quiz => quiz.get('title') === selected).first();
 };
 
 /* Screen size helper */

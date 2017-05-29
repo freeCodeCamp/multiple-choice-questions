@@ -11,13 +11,15 @@ const renderMarkup = (html) => {
 }
 
 const renderQuestion = (question) => {
-  const solution = +question.solution;
+  const solution = +question.get('solution');
+  const title = question.get('title');
+  const choices = question.get('choices');
    return (
-     <div key={question.title}>
+     <div key={title}>
       <div className='reviewTitle'>
-        <h1 className='questionTitle'>{renderMarkup(question.title)}</h1>
+        <h1 className='questionTitle'>{renderMarkup(title)}</h1>
       </div>
-      {question.choices.map((choice, index) => (
+      {choices.map((choice, index) => (
         <div
           key={choice}
           className={solution === index ? 'choice reivew solution' : 'choice review'}>
@@ -42,6 +44,7 @@ class Review extends React.Component {
   render() {
     const { quiz, screen } = this.props;
     if (!quiz) return null;
+    const challenges = quiz.get('challenges');
     return (
       <div className='studyWrapper reviewContainer'>
 				<div className='studyContainer'>
@@ -57,7 +60,7 @@ class Review extends React.Component {
               <span>{quiz.title}</span>
             </div>
             <h3 className='quizMeta'>
-              {quiz.challenges.length > 1 ? `${quiz.challenges.length} total questions` : ''}
+              {challenges.size > 1 ? `${challenges.size} total questions` : ''}
             </h3>
             {!screen.isMobile && <span id="return">
               <Link to='/'>
@@ -65,7 +68,7 @@ class Review extends React.Component {
               </Link>
             </span>}
           </div>
-          {quiz.challenges.map(renderQuestion)}
+          {challenges.map(renderQuestion)}
 				</div>
 			</div>
     )
@@ -73,8 +76,9 @@ class Review extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
+
 	const { title } = props.match.params;
-	const { quizzes } = state;
+  const quizzes = state.quizzes;
 
 	const quiz = findQuiz(title, quizzes);
 
@@ -83,6 +87,7 @@ const mapStateToProps = (state, props) => {
   }
 
 	return { quiz };
+
 };
 
 const connectedReview = connect(mapStateToProps)(Review);
