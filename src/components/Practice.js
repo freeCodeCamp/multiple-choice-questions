@@ -114,7 +114,7 @@ class Practice extends React.Component {
 		);
 	}
 	render() {
-		const { isMobile } = this.props;
+		const { isMobile } = this.props.screen;
 		const { index, quiz, selection } = this.state;
 
 		if (!quiz) return null;
@@ -133,7 +133,7 @@ class Practice extends React.Component {
 				<div className='studyContainer'>
 
 						<div className='quizHeader'>
-							<h1 className='quizTitle'>
+							<div className='quizTitle'>
 								<a
 									target="_blank"
 									rel="noopener noreferrer"
@@ -141,16 +141,16 @@ class Practice extends React.Component {
 									href="http://freecodecamp.com/">
 									<img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
 								</a>
-								{this.props.quiz.title}
-							</h1>
+								<span>{this.props.quiz.title}</span>
+							</div>
 							{!this.state.complete
-								? <h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
-								: <h3>Quiz Complete</h3>}
-								<span id="return">
+								? <h3 className='quizMeta'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
+								: <h3 className='quizMeta'>Quiz Complete</h3>}
+								{!isMobile && <span id="return">
 									<Link to='/'>
 										<i className="fa fa-times-circle" aria-hidden="true"></i>
 									</Link>
-								</span>
+								</span>}
 						</div>
 
 						{!this.state.complete && <h1 className='questionTitle'>

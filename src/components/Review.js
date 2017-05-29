@@ -40,13 +40,13 @@ class Review extends React.Component {
 		if (code === 'Escape') this.props.history.push('/');
 	}
   render() {
-    const { quiz } = this.props;
+    const { quiz, screen } = this.props;
     if (!quiz) return null;
     return (
       <div className='studyWrapper reviewContainer'>
 				<div className='studyContainer'>
           <div className='quizHeader'>
-            <h1 className='quizTitle'>
+            <div className='quizTitle'>
               <a
                 target="_blank"
                 rel="noopener noreferrer"
@@ -54,16 +54,16 @@ class Review extends React.Component {
                 href="http://freecodecamp.com/">
                 <img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
               </a>
-              {quiz.title}
-            </h1>
-            <h3 className='quizLength'>
+              <span>{quiz.title}</span>
+            </div>
+            <h3 className='quizMeta'>
               {quiz.challenges.length > 1 ? `${quiz.challenges.length} total questions` : ''}
             </h3>
-            <span id="return">
+            {!screen.isMobile && <span id="return">
               <Link to='/'>
                 <i className="fa fa-times-circle" aria-hidden="true"></i>
               </Link>
-            </span>
+            </span>}
           </div>
           {quiz.challenges.map(renderQuestion)}
 				</div>
