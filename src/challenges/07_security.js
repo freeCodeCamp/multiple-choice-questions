@@ -14,12 +14,12 @@ export default {
 	category: "Security",
 	challenges: [
 		{
-			title: "",
+			title: "Placeholder...",
 			choices: [
-				"",
-				"",
-				"",
-				""
+				"A",
+				"B",
+				"C",
+				"D"
 			],
 			solution: "",
 			explanation: ""

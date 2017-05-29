@@ -14,12 +14,12 @@ export default {
 	category: "Data Storage",
 	challenges: [
 		{
-			title: "",
+			title: "Placeholder...",
 			choices: [
-				"",
-				"",
-				"",
-				""
+				"A",
+				"B",
+				"C",
+				"D"
 			],
 			solution: "",
 			explanation: ""
