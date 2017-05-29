@@ -43,7 +43,10 @@ class extends React.Component {
 		document.removeEventListener('keydown', this.handleKeyDown, false);
 	}
 	onHover = () => this.setState({ selection: null });
-	handleKeyDown = ({ code }) => {
+	handleKeyDown = (event) => {
+
+		event.preventDefault();
+		const { code } = event;
 
 		let { selection, maxOptions } = this.state;
 
