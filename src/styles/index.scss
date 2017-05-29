@@ -205,12 +205,16 @@ body {
 		.questionTitle {
 			font-size: 30px;
 			width: 950px;
-			margin: 100px auto 50px auto;
+			margin: 100px auto 25px auto;
 			pre {
-				margin-top: 15px;
+				width: 600px;
+				font-family: 'Ubuntu Mono', monospace;
+				margin: 15px auto;
 				padding: 25px;
 				text-align: left;
 				line-height: 10px;
+				font-size: 16px;
+				white-space: pre;
 			}
 		}
 		.choice {
@@ -283,6 +287,8 @@ body {
 			}
 			p {
 				font-size: 20px;
+				text-align: left;
+				text-indent: 35px;
 			}
 		}
 		button {
@@ -410,8 +416,9 @@ body {
 			.title {
 				padding: 5px;
 				padding-left: 15px;
+				font-size: 16px;
 				span {
-					font-size: 14px;
+					font-size: 12px;
 				}
 				&:hover {
 					text-decoration: none;
@@ -436,6 +443,13 @@ body {
 				font-size: 22px;
 				width: 90vw;
 				margin-bottom: 25px;
+				pre {
+					width: 90vw;
+					margin: 15px auto;
+					padding: 5px;
+					line-height: 10px;
+					font-size: 12px;
+				}
 			}
 			.choice {
 				width: 95vw;

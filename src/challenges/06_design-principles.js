@@ -1,3 +1,14 @@
+
+/***********************************
+ * Create Code Snippets
+ *********************************** */
+
+
+
+/***********************************
+ * Export Challenge Array
+ *********************************** */
+
 export default {
 	title: "Design Principles",
 	category: "Design Principles",

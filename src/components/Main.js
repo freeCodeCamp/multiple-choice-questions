@@ -118,10 +118,10 @@ class extends React.Component {
 					const title = quiz.get('title');
 					const challenges = quiz.get('challenges');
 					return (
-						<div key={title} className='quizContainer' title='Review All Questions'>
+						<div key={title} className='quizContainer'>
 							{/* We could limit the review link to development with this:
 							 * process.env.NODE_ENV === 'development' */}
-							<Link className='review' to={`/review/${title}`}>
+							<Link className='review' to={`/review/${title}`} title='Review All Questions'>
 								<i className='fa fa-search'></i>
 							</Link>
 							<Link to={`/practice/${title}`} className={renderClassName(index)} onMouseEnter={this.onHover}>
