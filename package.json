@@ -11,7 +11,10 @@
     "axios": "^0.16.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-screen-size": "^1.0.1"
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "react-screen-size": "^1.0.1",
+    "redux": "^3.6.0"
   },
   "scripts": {
     "build-css": "node-sass src/ -o src/",

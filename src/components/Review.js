@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connectScreenSize } from 'react-screen-size';
+import { findQuiz, mapScreenSizeToProps } from '../utils/helpers';
 
 const renderMarkup = (html) => {
   return (
@@ -25,7 +29,7 @@ const renderQuestion = (question) => {
 };
 
 /* Review Quiz Questions Component */
-export default class extends React.Component {
+class Review extends React.Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
   }
@@ -33,18 +37,33 @@ export default class extends React.Component {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
   handleKeyDown = ({ code }) => {
-		if (code === 'Escape') this.props.close();
+		if (code === 'Escape') this.props.history.push('/');
 	}
   render() {
     const { quiz } = this.props;
+    if (!quiz) return null;
     return (
-      <div className='studyWrapper'>
-        <i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
+      <div className='studyWrapper reviewContainer'>
 				<div className='studyContainer'>
           <div className='quizHeader'>
-            <h1 className='quizTitle'>{quiz.title}</h1>
-            <h3 className='quizLength'>{quiz.challenges.length} total questions</h3>
-            <i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
+            <h1 className='quizTitle'>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fccLink"
+                href="http://freecodecamp.com/">
+                <img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
+              </a>
+              {quiz.title}
+            </h1>
+            <h3 className='quizLength'>
+              {quiz.challenges.length > 1 ? `${quiz.challenges.length} total questions` : ''}
+            </h3>
+            <span id="return">
+              <Link to='/'>
+                <i className="fa fa-times-circle" aria-hidden="true"></i>
+              </Link>
+            </span>
           </div>
           {quiz.challenges.map(renderQuestion)}
 				</div>
@@ -52,3 +71,19 @@ export default class extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state, props) => {
+	const { title } = props.match.params;
+	const { quizzes } = state;
+
+	const quiz = findQuiz(title, quizzes);
+
+  if (!quiz) {
+    props.history.push('/');
+  }
+
+	return { quiz };
+};
+
+const connectedReview = connect(mapStateToProps)(Review);
+export default connectScreenSize(mapScreenSizeToProps)(connectedReview);

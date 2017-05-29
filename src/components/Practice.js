@@ -1,12 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { connectScreenSize } from 'react-screen-size';
+import {
+	shuffle,
+	shuffleAnswers,
+	findQuiz,
+	mapScreenSizeToProps
+} from '../utils/helpers';
 
 /* Practice Quiz Component */
-export default class extends React.Component {
+class Practice extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			index: 0,
-			length: this.props.quiz.challenges.length,
 			quiz: this.props.quiz,
 			complete: false,
 			selection: null,
@@ -36,7 +44,7 @@ export default class extends React.Component {
 		switch(code) {
 		case 'Space':
 			if (complete) {
-				this.props.close();
+				this.props.history.push('/');
 			} else if (selection !== null) {
 				this.handleAnswer(selection, solution);
 			} else if (answer !== null) {
@@ -68,7 +76,7 @@ export default class extends React.Component {
 			}
 			break;
 		case 'Escape':
-			this.props.close();
+			this.props.history.push('/');
 			break;
 		default:
 			return;
@@ -89,7 +97,8 @@ export default class extends React.Component {
 		}
 	}
 	nextQuestion = () => {
-		const { index, length } = this.state;
+		const length = this.props.quiz.challenges.length;
+		const { index } = this.state;
 		if (index === length - 1) {
 			this.setState({ complete: true });
 		} else {
@@ -107,6 +116,9 @@ export default class extends React.Component {
 	render() {
 		const { isMobile } = this.props;
 		const { index, quiz, selection } = this.state;
+
+		if (!quiz) return null;
+
 		const question = quiz.challenges[index];
 		const solution = +question.solution;
 		const percentage = this.state.score / this.props.quiz.challenges.length;
@@ -115,18 +127,31 @@ export default class extends React.Component {
 				? `choice selected ${isMobile ? 'mobile' : 'desktop'}`
 				: `choice ${isMobile ? 'mobile' : 'desktop'}`;
 		};
+
 		return (
 			<div className='studyWrapper'>
 				<div className='studyContainer'>
 
 						<div className='quizHeader'>
-							<h1 className='quizTitle'>{this.props.quiz.title}</h1>
+							<h1 className='quizTitle'>
+								<a
+									target="_blank"
+									rel="noopener noreferrer"
+									className="fccLink"
+									href="http://freecodecamp.com/">
+									<img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
+								</a>
+								{this.props.quiz.title}
+							</h1>
 							{!this.state.complete
 								? <h3 className='quizLength'>Question {this.state.index + 1} of {quiz.challenges.length}</h3>
 								: <h3>Quiz Complete</h3>}
-							<i className="fa fa-times-circle" aria-hidden="true" id="return" onClick={this.props.close}></i>
+								<span id="return">
+									<Link to='/'>
+										<i className="fa fa-times-circle" aria-hidden="true"></i>
+									</Link>
+								</span>
 						</div>
-
 
 						{!this.state.complete && <h1 className='questionTitle'>
 							{this.renderMarkup(question.title)}
@@ -197,9 +222,9 @@ export default class extends React.Component {
 							<h1 className='scoreMessage'>
 								You scored {this.state.score} correct out of {this.props.quiz.challenges.length} questions! { percentage > 0.75 ? 'Nice work!' : 'Better luck next time!'}
 							</h1>
-							<button className='finishBtn' onClick={this.props.close}>
-								Return to Quiz Page
-							</button>
+							<Link className='finishBtn' to='/'>
+								<button>Return to Quiz Page</button>
+							</Link>
 						</div>}
 
 						{!isMobile && <div id='infoBox'>
@@ -211,3 +236,34 @@ export default class extends React.Component {
 		);
 	}
 };
+
+const mapStateToProps = (state, props) => {
+	const { title, question } = props.match.params;
+	const { quizzes } = state;
+
+	const quiz = findQuiz(title, quizzes);
+
+	if (!quiz) {
+		props.history.push('/');
+	} else {
+		quiz.challenges = shuffle(quiz.challenges);
+		quiz.challenges = quiz.challenges.map(shuffleAnswers);
+	}
+
+	if (question) {
+		quiz.challenges = quiz.challenges.filter(challenge => {
+			const { title } = challenge;
+			let match = title;
+			if (title.charAt(title.length - 1) === '?') {
+				match = match.slice(0, title.length - 1);
+			}
+			return match === question;
+		});
+	}
+
+	return { quiz };
+
+};
+
+const connectedPractice = connect(mapStateToProps)(Practice);
+export default connectScreenSize(mapScreenSizeToProps)(connectedPractice);
