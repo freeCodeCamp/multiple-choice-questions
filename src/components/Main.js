@@ -43,7 +43,10 @@ class extends React.Component {
 		document.removeEventListener('keydown', this.handleKeyDown, false);
 	}
 	onHover = () => this.setState({ selection: null });
-	handleKeyDown = ({ code }) => {
+	handleKeyDown = (event) => {
+
+		event.preventDefault();
+		const { code } = event;
 
 		let { selection, maxOptions } = this.state;
 
@@ -118,10 +121,10 @@ class extends React.Component {
 					const title = quiz.get('title');
 					const challenges = quiz.get('challenges');
 					return (
-						<div key={title} className='quizContainer' title='Review All Questions'>
+						<div key={title} className='quizContainer'>
 							{/* We could limit the review link to development with this:
 							 * process.env.NODE_ENV === 'development' */}
-							<Link className='review' to={`/review/${title}`}>
+							<Link className='review' to={`/review/${title}`} title='Review All Questions'>
 								<i className='fa fa-search'></i>
 							</Link>
 							<Link to={`/practice/${title}`} className={renderClassName(index)} onMouseEnter={this.onHover}>
@@ -132,7 +135,7 @@ class extends React.Component {
 				})}
 				<div className='quizContainer'>
 					<Link to='practice/shuffle' className={renderClassName(maxOptions - 1)} onMouseEnter={this.onHover}>
-						Practice All <span>({totalQuestions} questions)</span>
+						Shuffle All Quizzes <span>({totalQuestions} questions)</span>
 					</Link>
 				</div>
 				<div className='quizContainer'>
