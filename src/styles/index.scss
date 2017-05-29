@@ -406,6 +406,11 @@ body {
 				span {
 					font-size: 14px;
 				}
+				&:hover {
+					text-decoration: none;
+					background: white;
+					color: $black;
+				}
 			}
 		}
 	}
@@ -433,10 +438,6 @@ body {
 					padding-left: 12px;
 					font-size: 16px;
 				}
-			}
-			.choice:hover {
-				border: 1px solid $lightBlue;
-				cursor: pointer;
 			}
 			.reviewTitle {
 				width: 90vw;
