@@ -212,7 +212,7 @@ body {
 				margin: 15px auto;
 				padding: 25px;
 				text-align: left;
-				line-height: 10px;
+				line-height: 20px;
 				font-size: 16px;
 				white-space: pre;
 			}
@@ -233,6 +233,9 @@ body {
 				margin-bottom: 8px;
 				font-family: 'Nunito', serif;
 				font-size: 22px;
+			}
+			pre {
+				font-family: 'Ubuntu Mono', monospace;
 			}
 		}
 		.choice.solution {
@@ -447,7 +450,7 @@ body {
 					width: 90vw;
 					margin: 15px auto;
 					padding: 5px;
-					line-height: 10px;
+					line-height: 16px;
 					font-size: 12px;
 				}
 			}

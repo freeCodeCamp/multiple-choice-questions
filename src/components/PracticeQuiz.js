@@ -242,7 +242,7 @@ export default class Quiz extends React.Component {
 							{answer !== null && !answer && currentQuestion.get('explanation') && (
 								<div className='explanation'>
 									<h3>Explanation:</h3>
-									<p>{currentQuestion.get('explanation')}</p>
+									<p dangerouslySetInnerHTML={{__html: currentQuestion.get('explanation')}} />
 								</div>
 							)}
 							{index + 1 === numberOfQuestions
