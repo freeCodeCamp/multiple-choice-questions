@@ -4,13 +4,13 @@
  *********************************** */
 
 const complexityQuestion = `<pre>
-function findElement(array, target) { <br>
-	for (var i = 0; i < array.length; i++) { <br>
-		if (array[i] === target) { <br>
-			return array[i]; <br>
-		} <br>
-	} <br>
-	return null; <br>
+function findElement(array, target) {
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] === target) {
+			return array[i];
+		}
+	}
+	return null;
 }</pre>`;
 
 /***********************************
