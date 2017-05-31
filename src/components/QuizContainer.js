@@ -26,17 +26,18 @@ class QuizContainer extends React.Component {
 		 * below. ***************************** */
 
 		const { title, question, meta } = this.props;
+		const originalTitle = title.replace(/-/g, ' ');
 		const active = meta.get('active');
 		const quizzes = meta.get('quizzes');
 		if (!active) {
-			if (title === 'shuffle') {
+			if (originalTitle === 'shuffle') {
 				this.props.startAllQuestionQuiz();
-			} else if (title && !question) {
-				this.props.startQuiz(title);
-			} else if (title && question) {
-				const questionTitle = validateQuestionName(title, question, quizzes);
+			} else if (originalTitle && !question) {
+				this.props.startQuiz(originalTitle);
+			} else if (originalTitle && question) {
+				const questionTitle = validateQuestionName(originalTitle, question, quizzes);
 				if (questionTitle) {
-					this.props.startQuizByQuestion(title, questionTitle);
+					this.props.startQuizByQuestion(originalTitle, questionTitle);
 				} else {
 					this.props.history.push('/');
 				}
@@ -44,10 +45,13 @@ class QuizContainer extends React.Component {
 		}
 	}
 	componentWillReceiveProps(nextProps) {
-		const { title, question } = this.props;
-		const activeQuestion = nextProps.meta.getIn(['currentQuestion', 'title']);
+		const { title } = this.props;
+		const { question } = nextProps;
+		const activeQuestion = nextProps.meta
+			.getIn(['currentQuestion', 'short'])
 		if (!question && activeQuestion) {
-			this.props.history.replace(`${title}/${activeQuestion}`);
+			const next = `${title.replace(/\s/g, '-')}/${activeQuestion.replace(/\s/g, '-')}`;
+			this.props.history.replace(next);
 		}
 	}
   render() {
@@ -65,7 +69,7 @@ const mapStateToProps = (state, props) => {
 	const { title, question } = props.match.params;
 	return {
 		meta: state,
-		title,
+		title: title,
 		question
 	};
 };

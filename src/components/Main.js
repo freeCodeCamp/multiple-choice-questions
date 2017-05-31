@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { connectScreenSize } from 'react-screen-size';
+import { finishQuiz } from '../redux/actions';
 import { mapScreenSizeToProps } from '../utils/helpers';
 
 /* Header Component */
@@ -28,7 +29,10 @@ const renderHeader = (isDesktop) => (
 /* Main Quiz Component */
 export default connectScreenSize(
 	mapScreenSizeToProps)(connect(
-	state => ({ quizzes: state.get('quizzes') }))(
+	state => ({
+		quizzes: state.get('quizzes'),
+		isActive: state.get('active'),
+	}), { cancelQuiz: finishQuiz })(
 class extends React.Component {
 	constructor(props) {
 		super(props);
@@ -39,6 +43,11 @@ class extends React.Component {
 		}
 		document.addEventListener('keydown', this.handleKeyDown);
 	}
+	componentDidMount() {
+		if (this.props.isActive) {
+			this.props.cancelQuiz();
+		}
+	}
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyDown, false);
 	}
@@ -48,7 +57,7 @@ class extends React.Component {
 		const { code } = event;
 
 		if (code === 'Space' || code === 'ArrowDown' || code === 'ArrowUp') {
-			event.preventDefault();			
+			event.preventDefault();
 		}
 
 		let { selection, maxOptions } = this.state;
@@ -90,7 +99,7 @@ class extends React.Component {
 			} else {
 				selection--;
 				if (selection === -1) {
-					this.setState({ selection: maxOptions - 1 });
+					this.setState({ selection: maxOptions });
 				} else {
 					this.setState({ selection });
 				}
@@ -121,7 +130,7 @@ class extends React.Component {
 			{renderHeader(isDesktop)}
 			<div className='studyComponent'>
 				{quizzes.map((quiz, index) => {
-					const title = quiz.get('title');
+					const title = quiz.get('title').replace(/\s/g, '-');
 					const challenges = quiz.get('challenges');
 					return (
 						<div key={title} className='quizContainer'>

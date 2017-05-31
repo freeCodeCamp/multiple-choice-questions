@@ -14,6 +14,25 @@ function findElement(array, target) {
 }</pre>`;
 
 /***********************************
+* Challenge Seed Template
+*********************************** */
+
+/*
+ {
+  title: "",
+	short: "",
+  choices: [
+ 	 "",
+ 	 "",
+ 	 "",
+ 	 ""
+  ],
+  solution: "",
+  explanation: ""
+ },
+*/
+
+/***********************************
  * Export Challenge Array
  *********************************** */
 
@@ -24,6 +43,7 @@ export default {
 		{
 			title: `
 				What is the time complexity of the following function? ${complexityQuestion}`,
+			short: "Learn Time Complexity",
 			choices: [
 				"<code>O(1)</code>",
 				"<code>O(n)</code>",

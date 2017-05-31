@@ -1,6 +1,7 @@
 
-/* Export all the quizzes as an array */
-
+/**
+ * Export all the quizzes as an array
+ */
 import javascript from './01_javascript';
 import web from './02_web-technologies';
 import algorithms from './03_algorithms';

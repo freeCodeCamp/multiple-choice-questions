@@ -106,8 +106,9 @@ export default class Quiz extends React.Component {
 			const nextTitle = meta
 				.getIn(['quiz', 'challenges'])
 				.find((v, k) => k === (index + 1))
-				.get('title');
-			this.props.history.replace(`/practice/${title}/${nextTitle}`);
+				.get('short')
+				.replace(/\s/g, '-');
+			this.props.history.replace(`/practice/${title.replace(/\s/g, '-')}/${nextTitle}`);
 			this.setState({
 				answer: null,
 				selection: null
@@ -129,6 +130,7 @@ export default class Quiz extends React.Component {
 		const index = meta.get('index');
 		const numberOfQuestions = quiz.get('challenges').size;
 		const currentQuestion = meta.get('currentQuestion');
+		const explanation = currentQuestion.get('explanation');
 		const solution = +currentQuestion.get('solution');
 		const percentage = score / meta.getIn(['quiz', 'challenges']).size;
 
@@ -239,10 +241,10 @@ export default class Quiz extends React.Component {
 							{answer
 								? <h1 className='correctAnswer'>Correct, great work!</h1>
 								: <h1 className='wrongAnswer'>Sorry, that is not correct!</h1>}
-							{answer !== null && !answer && currentQuestion.get('explanation') && (
+							{answer !== null && !answer && explanation && (
 								<div className='explanation'>
 									<h3>Explanation:</h3>
-									<p dangerouslySetInnerHTML={{__html: currentQuestion.get('explanation')}} />
+									<p>{this.renderMarkup(explanation)}</p>
 								</div>
 							)}
 							{index + 1 === numberOfQuestions
