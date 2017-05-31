@@ -95,7 +95,7 @@ class extends React.Component {
 			break;
 		case 'ArrowUp':
 			if (selection === null) {
-				this.setState({ selection: maxOptions - 1 });
+				this.setState({ selection: maxOptions });
 			} else {
 				selection--;
 				if (selection === -1) {
