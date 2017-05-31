@@ -5,6 +5,25 @@
 
 
 
+ /***********************************
+ * Challenge Seed Template
+ *********************************** */
+
+ /*
+  {
+   title: "",
+ 	short: "",
+   choices: [
+  	 "",
+  	 "",
+  	 "",
+  	 ""
+   ],
+   solution: "",
+   explanation: ""
+  },
+ */
+
 /***********************************
  * Export Challenge Array
  *********************************** */
@@ -15,6 +34,7 @@ export default {
 	challenges: [
 		{
 			title: "A system designed with several different services that are all isolated and managed independently is referred to as",
+			short: "Architecture Design",
 			choices: [
 				"A microservices architecture.",
 				"A monolithic architecture.",

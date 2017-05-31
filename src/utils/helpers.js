@@ -51,7 +51,7 @@ export const validateQuestionName = (title, question, quizzes) => {
 	const challenges = quiz.get('challenges');
 	return challenges.reduce((answer, challenge) => {
 		if (answer) return answer;
-		const challengeTitle = challenge.get('title');
+		const challengeTitle = challenge.get('short');
 		if (challengeTitle === question) return question;
 		const end = challengeTitle.length - 1;
 		if (challengeTitle.charAt(end) === '?') {

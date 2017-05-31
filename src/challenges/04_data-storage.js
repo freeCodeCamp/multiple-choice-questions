@@ -5,6 +5,25 @@
 
 
 
+ /***********************************
+ * Challenge Seed Template
+ *********************************** */
+
+ /*
+  {
+   title: "",
+ 	short: "",
+   choices: [
+  	 "",
+  	 "",
+  	 "",
+  	 ""
+   ],
+   solution: "",
+   explanation: ""
+  },
+ */
+
 /***********************************
  * Export Challenge Array
  *********************************** */
@@ -15,6 +34,7 @@ export default {
 	challenges: [
 		{
 			title: "Placeholder...",
+			short: "Placeholder...",
 			choices: [
 				"A",
 				"B",

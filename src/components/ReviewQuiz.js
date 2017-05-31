@@ -14,6 +14,7 @@ const renderQuestion = (question) => {
   const solution = +question.get('solution');
   const title = question.get('title');
   const choices = question.get('choices');
+  const explanation = question.get('explanation');
    return (
      <div key={title}>
       <div className='reviewTitle'>
@@ -26,6 +27,12 @@ const renderQuestion = (question) => {
           <p>{renderMarkup(choice)}</p>
         </div>
       ))}
+      {explanation && (
+        <div className='explanation'>
+          <h3>Explanation:</h3>
+          <p>{renderMarkup(explanation)}</p>
+        </div>
+      )}
     </div>
   );
 };
@@ -80,7 +87,7 @@ const mapStateToProps = (state, props) => {
 	const { title } = props.match.params;
   const quizzes = state.get('quizzes');
 
-	const quiz = findQuiz(title, quizzes);
+	const quiz = findQuiz(title.replace(/-/g, ' '), quizzes);
 
   if (!quiz) {
     props.history.push('/');
