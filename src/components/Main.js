@@ -15,7 +15,7 @@ const renderHeader = (isDesktop) => (
 			href="http://freecodecamp.com/">
 			<img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
 		</a>
-		<span>Interview Quiz Beta</span>
+		<span>Interview Quiz</span>
 			{isDesktop && <a
 				target="_blank"
 				rel="noopener noreferrer"
@@ -95,7 +95,7 @@ class extends React.Component {
 			break;
 		case 'ArrowUp':
 			if (selection === null) {
-				this.setState({ selection: maxOptions - 1 });
+				this.setState({ selection: maxOptions });
 			} else {
 				selection--;
 				if (selection === -1) {
