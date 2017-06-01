@@ -29,12 +29,12 @@ Following this is a commented out template object which presents the scaffold fo
 ``` javascript
 {
   title: "", // the title of the question
-	subtitle: "", // a shorter subtitle used for URLs and metadata
+  subtitle: "", // a shorter subtitle used for URLs and metadata
   choices: [ // array of answer options, must be greater than 2
-   	"",
-   	"",
-   	"",
-   	""
+    "",
+    "",
+    "",
+    ""
   ],
   solution: "", // index of the correct answer choice
   explanation: "" // explanation of the correct answer
