@@ -13,6 +13,8 @@ import {
 	finishQuiz
 } from '../redux/actions';
 
+/* This component wraps the actual quiz component, mainly to perform
+ * the routing logic noted in the comment below */
 class QuizContainer extends React.Component {
 	componentWillMount() {
 
@@ -57,6 +59,7 @@ class QuizContainer extends React.Component {
   render() {
 		const { title, question, meta } = this.props;
 		const active = meta.get('active');
+		/* Only render the quiz if we establish a valid title, question, and active session */
     if (title && question && active) {
 			return <Quiz {...this.props} />
 		} else {
