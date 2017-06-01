@@ -321,6 +321,16 @@ body {
 	.scoreMessage {
 		margin: 125px auto 50px auto;
 	}
+	.fbShare {
+		a {
+			color: inherit;
+			text-decoration: none;
+			&:hover {
+				text-decoration: none;
+				color:inherit;
+			}
+		}
+	}
 }
 
 .reviewContainer {

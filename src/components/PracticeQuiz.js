@@ -131,6 +131,7 @@ export default class Quiz extends React.Component {
 		);
 	}
 	render() {
+
 		const { selection, answer, complete } = this.state;
 		const { meta, screen } = this.props;
 		const { isMobile, isDesktop } = screen;
@@ -270,6 +271,11 @@ export default class Quiz extends React.Component {
 							<Link className='finishBtn' to='/' onClick={() => this.props.finishQuiz()}>
 								<button>Return to Quiz Page</button>
 							</Link>
+							<button className='fbShare'>
+								<a href="https://www.facebook.com/sharer/sharer.php?u=http://fcc-quiz.surge.sh/" target="_blank">
+									Share on Facebook
+								</a>
+							</button>
 						</div>}
 
 						{!isMobile && <div id='infoBox'>
