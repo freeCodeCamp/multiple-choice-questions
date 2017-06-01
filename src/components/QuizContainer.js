@@ -35,7 +35,7 @@ class QuizContainer extends React.Component {
 			} else if (originalTitle && !question) {
 				this.props.startQuiz(originalTitle);
 			} else if (originalTitle && question) {
-				const questionTitle = validateQuestionName(originalTitle, question, quizzes);
+				const questionTitle = validateQuestionName(originalTitle, question.replace(/-/g, ' '), quizzes);
 				if (questionTitle) {
 					this.props.startQuizByQuestion(originalTitle, questionTitle);
 				} else {

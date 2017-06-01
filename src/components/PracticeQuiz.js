@@ -272,7 +272,10 @@ export default class Quiz extends React.Component {
 								<button>Return to Quiz Page</button>
 							</Link>
 							<button className='fbShare'>
-								<a href="https://www.facebook.com/sharer/sharer.php?u=http://fcc-quiz.surge.sh/" target="_blank">
+								<a
+									target="_blank"
+									rel="noopener noreferrer"
+									href="https://www.facebook.com/sharer/sharer.php?u=http://fcc-quiz.surge.sh/">
 									Share on Facebook
 								</a>
 							</button>
