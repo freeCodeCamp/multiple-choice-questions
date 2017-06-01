@@ -15,7 +15,7 @@ const renderHeader = (isDesktop) => (
 			href="http://freecodecamp.com/">
 			<img src="/assets/freeCodeCamp.png" alt="freeCodeCamp Logo" />
 		</a>
-		<span>Interview Quiz</span>
+		<span>Interview Preparation</span>
 			{isDesktop && <a
 				target="_blank"
 				rel="noopener noreferrer"

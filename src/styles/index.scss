@@ -141,6 +141,16 @@ body {
 			margin: 20px auto;
 			font-size: 22px;
 		}
+		.aboutContribute {
+			a {
+				color: inherit;
+				text-decoration: none;
+				&:hover {
+					text-decoration: none;
+					color:inherit;
+				}
+			}
+		}
 	}
 	.studyContainer {
 		font-family: 'Nunito', serif;

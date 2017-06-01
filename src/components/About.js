@@ -44,13 +44,15 @@ class About extends React.Component {
               are hard to teach through coding challenges. They are specifically targeted
               toward common programming interview questions.</p>
             <p>This is a standalone app but the content is part of freeCodeCamp's core curriculum.
-              It is being actively developed and your feedback or contributions&nbsp;
+              It is being actively developed and your feedback or contributions are very welcome.
+            </p>
+            <button className='aboutContribute'>
               <a
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://github.com/freeCodeCamp/multiple-choice-questions">
-                are very welcome</a>.
-            </p>
+                Contribute</a>
+            </button><br />
             <Link className='finishBtn' to='/'>
 							<button>Return to Quiz Page</button>
 						</Link>
