@@ -26,7 +26,7 @@ const renderHeader = (isDesktop) => (
 	</div>
 );
 
-/* Main Quiz Component */
+/* Main Quiz Selector Component */
 export default connectScreenSize(
 	mapScreenSizeToProps)(connect(
 	state => ({

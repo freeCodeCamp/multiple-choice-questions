@@ -37,14 +37,20 @@ class About extends React.Component {
             </span>}
           </div>
           <div className='about'>
-            <h1>About</h1>
+            <h1>About freeCodeCamp Interview Preparation</h1>
             <p>You can practice your knowledge of various programming topics through
               multiple choice quizzes here.</p>
             <p>These quizzes are being designed to cover a variety of subjects that otherwise
-              are hard to teach through coding challenges.</p>
-            <p>This project is specifically targeted toward common programming interview questions.</p>
-            <p>These challenges are being actively developed and feedback or contributions
-              are very welcome.</p>
+              are hard to teach through coding challenges. They are specifically targeted
+              toward common programming interview questions.</p>
+            <p>This is a standalone app but the content is part of freeCodeCamp's core curriculum.
+              It is being actively developed and your feedback or contributions&nbsp;
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/freeCodeCamp/multiple-choice-questions">
+                are very welcome</a>.
+            </p>
             <Link className='finishBtn' to='/'>
 							<button>Return to Quiz Page</button>
 						</Link>
