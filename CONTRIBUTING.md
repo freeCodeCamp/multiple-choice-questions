@@ -1,4 +1,4 @@
-#How to Contribute to this Interview Curriculum
+# How to Contribute to this Interview Curriculum
 
 **The primary objective of these challenges is twofold:**
 - **1) The challenge content should be very high quality.**
@@ -10,7 +10,7 @@ If you're here to report a bug or problem, or have a question, please open an is
 
 ***
 
-#### Overview:
+### Overview:
 
 This project is a React application which serves all of the challenges from the `src/challenges` directory. There are 8 JavaScript files that contain the content for 8 categories, and an `index` file which exports all of this for the app to consume. If you are just modifying a question or adding a new one, you should only need to modify one of these 8 files.
 
@@ -18,7 +18,7 @@ To get the app running simply fork the repo to your machine and run `npm install
 
 ***
 
-#### Details:
+### Details:
 
 **Take a look at any of the category files, e.g. `01_javascript.js`, to see how the challenge seed content is organized. It should be pretty self-explanatory, but we'll provide an overview here.**
 
