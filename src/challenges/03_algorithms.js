@@ -20,7 +20,7 @@ function findElement(array, target) {
 /*
  {
   title: "",
-	short: "",
+	subtitle: "",
   choices: [
  	 "",
  	 "",
@@ -43,7 +43,7 @@ export default {
 		{
 			title: `
 				What is the time complexity of the following function? ${complexityQuestion}`,
-			short: "Learn Time Complexity",
+			subtitle: "Learn Time Complexity",
 			choices: [
 				"<code>O(1)</code>",
 				"<code>O(n)</code>",

@@ -48,7 +48,7 @@ class QuizContainer extends React.Component {
 		const { title } = this.props;
 		const { question } = nextProps;
 		const activeQuestion = nextProps.meta
-			.getIn(['currentQuestion', 'short'])
+			.getIn(['currentQuestion', 'subtitle'])
 		if (!question && activeQuestion) {
 			const next = `${title.replace(/\s/g, '-')}/${activeQuestion.replace(/\s/g, '-')}`;
 			this.props.history.replace(next);

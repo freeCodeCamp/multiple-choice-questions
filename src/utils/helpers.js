@@ -87,6 +87,18 @@ export const createScoreMeter = (correct, current, total) => {
 	return tower;
 };
 
+/* Modify the HTML meta tag data for each challenge to enable
+ * content-specific preview on sharing. Currently we only set
+ * the title property content to be the challenge subtitle. */
+export const setHtmlMetadata = (subtitle) => {
+	var elements = document.getElementsByTagName('meta');
+	for (var i = 0; i < elements.length; i++) {
+	  if (elements[i].getAttribute("property") === "og:title") {
+	     elements[i].setAttribute('content', subtitle);
+	  }
+	}
+};
+
 /* Screen size helper */
 export const mapScreenSizeToProps = (screenSize) => {
   return { screen: {

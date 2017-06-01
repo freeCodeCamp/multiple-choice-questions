@@ -12,7 +12,7 @@
  /*
   {
    title: "",
- 	short: "",
+ 	subtitle: "",
    choices: [
   	 "",
   	 "",
@@ -34,7 +34,7 @@ export default {
 	challenges: [
 		{
 			title: "A system designed with several different services that are all isolated and managed independently is referred to as",
-			short: "Architecture Design",
+			subtitle: "Architecture Design",
 			choices: [
 				"A microservices architecture.",
 				"A monolithic architecture.",

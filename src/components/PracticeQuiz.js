@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { createScoreMeter } from '../utils/helpers';
+import { createScoreMeter, setHtmlMetadata } from '../utils/helpers';
 
 /* Practice Quiz Component */
 export default class Quiz extends React.Component {
@@ -15,6 +15,16 @@ export default class Quiz extends React.Component {
 	}
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyDown, false);
+	}
+	componentDidMount() {
+		const subtitle = this.props.meta.getIn(['currentQuestion', 'subtitle']);
+		setHtmlMetadata(subtitle);
+	}
+	componentWillReceiveProps(nextProps) {
+		if (this.props.meta !== nextProps.meta) {
+			const subtitle = nextProps.meta.getIn(['currentQuestion', 'subtitle']);
+			setHtmlMetadata(subtitle);
+		}
 	}
 	onHover = () => this.setState({ selection: null });
 	handleKeyDown = (event) => {
@@ -106,7 +116,7 @@ export default class Quiz extends React.Component {
 			const nextTitle = meta
 				.getIn(['quiz', 'challenges'])
 				.find((v, k) => k === (index + 1))
-				.get('short')
+				.get('subtitle')
 				.replace(/\s/g, '-');
 			this.props.history.replace(`/practice/${title.replace(/\s/g, '-')}/${nextTitle}`);
 			this.setState({

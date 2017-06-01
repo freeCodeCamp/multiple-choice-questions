@@ -12,7 +12,7 @@
  /*
   {
    title: "",
- 	short: "",
+ 	subtitle: "",
    choices: [
   	 "",
   	 "",
@@ -34,7 +34,7 @@ export default {
 	challenges: [
 		{
 			title: "Placeholder...",
-			short: "Placeholder...",
+			subtitle: "Placeholder...",
 			choices: [
 				"A",
 				"B",
