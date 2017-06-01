@@ -1,5 +1,6 @@
 
-// freeCodeCamp theme colors:
+/* freeCodeCamp theme colors: */
+
 $green: #007E00;
 $darkGreen: #006400;
 $lightBlue: #2DB9FF;
@@ -8,6 +9,9 @@ $yellow: #FFEE18;
 $black: #2A2A2A;
 $grey: #E0E0E0;
 $darkGrey: #939393;
+
+/* Admittedly, the styles are kind of all over the place.
+ Refactoring and reorganizing this thing would be great. */
 
 body {
 	padding-bottom: 65px;
@@ -19,6 +23,12 @@ body {
 	font-size: 30px;
 	.errorsBox {
 		color: $lightRed;
+	}
+	a {
+		color: $green;
+		&:hover {
+			color: $darkGreen;
+		}
 	}
 }
 
@@ -130,6 +140,16 @@ body {
 			max-width: 625px;
 			margin: 20px auto;
 			font-size: 22px;
+		}
+		.aboutContribute {
+			a {
+				color: inherit;
+				text-decoration: none;
+				&:hover {
+					text-decoration: none;
+					color:inherit;
+				}
+			}
 		}
 	}
 	.studyContainer {

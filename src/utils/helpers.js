@@ -1,6 +1,8 @@
 
 import { fromJS } from 'immutable';
 
+/* This file contains various helper functions used throughout the app */
+
 /* Given an array, shuffle it's contents */
 export const shuffle = (array) => {
 	const cached = {};

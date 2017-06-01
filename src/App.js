@@ -5,6 +5,7 @@ import Review from './components/ReviewQuiz';
 import About from './components/About';
 import QuizContainer from './components/QuizContainer';
 
+/* top level component renders the App's routes */
 export default class extends React.Component {
   render() {
     return (

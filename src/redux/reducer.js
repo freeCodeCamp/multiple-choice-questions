@@ -12,6 +12,10 @@ import {
   FINISH_QUIZ
 } from './actions';
 
+/* We use ImmutableJS to maintain the Redux state object, which
+ * contains a key with the array of all quizzes and some metadata
+ * associated with the current active quiz. */
+
 const defaultState = Map({
   active: false,
   score: 0,

@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { createScoreMeter, setHtmlMetadata } from '../utils/helpers';
 
-/* Practice Quiz Component */
+/* Practice Quiz Component, this component is responsible
+ * for handling each question in a quiz session */
 export default class Quiz extends React.Component {
 	constructor(props) {
 		super(props);

@@ -1,6 +1,8 @@
 
 /**
- * Export all the quizzes as an array
+ * Export all the quizzes as an array, see the CONTRIBUTING.md
+ * guide for directions for adding new questions or modifying
+ * the content of these challenges.
  */
 
 import javascript from './01_javascript';
