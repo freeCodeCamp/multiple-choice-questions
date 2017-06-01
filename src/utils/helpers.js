@@ -51,7 +51,7 @@ export const validateQuestionName = (title, question, quizzes) => {
 	const challenges = quiz.get('challenges');
 	return challenges.reduce((answer, challenge) => {
 		if (answer) return answer;
-		const challengeTitle = challenge.get('short');
+		const challengeTitle = challenge.get('subtitle');
 		if (challengeTitle === question) return question;
 		const end = challengeTitle.length - 1;
 		if (challengeTitle.charAt(end) === '?') {
@@ -85,6 +85,18 @@ export const createScoreMeter = (correct, current, total) => {
 		count++;
 	}
 	return tower;
+};
+
+/* Modify the HTML meta tag data for each challenge to enable
+ * content-specific preview on sharing. Currently we only set
+ * the title property content to be the challenge subtitle. */
+export const setHtmlMetadata = (subtitle) => {
+	var elements = document.getElementsByTagName('meta');
+	for (var i = 0; i < elements.length; i++) {
+	  if (elements[i].getAttribute("property") === "og:title") {
+	     elements[i].setAttribute('content', subtitle);
+	  }
+	}
 };
 
 /* Screen size helper */

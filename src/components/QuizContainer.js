@@ -35,7 +35,7 @@ class QuizContainer extends React.Component {
 			} else if (originalTitle && !question) {
 				this.props.startQuiz(originalTitle);
 			} else if (originalTitle && question) {
-				const questionTitle = validateQuestionName(originalTitle, question, quizzes);
+				const questionTitle = validateQuestionName(originalTitle, question.replace(/-/g, ' '), quizzes);
 				if (questionTitle) {
 					this.props.startQuizByQuestion(originalTitle, questionTitle);
 				} else {
@@ -48,7 +48,7 @@ class QuizContainer extends React.Component {
 		const { title } = this.props;
 		const { question } = nextProps;
 		const activeQuestion = nextProps.meta
-			.getIn(['currentQuestion', 'short'])
+			.getIn(['currentQuestion', 'subtitle'])
 		if (!question && activeQuestion) {
 			const next = `${title.replace(/\s/g, '-')}/${activeQuestion.replace(/\s/g, '-')}`;
 			this.props.history.replace(next);

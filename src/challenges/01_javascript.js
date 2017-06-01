@@ -33,7 +33,7 @@ console.log("2" + "2" + 1 + -"1");
 /*
  {
   title: "",
-	short: "",
+	subtitle: "",
   choices: [
  	 "",
  	 "",
@@ -55,7 +55,7 @@ export default {
 	challenges: [
 		{
 		 title: `What will the following code output to the console? ${coercionQuestion[0]}`,
-		 short: `Learn Coercion`,
+		 subtitle: `Learn Coercion`,
 		 choices: [
 			`${coercionQuestion[1]}`,
 			`${coercionQuestion[2]}`,
@@ -92,7 +92,7 @@ export default {
 		},
 		{
 			title: "Is JavaScript single-threaded or multi-threaded?",
-			short: `Threading`,
+			subtitle: `Threading`,
 			choices: [
 				"JavaScript is single-threaded.",
 				"JavaScript is multi-threaded.",
@@ -104,7 +104,7 @@ export default {
 		},
 		{
 			title: "Which of the following is a feature provided by ES6 arrow functions?",
-			short: `ES6 Arrow Functions`,
+			subtitle: `ES6 Arrow Functions`,
 			choices: [
 				"They allow for functional composition.",
 				"They are prone to fewer memory leaks.",
@@ -116,7 +116,7 @@ export default {
 		},
 		{
 			title: "The use of <code>const</code> prevents the modification of arrays and objects.",
-			short: `Constant Values`,
+			subtitle: `Constant Values`,
 			choices: [
 				"True, these are now constant values.",
 				"False, they are only references. The actual values in the array of object can still be mutated."

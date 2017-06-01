@@ -54,7 +54,7 @@ export default (state = defaultState, action) => {
     const quizzes = state.get('quizzes');
     const originalQuiz = shuffleQuiz(findQuiz(title, quizzes));
     const first = originalQuiz.get('challenges').findEntry((v, k) => {
-      return v.get('title') === question;
+      return v.get('subtitle') === question;
     });
 
     const quiz = originalQuiz
