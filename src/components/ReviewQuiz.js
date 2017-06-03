@@ -1,4 +1,5 @@
 import React from 'react';
+import Prism from 'prismjs';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { connectScreenSize } from 'react-screen-size';
@@ -41,9 +42,13 @@ const renderQuestion = (question) => {
 class Review extends React.Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
+    Prism.highlightAll();
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown, false);
+  }
+  componentDidUpdate() {
+    Prism.highlightAll();
   }
   handleKeyDown = ({ code }) => {
 		if (code === 'Escape') this.props.history.push('/');
