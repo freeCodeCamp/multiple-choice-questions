@@ -33,16 +33,16 @@ export default {
 	category: "Design Principles",
 	challenges: [
 		{
-			title: "Placeholder...",
-			subtitle: "Placeholder...",
+			title: "",
+			subtitle: "",
 			choices: [
-				"A",
-				"B",
-				"C",
-				"D"
+				"",
+				"",
+				"",
+				""
 			],
 			solution: "",
 			explanation: ""
-		}
+	  },
 	]
 };
