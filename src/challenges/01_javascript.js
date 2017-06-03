@@ -43,7 +43,7 @@ console.log(foo.bar());
 Hello
 </pre>`,
 `<pre>
-{}
+Window {...}
 Hello
 </pre>`,
 `<pre>
@@ -51,7 +51,7 @@ Hello
 undefined
 </pre>`,
 `<pre>
-{}
+Window {...}
 undefined
 </pre>`
 ];
@@ -61,18 +61,18 @@ undefined
 *********************************** */
 
 /*
- {
-  title: "",
-	subtitle: "",
-  choices: [
- 	 "",
- 	 "",
- 	 "",
- 	 ""
-  ],
-  solution: "",
-  explanation: ""
- },
+{
+title: "",
+subtitle: "",
+choices: [
+	 "",
+	 "",
+	 "",
+	 ""
+],
+solution: "",
+explanation: ""
+},
 */
 
 /***********************************
@@ -94,16 +94,25 @@ export default {
 			],
 		solution: "3",
 		explanation: `
-			You might have expected this code to log the <code>foo</code> object along with
-			<code>Hello</code> to the console, however, arrow function expressions are not
-			ideally suited for method functions. Here's why: arrow functions do not create
-			their own <code>this</code> context; rather, they inherit it from the enclosing
-			scope. Since <code>foo</code> is not a function, it does not have a <code>this</code>
-			value at all, so in this case, <code>this</code> still refers to the global context,
-			in which <code>baz</code> is not defined.<br /><br />
+			You might have expected this code to log the <code>foo</code> object along
+			with <code>Hello</code> to the console, however, arrow function expressions
+			are not ideally suited for method functions. Here's why: arrow functions do
+			not create their own <code>this</code> context; rather, they inherit it from
+			the enclosing scope. Since <code>foo</code> is not a function, it does not
+			have a <code>this</code> value at all, so in this case, <code>this</code>
+			still refers to the global context, in which <code>baz</code> is not defined.
+			<br /><br />
 
-			In general, there's no other reason why arrow functions are not an appropriate choice
-			for object methods. So if you use them in this way, just be careful with <code>this</code>!`
+			Note that in different environments, the global <code>this</code> value can
+			reference different things. Running this code in a browser's console, as in
+			this example, <code>this</code> will always refer to the global <code>Window
+			</code> object. If we ran this same code in a Node environment, however, the
+			<code>this</code> value would simply be an empty global object: <code>{}</code>.
+			<br /><br />
+
+			In general, there's no other reason why arrow functions are not an appropriate
+			choice for object methods. So if you use them in this way, just be careful with
+			<code>this</code>!`
 		},
 		{
 			title: `What will the following code output to the console? ${coercionQuestion[0]}`,
