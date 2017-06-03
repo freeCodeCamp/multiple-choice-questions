@@ -34,9 +34,14 @@ const challenges = [
 export default (function(challenges) {
 
 	let noExplanation = 0;
+	let rejectedTitles = [];
 	let rejectedCategories = [];
 
 	const verified = challenges.reduce((verified, category) => {
+
+		const noRepeatTitle = {};
+		const noRepeatSubtitle = {};
+
 		if (!category.title || !category.category) {
 			rejectedCategories.push(category.title);
 			return verified;
@@ -47,6 +52,16 @@ export default (function(challenges) {
 				return false;
 			}
 			if (q.choices.length < 2) return false;
+			if (noRepeatTitle[q.title]) {
+				rejectedTitles.push(q.title);
+				return false;
+			}
+			if (noRepeatSubtitle[q.subtitle]) {
+				rejectedTitles.push(q.subtitle);
+				return false;
+			}
+			noRepeatTitle[q.title] = true;
+			noRepeatSubtitle[q.subtitle] = true;
 			return true;
 		});
 		if (verifiedQuestions.length > 0) {
@@ -60,6 +75,12 @@ export default (function(challenges) {
 
 	/* Log notes about any removed challenges/content: */
 	if (rejectedCategories.length || noExplanation) console.warn('Take Note:');
+
+	if (rejectedTitles.length) {
+		console.log(`The following question titles are duplicates, titles must be ` +
+			`unique: ${rejectedTitles.join(', ')}`
+		);
+	}
 
 	if (rejectedCategories.length) {
 		console.log(`The following quiz categories could not be added, ` +
