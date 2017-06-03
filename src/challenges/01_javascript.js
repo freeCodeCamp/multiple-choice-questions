@@ -3,11 +3,13 @@
  * Create Code Snippets
  *********************************** */
 
-const coercionQuestion = [
+const STRING_CORERCION = {
+snippet:
 `<pre>
 console.log(1 + -"1" + "2" + "2");
 console.log("2" + "2" + 1 + -"1");
 </pre>`,
+choices: [
 `<pre>
 4
 4
@@ -24,9 +26,10 @@ console.log("2" + "2" + 1 + -"1");
 "022"
 "220"
 </pre>`
-];
+]};
 
-const arrowsAsMethodsQuestion = [
+const ARROWS_FUNCS_AS_METHODS = {
+snippet:
 `<pre>
 var foo = {
     baz: 'Hello',
@@ -38,6 +41,7 @@ var foo = {
 
 console.log(foo.bar());
 </pre>`,
+choices: [
 `<pre>
 { baz: 'Hello', bar: [Function: bar] }
 Hello
@@ -54,25 +58,94 @@ undefined
 Window {...}
 undefined
 </pre>`
-];
+]};
+
+const IIFE_CLOSURE = {
+snippet:
+`<pre>
+(function foo(a) {
+  return function bar(b) {
+    console.log(a);
+  };
+})('super')('cool');
+</pre>`,
+choices: [
+`<pre>
+super
+</pre>`,
+`<pre>
+cool
+</pre>`,
+`<pre>
+undefined
+</pre>`,
+`<pre>
+null
+</pre>`
+]};
+
+const OBJECT_REFERENCES = {
+snippet:
+`<pre>
+var foo = "Hello World";
+var bar = foo.split('');
+var baz = bar;
+baz.reverse();
+
+console.log(bar.join(''));
+</pre>`,
+choices: [
+`<pre>
+dlroW olleH
+</pre>`,
+`<pre>
+[ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]
+</pre>`,
+`<pre>
+[ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]
+</pre>`,
+`<pre>
+Hello World
+</pre>`
+]};
 
 /***********************************
-* Challenge Seed Template
-*********************************** */
+* Challenge Seed Templates
+***********************************
 
-/*
-{
-title: "",
-subtitle: "",
+const CHALLENGE_CODE = {
+snippet:
+`<pre>
+
+</pre>`,
 choices: [
-	 "",
-	 "",
-	 "",
-	 ""
-],
-solution: "",
-explanation: ""
+`<pre>
+
+</pre>`,
+`<pre>
+
+</pre>`,
+`<pre>
+
+</pre>`,
+`<pre>
+
+</pre>`
+]};
+
+{
+	title: ``,
+	subtitle: "",
+	choices: [
+		"",
+		"",
+		"",
+		""
+	],
+	solution: "",
+	explanation: ""
 },
+
 */
 
 /***********************************
@@ -84,14 +157,55 @@ export default {
 	category: "JavaScript",
 	challenges: [
 		{
-			title: `What will the following code output to the console? ${arrowsAsMethodsQuestion[0]}`,
+			title: `What will the following code print to the console? ${OBJECT_REFERENCES.snippet}`,
+			subtitle: "Understanding Object References",
+			choices: OBJECT_REFERENCES.choices,
+			solution: "0",
+			explanation: `
+				You may have expected this code to print <code>Hello World</code>
+				to the console. However, when we define <code>baz</code>, we are not
+				creating a new array. Rather, we are simply creating a reference to
+				the array that was created during the assignment of <code>bar</code>
+				(in fact, both variables are just references to the same object, which
+				is stored in memory behind the scenes). Since <code>baz</code> is just
+				a reference to <code>bar</code>, and not its own array, any operation
+				that is performed on it, is also performed on the original array. So,
+				when we join <code>bar</code> back into a string, the result is a mirror
+				image of what you might have expected! And, of course, the same result
+				that we would have gotten from <code>console.log(baz.join(' '));</code>.`
+		},
+		{
+			title: `What will the following code output to the console? ${IIFE_CLOSURE.snippet}`,
+			subtitle: "Understanding Scope & Closure",
+			choices: IIFE_CLOSURE.choices,
+			solution: "0",
+			explanation: `
+				This code logs <code>super</code> to the console even though <code>a</code> is
+				never defined in the inner function <code>bar</code>, becuase <code>bar</code>
+				has closure over the outer function <code>foo</code>.<br /><br />
+
+				When a function is defined inside of another function, it is said to have "closure"
+				over that function, meaning that it has access to the variables defined in the
+				outer function's scope. When execution reaches the <code>console.log()</code>
+				statement, JavaScript searches <code>bar</code>'s scope for a variable called
+				<code>a</code>. When it does not find one, it then searches the scope "bubble"
+				that is the next level up, in this case, the scope created by <code>foo</code>.
+				If <code>a</code> was <em>not</em> defined in <code>foo</code>, the search would
+				continue, moving up to the next scope. If the outer-most, or global scope is reached
+				and a variable is still not found, JavaScript will throw a <code>ReferenceError</code>.
+				<br /><br />
+
+				If the way that these functions are called tripped you up, here's the explanation:
+				<code>foo</code> is an immediately invoked function expression (or IIFE), invoked
+				by the parentheses that contain <code>'super'</code>. This expression resolves
+				before anything else occurs, and since it resolves to the function <code>bar</code>,
+				the second set of parentheses are simply invoking that function, and thus the
+				<code>console.log()</code> statement is executed.`
+		},
+		{
+			title: `When executed in a browser's console, what will the following code output? ${ARROWS_FUNCS_AS_METHODS.snippet}`,
 			subtitle: "Arrow Functions as Object Methods",
-			choices: [
-				arrowsAsMethodsQuestion[1],
-				arrowsAsMethodsQuestion[2],
-				arrowsAsMethodsQuestion[3],
-				arrowsAsMethodsQuestion[4]
-			],
+			choices: ARROWS_FUNCS_AS_METHODS.choices,
 		solution: "3",
 		explanation: `
 			You might have expected this code to log the <code>foo</code> object along
@@ -115,14 +229,9 @@ export default {
 			<code>this</code>!`
 		},
 		{
-			title: `What will the following code output to the console? ${coercionQuestion[0]}`,
+			title: `What will the following code output to the console? ${STRING_CORERCION.snippet}`,
 			subtitle: `Learn Coercion`,
-			choices: [
-				coercionQuestion[1],
-				coercionQuestion[2],
-				coercionQuestion[3],
-				coercionQuestion[4]
-			],
+			choices: STRING_CORERCION.choices,
 			solution: "1",
 			explanation: `
 				What makes this code a bit tricky is the fact that JavaScript is a "weakly" or "loosely"
