@@ -482,6 +482,9 @@ body {
 					margin: 15px auto;
 					line-height: 16px;
 					font-size: 12px;
+					white-space: pre-line;
+					word-wrap: break-word;
+					overflow: hidden;
 				}
 			}
 			.choice {
@@ -491,6 +494,9 @@ body {
 				p {
 					padding-left: 12px;
 					font-size: 16px;
+				}
+				pre {
+					overflow: hidden;
 				}
 			}
 			.reviewTitle {

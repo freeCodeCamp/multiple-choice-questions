@@ -33,7 +33,8 @@ ${start}function createSearchFunction() {
             return cache[target];
         }
 
-        /* executeSearch is complex and defined elsewhere */
+        /* executeSearch is complex
+         * and defined elsewhere */
         var result = executeSearch(target);
 
         cache[target] = result;
