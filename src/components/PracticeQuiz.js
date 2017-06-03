@@ -14,7 +14,6 @@ export default class Quiz extends React.Component {
 			answer: null,
 		}
 		document.addEventListener('keydown', this.handleKeyDown);
-		Prism.highlightAll();
 	}
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyDown, false);
@@ -22,6 +21,7 @@ export default class Quiz extends React.Component {
 	componentDidMount() {
 		const subtitle = this.props.meta.getIn(['currentQuestion', 'subtitle']);
 		setHtmlMetadata(subtitle);
+		Prism.highlightAll();
 	}
 	componentWillReceiveProps(nextProps) {
 		if (this.props.meta !== nextProps.meta) {
