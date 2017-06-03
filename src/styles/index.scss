@@ -234,7 +234,7 @@ body {
 				text-align: left;
 				line-height: 20px;
 				font-size: 16px;
-				white-space: pre;
+				overflow-y: hidden;
 			}
 		}
 		.choice {
@@ -462,6 +462,9 @@ body {
 	}
 	.studyWrapper {
 		.about {
+			h1 {
+				font-size: 24px;
+			}
 			p {
 				font-size: 16px;
 			}
@@ -498,6 +501,10 @@ body {
 			button {
 				width: 80vw;
 				font-size: 26px;
+				&:hover {
+					background: white;
+					color: green;
+				}
 			}
 			.explanation {
 				width: 85vw;
@@ -506,7 +513,7 @@ body {
 					font-weight: bold;
 				}
 				p {
-					font-size: 18px;
+					font-size: 16px;
 				}
 			}
 			.messageDiv {
