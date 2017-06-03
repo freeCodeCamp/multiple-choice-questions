@@ -1,10 +1,14 @@
 
+/* HTML markup for beginning and end of code snippets */
+const start = `<pre><code class='language-javascript'>`;
+const end = `</code></pre>`;
+
 /***********************************
  * Create Code Snippets
  *********************************** */
 
-const complexityQuestion = `<pre><code class='language-javascript'>
-function findElement(array, target) {
+const complexityQuestion = `
+${start}function findElement(array, target) {
 
 	for (var i = 0; i < array.length; i++) {
 
@@ -16,10 +20,10 @@ function findElement(array, target) {
 
 	return null;
 
-}</code></pre>`;
+}${end}`;
 
-const memoizeSnippet = `<pre><code class='language-javascript'>
-function createSearchFunction() {
+const memoizeSnippet = `
+${start}function createSearchFunction() {
 
     var cache = {};
 
@@ -40,11 +44,10 @@ function createSearchFunction() {
 
 };
 
-var searchArchives = createSearchFunction();
-</code></pre>`
+var searchArchives = createSearchFunction();${end}`
 
-const recursionSnippet = `<pre><code class='language-javascript'>
-function doesNodeExist(node, target) {
+const recursionSnippet = `
+${start}function doesNodeExist(node, target) {
 
     if (node.value === target) {
         return true;
@@ -66,7 +69,7 @@ function doesNodeExist(node, target) {
 
     }
 
-}</code></pre>`
+}${end}`
 
 /***********************************
 * Challenge Seed Template

@@ -1,37 +1,36 @@
 
+/* HTML markup for beginning and end of code snippets */
+const start = `<pre><code class='language-javascript'>`;
+const end = `</code></pre>`;
+
 /***********************************
  * Create Code Snippets
  *********************************** */
 
 const STRING_CORERCION = {
-snippet:
-`<pre><code class='language-javascript'>
-console.log(1 + -"1" + "2" + "2");
+snippet:`
+${start}console.log(1 + -"1" + "2" + "2");
 console.log("2" + "2" + 1 + -"1");
-</code></pre>`,
+${end}`,
 choices: [
-`<pre><code class='language-javascript'>
+`${start}4
 4
-4
-</code></pre>`,
-`<pre><code class='language-javascript'>
-"022"
+${end}`,
+`${start}"022"
 "022-1"
-</pre>`,
-`<pre><code class='language-javascript'>
-"04"
+${end}`,
+`${start}"04"
 "220"
-</code></pre>`,
-`<pre><code class='language-javascript'>
+${end}`,
+`${start}
 "022"
 "220"
-</code></pre>`
+${end}`
 ]};
 
 const ARROWS_FUNCS_AS_METHODS = {
 snippet:
-`<pre><code class='language-javascript'>
-var foo = {
+`${start}var foo = {
     baz: 'Hello',
     bar: () => {
       console.log(this);
@@ -40,73 +39,59 @@ var foo = {
 };
 
 console.log(foo.bar());
-</code></pre>`,
+${end}`,
 choices: [
-`<pre><code class='language-javascript'>
-{ baz: 'Hello', bar: [Function: bar] }
+`${start}{ baz: 'Hello', bar: [Function: bar] }
 Hello
-</code></pre>`,
-`<pre><code class='language-javascript'>
-Window {...}
+${end}`,
+`${start}Window {...}
 Hello
-</code></pre>`,
-`<pre><code class='language-javascript'>
-{ baz: 'Hello', bar: [Function: bar] }
+${end}`,
+`${start}{ baz: 'Hello', bar: [Function: bar] }
 undefined
-</code></pre>`,
-`<pre><code class='language-javascript'>
-Window {...}
+${end}`,
+`${start}Window {...}
 undefined
-</code></pre>`
+${end}`
 ]};
 
 const IIFE_CLOSURE = {
 snippet:
-`<pre><code class='language-javascript'>
-(function foo(a) {
+`${start}(function foo(a) {
   return function bar(b) {
     console.log(a);
   };
 })('super')('cool');
-</code></pre>`,
+${end}`,
 choices: [
-`<pre><code class='language-javascript'>
-super
-</code></pre>`,
-`<pre><code class='language-javascript'>
-cool
-</code></pre>`,
-`<pre><code class='language-javascript'>
-undefined
-</code></pre>`,
-`<pre><code class='language-javascript'>
-null
-</code></pre>`
+`${start}super
+${end}`,
+`${start}cool
+${end}`,
+`${start}undefined
+${end}`,
+`${start}null
+${end}`
 ]};
 
 const OBJECT_REFERENCES = {
 snippet:
-`<pre><code class='language-javascript'>
-var foo = "Hello World";
+`${start}var foo = "Hello World";
 var bar = foo.split('');
 var baz = bar;
 baz.reverse();
 
 console.log(bar.join(''));
-</code></pre>`,
+${end}`,
 choices: [
-`<pre><code class='language-javascript'>
-dlroW olleH
-</code></pre>`,
-`<pre><code class='language-javascript'>
-[ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]
-</code></pre>`,
-`<pre><code class='language-javascript'>
-[ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]
-</code></pre>`,
-`<pre><code class='language-javascript'>
-Hello World
-</code></pre>`
+`${start}dlroW olleH
+${end}`,
+`${start}[ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]
+${end}`,
+`${start}[ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]
+${end}`,
+`${start}Hello World
+${end}`
 ]};
 
 /***********************************
