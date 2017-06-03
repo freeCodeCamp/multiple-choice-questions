@@ -5,32 +5,32 @@
 
 const STRING_CORERCION = {
 snippet:
-`<pre>
+`<pre><code class='language-javascript'>
 console.log(1 + -"1" + "2" + "2");
 console.log("2" + "2" + 1 + -"1");
-</pre>`,
+</code></pre>`,
 choices: [
-`<pre>
+`<pre><code class='language-javascript'>
 4
 4
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 "022"
 "022-1"
 </pre>`,
-`<pre>
+`<pre><code class='language-javascript'>
 "04"
 "220"
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 "022"
 "220"
-</pre>`
+</code></pre>`
 ]};
 
 const ARROWS_FUNCS_AS_METHODS = {
 snippet:
-`<pre>
+`<pre><code class='language-javascript'>
 var foo = {
     baz: 'Hello',
     bar: () => {
@@ -40,73 +40,73 @@ var foo = {
 };
 
 console.log(foo.bar());
-</pre>`,
+</code></pre>`,
 choices: [
-`<pre>
+`<pre><code class='language-javascript'>
 { baz: 'Hello', bar: [Function: bar] }
 Hello
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 Window {...}
 Hello
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 { baz: 'Hello', bar: [Function: bar] }
 undefined
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 Window {...}
 undefined
-</pre>`
+</code></pre>`
 ]};
 
 const IIFE_CLOSURE = {
 snippet:
-`<pre>
+`<pre><code class='language-javascript'>
 (function foo(a) {
   return function bar(b) {
     console.log(a);
   };
 })('super')('cool');
-</pre>`,
+</code></pre>`,
 choices: [
-`<pre>
+`<pre><code class='language-javascript'>
 super
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 cool
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 undefined
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 null
-</pre>`
+</code></pre>`
 ]};
 
 const OBJECT_REFERENCES = {
 snippet:
-`<pre>
+`<pre><code class='language-javascript'>
 var foo = "Hello World";
 var bar = foo.split('');
 var baz = bar;
 baz.reverse();
 
 console.log(bar.join(''));
-</pre>`,
+</code></pre>`,
 choices: [
-`<pre>
+`<pre><code class='language-javascript'>
 dlroW olleH
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 [ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 [ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]
-</pre>`,
-`<pre>
+</code></pre>`,
+`<pre><code class='language-javascript'>
 Hello World
-</pre>`
+</code></pre>`
 ]};
 
 /***********************************

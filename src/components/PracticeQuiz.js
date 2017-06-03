@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Prism from 'prismjs';
 import { Link } from 'react-router-dom';
 import { createScoreMeter, setHtmlMetadata } from '../utils/helpers';
 
@@ -13,6 +14,7 @@ export default class Quiz extends React.Component {
 			answer: null,
 		}
 		document.addEventListener('keydown', this.handleKeyDown);
+		Prism.highlightAll();
 	}
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyDown, false);
@@ -26,6 +28,9 @@ export default class Quiz extends React.Component {
 			const subtitle = nextProps.meta.getIn(['currentQuestion', 'subtitle']);
 			setHtmlMetadata(subtitle);
 		}
+	}
+	componentDidUpdate() {
+		Prism.highlightAll();
 	}
 	onHover = () => this.setState({ selection: null });
 	handleKeyDown = (event) => {
