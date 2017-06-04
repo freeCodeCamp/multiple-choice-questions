@@ -11,16 +11,16 @@
 
  /*
   {
-   title: "",
- 	subtitle: "",
+   title: ``,
+ 	subtitle: ``,
    choices: [
-  	 "",
-  	 "",
-  	 "",
-  	 ""
+  	 ``,
+  	 ``,
+  	 ``,
+  	 ``
    ],
-   solution: "",
-   explanation: ""
+   solution: ``,
+   explanation: ``
   },
  */
 
@@ -29,20 +29,20 @@
  *********************************** */
 
 export default {
-	title: "DevOps",
-	category: "DevOps",
+	title: `DevOps`,
+	category: `DevOps`,
 	challenges: [
 		{
-			title: "Placeholder...",
-			subtitle: "Placeholder...",
+			title: `Placeholder...`,
+			subtitle: `Placeholder...`,
 			choices: [
-				"A",
-				"B",
-				"C",
-				"D"
+				`A`,
+				`B`,
+				`C`,
+				`D`
 			],
-			solution: "",
-			explanation: ""
+			solution: ``,
+			explanation: ``
 		}
 	]
 };

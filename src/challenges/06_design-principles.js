@@ -11,16 +11,16 @@
 
  /*
   {
-   title: "",
- 	subtitle: "",
+   title: ``,
+ 	subtitle: ``,
    choices: [
-  	 "",
-  	 "",
-  	 "",
-  	 ""
+  	 ``,
+  	 ``,
+  	 ``,
+  	 ``
    ],
-   solution: "",
-   explanation: ""
+   solution: ``,
+   explanation: ``
   },
  */
 
@@ -29,20 +29,20 @@
  *********************************** */
 
 export default {
-	title: "Design Principles",
-	category: "Design Principles",
+	title: `Design Principles`,
+	category: `Design Principles`,
 	challenges: [
 		{
-			title: "",
-			subtitle: "",
+			title: ``,
+			subtitle: ``,
 			choices: [
-				"",
-				"",
-				"",
-				""
+				``,
+				``,
+				``,
+				``
 			],
-			solution: "",
-			explanation: ""
+			solution: ``,
+			explanation: ``
 	  },
 	]
 };

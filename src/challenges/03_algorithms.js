@@ -78,16 +78,16 @@ ${start}function doesNodeExist(node, target) {
 
 /*
  {
-  title: "",
-	subtitle: "",
+  title: ``,
+	subtitle: ``,
   choices: [
- 	 "",
- 	 "",
- 	 "",
- 	 ""
+ 	 ``,
+ 	 ``,
+ 	 ``,
+ 	 ``
   ],
-  solution: "",
-  explanation: ""
+  solution: ``,
+  explanation: ``
  },
 */
 
@@ -96,21 +96,21 @@ ${start}function doesNodeExist(node, target) {
  *********************************** */
 
 export default {
-	title: "Algorithms",
-	category: "Algorithms",
+	title: `Algorithms`,
+	category: `Algorithms`,
 	challenges: [
 		{
 			title: `
 				What is the time complexity of the following function? ${complexityQuestion}`,
-			subtitle: "Learn Time Complexity",
+			subtitle: `Learn Time Complexity`,
 			choices: [
-				"<code>O(1)</code>",
-				"<code>O(n)</code>",
-				"<code>O(n^2)</code>",
-				"<code>O(log(n))</code>",
-				"<code>O(n*log(n))</code>"
+				`<code>O(1)</code>`,
+				`<code>O(n)</code>`,
+				`<code>O(n^2)</code>`,
+				`<code>O(log(n))</code>`,
+				`<code>O(n*log(n))</code>`
 			],
-			solution: "1",
+			solution: `1`,
 			explanation: `This function takes an array and a target element
 				and searches for the element in the array. It iterates through
 				the array with a for-loop, and in the worst case must visit
@@ -122,16 +122,16 @@ export default {
 				performance and the size of the input.`
 		},
 		{
-			title: "What is the distinguishing characteristic of a \"pure function\"?",
-			subtitle: "Learn about Pure Functions",
+			title: `What is the distinguishing characteristic of a \`pure function\`?`,
+			subtitle: `Learn about Pure Functions`,
 			choices: [
-				"A pure function directly returns a result without calling any other functions.",
-				"A function is \"pure\" if it only accepts a single argument.",
-				"A pure function has no side effects and given the same arguments always returns the same result.",
-				"A pure function is a function that modifies a global variable, and does nothing else.",
-				"None of these answers are correct.",
+				`A pure function directly returns a result without calling any other functions.`,
+				`A function is \`pure\` if it only accepts a single argument.`,
+				`A pure function has no side effects and given the same arguments always returns the same result.`,
+				`A pure function is a function that modifies a global variable, and does nothing else.`,
+				`None of these answers are correct.`,
 			],
-			solution: "2",
+			solution: `2`,
 			explanation: `Pure functions are crucial elements of functional
 				programming. In this paradigm, a pure function is conceptually similar to a
 				mathematical function. It will determine a result solely based on its input
@@ -145,14 +145,14 @@ export default {
 		},
 		{
 			title: `What principle does the following code demonstrate? ${memoizeSnippet}`,
-			subtitle: "Algorithm Design",
+			subtitle: `Algorithm Design`,
 			choices: [
-				"Memoization",
-				"Recursion",
-				"Object Composition",
-				"Prototypal Inheritance"
+				`Memoization`,
+				`Recursion`,
+				`Object Composition`,
+				`Prototypal Inheritance`
 			],
-			solution: "0",
+			solution: `0`,
 			explanation: `This code demonstrates memoization. <code>createSearchFunction</code>
 				returns a new function that has closure over a <code>cache</code>, which is simply
 				a fast, constant-time lookup table. The function sees if a parameter
@@ -165,15 +165,15 @@ export default {
 	  },
 		{
 			title: `What principle does the following function illustrate? ${recursionSnippet}`,
-			subtitle: "Search for a Node",
+			subtitle: `Search for a Node`,
 			choices: [
-				"Recursion",
-				"Dynamic Programming",
-				"Memoization",
-				"Object-Oriented Programming",
-				"Imperative Programming"
+				`Recursion`,
+				`Dynamic Programming`,
+				`Memoization`,
+				`Object-Oriented Programming`,
+				`Imperative Programming`
 			],
-			solution: "0",
+			solution: `0`,
 			explanation: `This demonstrates recursion, a programming technique where a function
 			calls itself. Here, we are searching through a binary tree structure looking for a node.
 			At each node, if we can't find the target value and that node has child nodes, we call
@@ -181,15 +181,15 @@ export default {
 			the function finds the target node or reaches a leaf node and terminates.`
 	  },
 		{
-			title: "A complex problem which can be broken down into repeating sub-problems can be solved by a method known as:",
-			subtitle: "Solving Complex Problems",
+			title: `A complex problem which can be broken down into repeating sub-problems can be solved by a method known as:`,
+			subtitle: `Solving Complex Problems`,
 			choices: [
-				"Dynamic Programming",
-				"Functional Composition",
-				"Multithreaded Programming",
-				"Recursion"
+				`Dynamic Programming`,
+				`Functional Composition`,
+				`Multithreaded Programming`,
+				`Recursion`
 			],
-			solution: "0",
+			solution: `0`,
 			explanation: `Some complex problems can be divded into smaller, repeating sub-problems. These
 				are ideal candidates for the method of dynamic programming, in which the sub-problems are
 				solved and used to dynamically build up a solution to the more complex problem. This is a more

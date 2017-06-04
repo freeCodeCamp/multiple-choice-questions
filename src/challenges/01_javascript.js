@@ -22,8 +22,7 @@ ${end}`,
 `${start}"04"
 "220"
 ${end}`,
-`${start}
-"022"
+`${start}"022"
 "220"
 ${end}`
 ]};
@@ -137,15 +136,15 @@ ${end}`,
 
 {
 	title: ``,
-	subtitle: "",
+	subtitle: ``,
 	choices: [
-		"",
-		"",
-		"",
-		""
+		``,
+		``,
+		``,
+		``
 	],
-	solution: "",
-	explanation: ""
+	solution: ``,
+	explanation: ``
 },
 
 */
@@ -155,14 +154,14 @@ ${end}`,
 *********************************** */
 
 export default {
-	title: "JavaScript Quiz",
-	category: "JavaScript",
+	title: `JavaScript Quiz`,
+	category: `JavaScript`,
 	challenges: [
 		{
 			title: `What will the following code log to the console? ${NOT_DEFINED_VS_UNDEFINED.snippet}`,
-			subtitle: "not defined vs. undefined",
+			subtitle: `not defined vs. undefined`,
 			choices: NOT_DEFINED_VS_UNDEFINED.choices,
-			solution: "1",
+			solution: `1`,
 			explanation: `
 				<code>undefined</code> refers to a variable that has been declared but not yet assigned
 				a value. <code>not defined</code> is a <code>ReferenceError</code>, thrown when a variable
@@ -174,14 +173,14 @@ export default {
 		{
 			title: `This code does not work correctly, it simply prints five <code>5</code>s to the console.
 							How can we use ES6 to fix this problem so that the code works as expected? ${BLOCK_SCOPING_WITH_LET_LOOP}`,
-			subtitle: "Understanding block scoping with let",
+			subtitle: `Understanding block scoping with let`,
 			choices: [
-				"By replacing the <code>var</code> keyword with <code>let</code>",
-				"By replacing the <code>var</code> keyword with <code>const</code>",
-				"By replacing the <code>function</code> keyword with <code>=></code> syntax",
-				"None of these answers are correct"
+				`By replacing the <code>var</code> keyword with <code>let</code>`,
+				`By replacing the <code>var</code> keyword with <code>const</code>`,
+				`By replacing the <code>function</code> keyword with <code>=></code> syntax`,
+				`None of these answers are correct`
 			],
-			solution: "0",
+			solution: `0`,
 			explanation: `
 				The major advantages of the <code>let</code> keyword introduced in the ECMAScript 2015
 				specification is the ability to "block scope" a variable to a specific block, statement,
@@ -199,9 +198,9 @@ export default {
 		},
 		{
 			title: `What will the following code print to the console? ${OBJECT_REFERENCES.snippet}`,
-			subtitle: "Understanding Object References",
+			subtitle: `Understanding Object References`,
 			choices: OBJECT_REFERENCES.choices,
-			solution: "0",
+			solution: `0`,
 			explanation: `
 				You may have expected this code to print <code>Hello World</code>
 				to the console. However, when we define <code>baz</code>, we are not
@@ -217,9 +216,9 @@ export default {
 		},
 		{
 			title: `What will the following code output to the console? ${IIFE_CLOSURE.snippet}`,
-			subtitle: "Understanding Scope & Closure",
+			subtitle: `Understanding Scope & Closure`,
 			choices: IIFE_CLOSURE.choices,
-			solution: "0",
+			solution: `0`,
 			explanation: `
 				This code logs <code>super</code> to the console even though <code>a</code> is
 				never defined in the inner function <code>bar</code>, becuase <code>bar</code>
@@ -245,9 +244,9 @@ export default {
 		},
 		{
 			title: `When executed in a browser's console, what will the following code output? ${ARROWS_FUNCS_AS_METHODS.snippet}`,
-			subtitle: "Arrow Functions as Object Methods",
+			subtitle: `Arrow Functions as Object Methods`,
 			choices: ARROWS_FUNCS_AS_METHODS.choices,
-		solution: "3",
+		solution: `3`,
 		explanation: `
 			You might have expected this code to log the <code>foo</code> object along
 			with <code>Hello</code> to the console, however, arrow function expressions
@@ -273,7 +272,7 @@ export default {
 			title: `What will the following code output to the console? ${STRING_CORERCION.snippet}`,
 			subtitle: `Learn Coercion`,
 			choices: STRING_CORERCION.choices,
-			solution: "1",
+			solution: `1`,
 			explanation: `
 				What makes this code a bit tricky is the fact that JavaScript is a "weakly" or "loosely"
 				typed language. This means that, in part, JavaScript will allow operations to be performed
@@ -302,38 +301,72 @@ export default {
 				<code>"221-1"</code>.`
 		},
 		{
-			title: "Is JavaScript single-threaded or multi-threaded?",
+			title: `Is JavaScript single-threaded or multi-threaded?`,
 			subtitle: `Threading`,
 			choices: [
-				"JavaScript is single-threaded.",
-				"JavaScript is multi-threaded.",
-				"Threading only applies in staticly typed languages.",
-				"Threading only applies to compiled languages."
+				`JavaScript is single-threaded.`,
+				`JavaScript is multi-threaded.`,
+				`Threading only applies in staticly typed languages.`,
+				`Threading only applies to compiled languages.`
 			],
-			solution: "0",
-			explanation: "JavaScript runs on a single thread."
+			solution: `0`,
+			explanation: `Unlike some other programming languages which have multi-threaded capabilities,
+        JavaScript execution is single-threaded (at a high level). When running in a browser,
+        JavaScript runs on a single event-loop. However, the browser implementation of the JavaScript
+        engine may incorporate multi-threading in order to actually process execution. Despite this, the
+        JavaScript programmer doesn't have the ability to actual write JavaScript in a multi-threaded
+        way, with the exception of Web Workers.`
 		},
 		{
-			title: "Which of the following is a feature provided by ES6 arrow functions?",
+			title: `Which of the following is a feature provided by ES6 arrow functions?`,
 			subtitle: `ES6 Arrow Functions`,
 			choices: [
-				"They allow for functional composition.",
-				"They are prone to fewer memory leaks.",
-				"Arrow functions implicitly bind <code>this</code> to the context where the function is written.",
-				"The only advantage is shorter syntax."
+				`They allow for functional composition.`,
+				`They are prone to fewer memory leaks.`,
+				`Arrow functions implicitly bind <code>this</code> to the context where the function is written.`,
+				`The only advantage is shorter syntax.`
 			],
-			solution: "2",
-			explanation: ""
+			solution: `2`,
+			explanation: `ES6 arrow functions take <code>this</code> from the context where they are written
+        and implicitly bind it to the function. Now, regardless of where that function is called it will
+        retain the original <code>this</code> value. The same result could be accomplished by explicitly
+        binding this (e.g. <code>.bind(this)</code>) to the function in the context you want to bind
+        <code>this</code>. Otherwise, for non-arrow functions, <code>this</code> will be defined by
+        the context in which a function is called.`
 		},
 		{
-			title: "The use of <code>const</code> prevents the modification of arrays and objects.",
+			title: `The use of <code>const</code> prevents the modification of arrays and objects.`,
 			subtitle: `Constant Values`,
 			choices: [
-				"True, these are now constant values.",
-				"False, they are only references. The actual values in the array or object can still be mutated."
+				`True, these are now constant values.`,
+				`False, they are only references. The actual values in the array or object can still be mutated.`
 			],
-			solution: "1",
-			explanation: ""
-		}
+			solution: `1`,
+			explanation: `The use of <code>const</code> prevents a value from being reassigned. Arrays and objects, however,
+        can be modified without being reassigned. If you have a <code>const</code> object <code>dictionary</code>
+        and you write <code>dictionary[freecodecamp] = true</code> this code will run without error. However,
+        if you were to try to reassign this constant value by writing <code>dictionary = 5</code>, this would
+        throw an error: <code>Uncaught TypeError: Assignment to constant variable</code>. This is an important
+        aspect to keep in mind when working with constant values in JavaScript.`
+		},
+    {
+    	title: `What is the difference between <code>==</code> and <code>===</code> in JavaScript?`,
+    	subtitle: `Equality in JavaScript`,
+    	choices: [
+    		`<code>==</code> represent abstract equality and allows type coercion, whereas
+          <code>===</code> uses strict equality and will not coerce its arguments.`,
+    		`These operators are interchangeable and both test for equality.`,
+    		`<code>===</code> can be used to test deep equality of arrays and objects, whereas
+          <code>==</code> cannot.`,
+    		`None of these are correct.`
+    	],
+    	solution: `0`,
+    	explanation: `The difference between these two equality operators is that the first allows
+        type coercion and the second does not. Because JavaScript is a loosely typed language,
+        the abstract equality operator can establish equality between dissimilar types. For instance,
+        <code>"2" == 2</code> evaluates to <code>true</code>, however, this would fail under a check
+        of strict equality. Generally, strict equality is safer and preferred, but it's good to
+        understand the difference between these two equality operators.`
+    },
 	]
 };
