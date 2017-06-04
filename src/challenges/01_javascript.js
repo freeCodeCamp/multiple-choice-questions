@@ -94,28 +94,45 @@ ${end}`,
 ${end}`
 ]};
 
+const BLOCK_SCOPING_WITH_LET_LOOP =
+`${start}for (var i = 0; i < 5; i++) {
+  setTimeout(function() { console.log(i) }, i * 1000 );
+}
+${end}`;
+
+const NOT_DEFINED_VS_UNDEFINED = {
+snippet:
+`${start}var x;
+console.log(x);
+${end}`,
+choices: [
+`${start}ReferenceError: x is not defined
+${end}`,
+`${start}undefined
+${end}`,
+`${start}TypeError: x is not defined
+${end}`,
+`${start}ReferenceError: x is undefined
+${end}`,
+]};
+
 /***********************************
 * Challenge Seed Templates
 ***********************************
 
 const CHALLENGE_CODE = {
 snippet:
-`<pre>
-
-</pre>`,
+`${start}
+${end}`,
 choices: [
-`<pre>
-
-</pre>`,
-`<pre>
-
-</pre>`,
-`<pre>
-
-</pre>`,
-`<pre>
-
-</pre>`
+`${start}
+${end}`,
+`${start}
+${end}`,
+`${start}
+${end}`,
+`${start}
+${end}`,
 ]};
 
 {
@@ -141,6 +158,45 @@ export default {
 	title: "JavaScript Quiz",
 	category: "JavaScript",
 	challenges: [
+		{
+			title: `What will the following code log to the console? ${NOT_DEFINED_VS_UNDEFINED.snippet}`,
+			subtitle: "not defined vs. undefined",
+			choices: NOT_DEFINED_VS_UNDEFINED.choices,
+			solution: "1",
+			explanation: `
+				<code>undefined</code> refers to a variable that has been declared but not yet assigned
+				a value. <code>not defined</code> is a <code>ReferenceError</code>, thrown when a variable
+				is encountered that has not yet been declared.<br /><br />
+
+				If you were to comment out the first line <code>var x;</code> and run the code
+				again, <code>ReferenceError: x is not defined</code> would be thrown. `
+		},
+		{
+			title: `This code does not work correctly, it simply prints five <code>5</code>s to the console.
+							How can we use ES6 to fix this problem so that the code works as expected? ${BLOCK_SCOPING_WITH_LET_LOOP}`,
+			subtitle: "Understanding block scoping with let",
+			choices: [
+				"By replacing the <code>var</code> keyword with <code>let</code>",
+				"By replacing the <code>var</code> keyword with <code>const</code>",
+				"By replacing the <code>function</code> keyword with <code>=></code> syntax",
+				"None of these answers are correct"
+			],
+			solution: "0",
+			explanation: `
+				The major advantages of the <code>let</code> keyword introduced in the ECMAScript 2015
+				specification is the ability to "block scope" a variable to a specific block, statement,
+				or expression. This is unlike the <code>var</code> keyword which creates a variable that
+				is scoped globally to the context it is defined in &mdash; either a function or the global
+				scope. In the case of this code, replacing <code>var</code> with <code>let</code> block
+				scopes <code>let</code> to the <code>for</code> loop, so that each iteration refers to a
+				new instance of the variable <code>i</code>, and 0-4 is printed to the console as expected.
+				<br /><br />
+
+				Prior to ES6, the best solution for this problem was to create a local scope around or within
+				the <code>setTimeout</code> function and passing in the value of <code>i</code> during each
+				iteration of the loop. For example, by wrapping <code>setTimeout</code> in an IIFE and invoking
+				it with <code>i</code>.`
+		},
 		{
 			title: `What will the following code print to the console? ${OBJECT_REFERENCES.snippet}`,
 			subtitle: "Understanding Object References",
