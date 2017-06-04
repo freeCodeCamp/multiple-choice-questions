@@ -22,7 +22,7 @@ To get the app running simply fork the repo to your machine and run `npm install
 
 **Take a look at any of the category files, e.g. `01_javascript.js`, to see how the challenge seed content is organized. It should be pretty self-explanatory, but we'll provide an overview here.**
 
-First is an area to add any custom code snippets you're going to include in a challenge. We've isolated these into separate variables to avoid weird formatting and indentation issues. Currently, there are no naming requirements for these variables (do your best). After creating snippets you can just reference them inline in the challenge content below.
+First is an area to add any custom code snippets you're going to include in a challenge. We've isolated these into separate variables to avoid weird formatting and indentation issues, and we are bracketing them with `start` and `end` variables which contain the HTML `pre` and `code` tags necessary to display the snippets correctly. Currently, there are no naming requirements for these variables (do your best). After creating snippets you can just reference them inline in the challenge content below. You should be able to see how to do this by looking at the existing questions which include code snippets.
 
 Following this is a commented out template object which presents the scaffold for each individual question. It looks like:
 

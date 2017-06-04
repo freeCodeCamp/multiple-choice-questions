@@ -30,6 +30,11 @@ body {
 			color: $darkGreen;
 		}
 	}
+	code[class*="language-"] {
+		.token.string {
+			color: #04A470;
+		}
+	}
 }
 
 .header {
@@ -232,8 +237,14 @@ body {
 				font-family: 'Ubuntu Mono', monospace;
 				margin: 15px auto;
 				text-align: left;
-				line-height: 20px;
+				line-height: 18px;
 				font-size: 16px;
+			}
+			code[class*="language-"] {
+				line-height: 1.25;
+				-moz-tab-size: 2;
+				-o-tab-size: 2;
+				tab-size: 2;
 			}
 		}
 		.choice {
@@ -485,6 +496,13 @@ body {
 					white-space: pre-line;
 					word-wrap: break-word;
 					overflow: hidden;
+				}
+				code[class*="language-"] {
+					font-size: 12px;
+					line-height: 1;
+					-moz-tab-size: 1;
+					-o-tab-size: 1;
+					tab-size: 1;
 				}
 			}
 			.choice {
