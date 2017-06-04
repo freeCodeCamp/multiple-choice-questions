@@ -47,7 +47,6 @@ export default (function(challenges) {
 			return verified;
 		}
 		const verifiedQuestions = category.challenges.filter(q => {
-			if (!q.explanation) noExplanation++;
 			if (!q.title || !q.subtitle || !q.solution) {
 				return false;
 			}
@@ -62,6 +61,7 @@ export default (function(challenges) {
 			}
 			noRepeatTitle[q.title] = true;
 			noRepeatSubtitle[q.subtitle] = true;
+			if (!q.explanation) noExplanation++;
 			return true;
 		});
 		if (verifiedQuestions.length > 0) {
