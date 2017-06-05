@@ -17,7 +17,7 @@ choices: [
 4
 ${end}`,
 `${start}"022"
-"022-1"
+"221-1"
 ${end}`,
 `${start}"04"
 "220"
@@ -115,6 +115,42 @@ ${end}`,
 ${end}`,
 ]};
 
+const EMPTYING_AN_ARRAY = {
+snippet:
+`${start}var foo =  [1, 2, 3, 4, 5, 6, 7];
+var bar = foo;
+${end}`,
+choices: [
+`${start}foo.splice(0, foo.length);
+${end}`,
+`${start}foo.slice(0, foo.length);
+${end}`,
+`${start}foo = [];
+${end}`,
+`${start}foo.empty();
+${end}`,
+]};
+
+const EQUALITY_OPERATORS = {
+snippet:
+`${start}console.log(false == 0);
+console.log(false === 0);
+${end}`,
+choices: [
+`${start}true
+true
+${end}`,
+`${start}true
+false
+${end}`,
+`${start}false
+true
+${end}`,
+`${start}false
+false
+${end}`,
+]};
+
 /***********************************
 * Challenge Seed Templates
 ***********************************
@@ -157,6 +193,65 @@ export default {
 	title: `JavaScript Quiz`,
 	category: `JavaScript`,
 	challenges: [
+    {
+    	title: `Which of the following statements is true of JavaScript?`,
+    	subtitle: `JavaScript Programming Styles`,
+    	choices: [
+    		`JavaScript supports object-oriented programming`,
+    		`JavaScript supports functional programming`,
+    		`JavaScript supports imperative programming`,
+    		`All of these choices are correct`
+    	],
+    	solution: `3`,
+    	explanation: `
+        As a prototype-based language, with first-class functions, JavaScript is a mult-paradigm
+        language which supports object-oriented, imperative, and functional programming styles.`
+    },
+    {
+    	title: `What will the following code log to the console? ${EQUALITY_OPERATORS.snippet}`,
+    	subtitle: `Equality in JavaScript 2`,
+    	choices: EQUALITY_OPERATORS.choices,
+    	solution: `1`,
+    	explanation: `
+        The first expression will evaluate to <code>true</code> since the <code>==</code> operator
+        performs a non-strict comparison, meaning that if the 2 values are not of the same type,
+        JavaScript will attempt to coerce the values into comparable types. In this case, JavaScript
+        will coerce <code>0</code> into to a boolean, and since <code>0</code> is falsy in JavaScript,
+        it will coerce to <code>false</code>.<br /><br />
+
+        The <code>===</code> operator, on the other hand, represents strict equality, meaning that
+        no type coercion will take place. To evaluate to <code>true</code>, the values on either side
+        of this symbol must be of the same type and value. This means that the second expression evaluates
+        to <code>false</code> &mdash; since <code>false</code> and <code>0</code> are not of the same type,
+        no further comparison is necessary.<br /><br />
+
+        Note that these principles hold true for JavaScript's inequality operators as well, non-strict:
+        <code>!=</code>, strict: <code>!==</code>.`
+    },
+    {
+    	title: `Which of the following choices will empty the array <code>foo</code> as well
+              as all references to <code>foo</code> (such as <code>bar</code>)? ${EMPTYING_AN_ARRAY.snippet}`,
+    	subtitle: `Emptying an array`,
+    	choices: EMPTYING_AN_ARRAY.choices,
+    	solution: `0`,
+    	explanation: `
+        JavaScript's native <code>splice</code> method modifies a referenced array in place by removing
+        and (optionally) adding elements. <code>splice</code>'s first parameter indicates the index at
+        which to begin removing elements, the second indicates how many elements to remove, while the
+        third can be any number of elements to add to the array in their place. So by invoking <code>
+        splice</code> with <code>0</code> and <code>Array.length</code>, and by omitting the 3rd,
+        parameter we can reliably empty an array of any length. Another method of emptying an array
+        that works just as well, is to explicitly set the length of the array to <code>0</code>, i.e.
+        <code>foo.length = 0;</code>.<br /><br />
+
+        The <code>foo = [];</code> method would not truly empty the array. Instead, it would have only
+        reassigned the variable <code>foo</code> to a new array object. The original array that <code>
+        foo</code> used to point to would still exist in memory, and any other references to that array,
+        such as <code>bar</code> in this case, would be unaffected.<br /><br />
+
+        <code>slice</code> is better suited to copying arrays, and is not appropriate for this use case.
+        <code>Array.empty()</code> is not a native JavaScript method, so this solution would fail.`
+    },
 		{
 			title: `What will the following code log to the console? ${NOT_DEFINED_VS_UNDEFINED.snippet}`,
 			subtitle: `not defined vs. undefined`,
@@ -251,10 +346,14 @@ export default {
 			You might have expected this code to log the <code>foo</code> object along
 			with <code>Hello</code> to the console, however, arrow function expressions
 			are not ideally suited for method functions. Here's why: arrow functions do
-			not create their own <code>this</code> context; rather, they inherit it from
-			the enclosing scope. Since <code>foo</code> is not a function, it does not
-			have a <code>this</code> value at all, so in this case, <code>this</code>
-			still refers to the global context, in which <code>baz</code> is not defined.
+			not create their own <code>this</code> context, nor do they care how the
+		  function is called; rather, they inherit their <code>this</code> value from
+			the enclosing scope. So in this case, <code>this</code> still refers to the
+			global context, in which <code>baz</code> is not defined. Had <code>bar</code>
+      been written with the <code>function</code> keyword, this code <em>would</em>
+      have worked as expected, since typically, when a function is invoked with
+      method invokation, <code>this</code> will always refer to the context,
+      or object, that the function was written in.
 			<br /><br />
 
 			Note that in different environments, the global <code>this</code> value can
@@ -323,7 +422,7 @@ export default {
 			choices: [
 				`They allow for functional composition.`,
 				`They are prone to fewer memory leaks.`,
-				`Arrow functions implicitly bind <code>this</code> to the context where the function is written.`,
+				`They "inherit" <code>this</code> from the enclosing lexical context, regardless of how the function is called.`,
 				`The only advantage is shorter syntax.`
 			],
 			solution: `2`,
