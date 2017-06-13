@@ -73,7 +73,7 @@ export default {
 			 `400`,
 			 `500`
 			],
-			solution: `200`,
+			solution: `1`,
 			explanation: `The 200 status codes are reserved for client requests that are
 				received and successfully processed by a server.`
 	  },
