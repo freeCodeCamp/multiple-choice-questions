@@ -1,174 +1,10 @@
+import {wrapSnippit} from '../utils/helpers';
 
 /* HTML markup for beginning and end of code snippets */
-const start = `<pre><code class='language-javascript'>`;
-const end = `</code></pre>`;
-
-/***********************************
- * Create Code Snippets
- *********************************** */
-
-const STRING_CORERCION = {
-snippet:`
-${start}console.log(1 + -"1" + "2" + "2");
-console.log("2" + "2" + 1 + -"1");
-${end}`,
-choices: [
-`${start}4
-4
-${end}`,
-`${start}"022"
-"221-1"
-${end}`,
-`${start}"04"
-"220"
-${end}`,
-`${start}"022"
-"220"
-${end}`
-]};
-
-const ARROWS_FUNCS_AS_METHODS = {
-snippet:
-`${start}var foo = {
-    baz: 'Hello',
-    bar: () => {
-      console.log(this);
-      return this.baz;
-    }
-};
-
-console.log(foo.bar());
-${end}`,
-choices: [
-`${start}{ baz: 'Hello', bar: [Function: bar] }
-Hello
-${end}`,
-`${start}Window {...}
-Hello
-${end}`,
-`${start}{ baz: 'Hello', bar: [Function: bar] }
-undefined
-${end}`,
-`${start}Window {...}
-undefined
-${end}`
-]};
-
-const IIFE_CLOSURE = {
-snippet:
-`${start}(function foo(a) {
-  return function bar(b) {
-    console.log(a);
-  };
-})('super')('cool');
-${end}`,
-choices: [
-`${start}super
-${end}`,
-`${start}cool
-${end}`,
-`${start}undefined
-${end}`,
-`${start}null
-${end}`
-]};
-
-const OBJECT_REFERENCES = {
-snippet:
-`${start}var foo = "Hello World";
-var bar = foo.split('');
-var baz = bar;
-baz.reverse();
-
-console.log(bar.join(''));
-${end}`,
-choices: [
-`${start}dlroW olleH
-${end}`,
-`${start}[ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]
-${end}`,
-`${start}[ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]
-${end}`,
-`${start}Hello World
-${end}`
-]};
-
-const BLOCK_SCOPING_WITH_LET_LOOP =
-`${start}for (var i = 0; i < 5; i++) {
-  setTimeout(function() { console.log(i) }, i * 1000 );
-}
-${end}`;
-
-const NOT_DEFINED_VS_UNDEFINED = {
-snippet:
-`${start}var x;
-console.log(x);
-${end}`,
-choices: [
-`${start}ReferenceError: x is not defined
-${end}`,
-`${start}undefined
-${end}`,
-`${start}TypeError: x is not defined
-${end}`,
-`${start}ReferenceError: x is undefined
-${end}`,
-]};
-
-const EMPTYING_AN_ARRAY = {
-snippet:
-`${start}var foo =  [1, 2, 3, 4, 5, 6, 7];
-var bar = foo;
-${end}`,
-choices: [
-`${start}foo.splice(0, foo.length);
-${end}`,
-`${start}foo.slice(0, foo.length);
-${end}`,
-`${start}foo = [];
-${end}`,
-`${start}foo.empty();
-${end}`,
-]};
-
-const EQUALITY_OPERATORS = {
-snippet:
-`${start}console.log(false == 0);
-console.log(false === 0);
-${end}`,
-choices: [
-`${start}true
-true
-${end}`,
-`${start}true
-false
-${end}`,
-`${start}false
-true
-${end}`,
-`${start}false
-false
-${end}`,
-]};
 
 /***********************************
 * Challenge Seed Templates
 ***********************************
-
-const CHALLENGE_CODE = {
-snippet:
-`${start}
-${end}`,
-choices: [
-`${start}
-${end}`,
-`${start}
-${end}`,
-`${start}
-${end}`,
-`${start}
-${end}`,
-]};
 
 {
 	title: ``,
@@ -208,9 +44,17 @@ export default {
         language which supports object-oriented, imperative, and functional programming styles.`
     },
     {
-    	title: `What will the following code log to the console? ${EQUALITY_OPERATORS.snippet}`,
+    	title: `What will the following code log to the console? ${wrapSnippit(`
+console.log(false == 0);
+console.log(false === 0);
+      `)}`,
     	subtitle: `Equality in JavaScript 2`,
-    	choices: EQUALITY_OPERATORS.choices,
+    	choices: wrapSnippit(
+        `true\ntrue`,
+        `true\nfalse`,
+        `false\ntrue`,
+        `false\nfalse`
+      ),
     	solution: `1`,
     	explanation: `
         The first expression will evaluate to <code>true</code> since the <code>==</code> operator
@@ -230,9 +74,17 @@ export default {
     },
     {
     	title: `Which of the following choices will empty the array <code>foo</code> as well
-              as all references to <code>foo</code> (such as <code>bar</code>)? ${EMPTYING_AN_ARRAY.snippet}`,
+              as all references to <code>foo</code> (such as <code>bar</code>)? ${wrapSnippit(`
+var foo =  [1, 2, 3, 4, 5, 6, 7];
+var bar = foo;
+      `)}`,
     	subtitle: `Emptying an array`,
-    	choices: EMPTYING_AN_ARRAY.choices,
+    	choices: wrapSnippit(
+        `foo.splice(0, foo.length);`,
+        `foo.slice(0, foo.length);`,
+        `foo = [];`,
+        `foo.empty();`
+      ),
     	solution: `0`,
     	explanation: `
         JavaScript's native <code>splice</code> method modifies a referenced array in place by removing
@@ -253,9 +105,17 @@ export default {
         <code>Array.empty()</code> is not a native JavaScript method, so this solution would fail.`
     },
 		{
-			title: `What will the following code log to the console? ${NOT_DEFINED_VS_UNDEFINED.snippet}`,
+			title: `What will the following code log to the console? ${wrapSnippit(`
+var x;
+console.log(x);
+      `)}`,
 			subtitle: `not defined vs. undefined`,
-			choices: NOT_DEFINED_VS_UNDEFINED.choices,
+			choices: wrapSnippit(
+        'ReferenceError: x is not defined',
+        'undefined',
+        'TypeError: x is not defined',
+        'ReferenceError: x is undefined'
+      ),
 			solution: `1`,
 			explanation: `
 				<code>undefined</code> refers to a variable that has been declared but not yet assigned
@@ -267,7 +127,11 @@ export default {
 		},
 		{
 			title: `This code does not work correctly, it simply prints five <code>5</code>s to the console.
-							How can we use ES6 to fix this problem so that the code works as expected? ${BLOCK_SCOPING_WITH_LET_LOOP}`,
+							How can we use ES6 to fix this problem so that the code works as expected? ${wrapSnippit(`
+for (var i = 0; i < 5; i++) {
+  setTimeout(function() { console.log(i) }, i * 1000 );
+}
+      `)}`,
 			subtitle: `Understanding block scoping with let`,
 			choices: [
 				`By replacing the <code>var</code> keyword with <code>let</code>`,
@@ -292,9 +156,21 @@ export default {
 				it with <code>i</code>.`
 		},
 		{
-			title: `What will the following code print to the console? ${OBJECT_REFERENCES.snippet}`,
+			title: `What will the following code print to the console? ${wrapSnippit(`
+var foo = "Hello World";
+var bar = foo.split('');
+var baz = bar;
+baz.reverse();
+
+console.log(bar.join(''));
+      `)}`,
 			subtitle: `Understanding Object References`,
-			choices: OBJECT_REFERENCES.choices,
+			choices: wrapSnippit(
+        `dlroW olleH`,
+        `[ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]`,
+        `[ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]`,
+        `Hello World`
+      ),
 			solution: `0`,
 			explanation: `
 				You may have expected this code to print <code>Hello World</code>
@@ -310,9 +186,20 @@ export default {
 				that we would have gotten from <code>console.log(baz.join(' '));</code>.`
 		},
 		{
-			title: `What will the following code output to the console? ${IIFE_CLOSURE.snippet}`,
+			title: `What will the following code output to the console? ${wrapSnippit(`
+(function foo(a) {
+  return function bar(b) {
+    console.log(a);
+  };
+})('super')('cool');
+      `)}`,
 			subtitle: `Understanding Scope & Closure`,
-			choices: IIFE_CLOSURE.choices,
+			choices: wrapSnippit(
+        `super`,
+        `cool`,
+        `undefined`,
+        `null`
+      ),
 			solution: `0`,
 			explanation: `
 				This code logs <code>super</code> to the console even though <code>a</code> is
@@ -338,39 +225,63 @@ export default {
 				<code>console.log()</code> statement is executed.`
 		},
 		{
-			title: `When executed in a browser's console, what will the following code output? ${ARROWS_FUNCS_AS_METHODS.snippet}`,
-			subtitle: `Arrow Functions as Object Methods`,
-			choices: ARROWS_FUNCS_AS_METHODS.choices,
-		solution: `3`,
-		explanation: `
-			You might have expected this code to log the <code>foo</code> object along
-			with <code>Hello</code> to the console, however, arrow function expressions
-			are not ideally suited for method functions. Here's why: arrow functions do
-			not create their own <code>this</code> context, nor do they care how the
-		  function is called; rather, they inherit their <code>this</code> value from
-			the enclosing scope. So in this case, <code>this</code> still refers to the
-			global context, in which <code>baz</code> is not defined. Had <code>bar</code>
-      been written with the <code>function</code> keyword, this code <em>would</em>
-      have worked as expected, since typically, when a function is invoked with
-      method invokation, <code>this</code> will always refer to the context,
-      or object, that the function was written in.
-			<br /><br />
+			title: `When executed in a browser's console, what will the following code output? ${wrapSnippit(`
+var foo = {
+  baz: 'Hello',
+  bar: () => {
+    console.log(this);
+    return this.baz;
+  }
+};
 
-			Note that in different environments, the global <code>this</code> value can
-			reference different things. Running this code in a browser's console, as in
-			this example, <code>this</code> will always refer to the global <code>Window
-			</code> object. If we ran this same code in a Node environment, however, the
-			<code>this</code> value would simply be an empty global object: <code>{}</code>.
-			<br /><br />
+console.log(foo.bar());
+      `)}`,
+  		subtitle: `Arrow Functions as Object Methods`,
+  		choices: wrapSnippit(
+        `{ baz: 'Hello', bar: [Function: bar] }\nHello`,
+        `{ baz: 'Hello', bar: [Function: bar] }\nHello`,
+        `Window {...}\nHello`,
+        `{ baz: 'Hello', bar: [Function: bar] }\nundefined`,
+        `Window {...}\nundefined`
+      ),
+  		solution: `3`,
+  		explanation: `
+  			You might have expected this code to log the <code>foo</code> object along
+  			with <code>Hello</code> to the console, however, arrow function expressions
+  			are not ideally suited for method functions. Here's why: arrow functions do
+  			not create their own <code>this</code> context, nor do they care how the
+  		  function is called; rather, they inherit their <code>this</code> value from
+  			the enclosing scope. So in this case, <code>this</code> still refers to the
+  			global context, in which <code>baz</code> is not defined. Had <code>bar</code>
+        been written with the <code>function</code> keyword, this code <em>would</em>
+        have worked as expected, since typically, when a function is invoked with
+        method invokation, <code>this</code> will always refer to the context,
+        or object, that the function was written in.
+  			<br /><br />
 
-			In general, there's no other reason why arrow functions are not an appropriate
-			choice for object methods. So if you use them in this way, just be careful with
-			<code>this</code>!`
+  			Note that in different environments, the global <code>this</code> value can
+  			reference different things. Running this code in a browser's console, as in
+  			this example, <code>this</code> will always refer to the global <code>Window
+  			</code> object. If we ran this same code in a Node environment, however, the
+  			<code>this</code> value would simply be an empty global object: <code>{}</code>.
+  			<br /><br />
+
+  			In general, there's no other reason why arrow functions are not an appropriate
+  			choice for object methods. So if you use them in this way, just be careful with
+  			<code>this</code>!`
 		},
 		{
-			title: `What will the following code output to the console? ${STRING_CORERCION.snippet}`,
+			title: `What will the following code output to the console? ${wrapSnippit(`
+console.log(1 + -"1" + "2" + "2");
+console.log("2" + "2" + 1 + -"1");
+      `)}`,
 			subtitle: `Learn Coercion`,
-			choices: STRING_CORERCION.choices,
+			choices: wrapSnippit(
+        `4\n4`,
+        `022\n221-1`,
+        `04\n220`,
+        `022\n220`
+      ),
 			solution: `1`,
 			explanation: `
 				What makes this code a bit tricky is the fact that JavaScript is a "weakly" or "loosely"

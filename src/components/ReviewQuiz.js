@@ -11,29 +11,42 @@ const renderMarkup = (html) => {
   );
 }
 
-const renderQuestion = (question) => {
+const renderQuestion = (question, index) => {
   const solution = +question.get('solution');
   const title = question.get('title');
   const choices = question.get('choices');
   const explanation = question.get('explanation');
-   return (
-     <div key={title}>
-      <div className='reviewTitle'>
-        <h1 className='questionTitle'>{renderMarkup(title)}</h1>
+  return (
+    <div className="container headerPadding">
+      <div className="row reviewItem" key={title}>
+
+        <div className="col-md-4 col-sm-6">
+          <div className='reviewTitle'>
+            <h1>Question {index + 1}</h1>
+            <h1 className='questionTitle'>{renderMarkup(title)}</h1>
+          </div>
+        </div>
+
+        <div className="col-md-4 col-sm-6">
+          <h1>Choices</h1>
+        {choices.map((choice, index) => (
+          <div
+            key={choice}
+            className={solution === index ? 'choice reivew solution' : 'choice review'}>
+            <p>{renderMarkup(choice)}</p>
+          </div>
+        ))}
+        </div>
+
+        <div className="col-md-4 col-sm-12">
+        {explanation && (
+          <div className='explanation'>
+            <h1>Explanation</h1>
+            <p>{renderMarkup(explanation)}</p>
+          </div>
+        )}
+        </div>
       </div>
-      {choices.map((choice, index) => (
-        <div
-          key={choice}
-          className={solution === index ? 'choice reivew solution' : 'choice review'}>
-          <p>{renderMarkup(choice)}</p>
-        </div>
-      ))}
-      {explanation && (
-        <div className='explanation'>
-          <h3>Explanation:</h3>
-          <p>{renderMarkup(explanation)}</p>
-        </div>
-      )}
     </div>
   );
 };

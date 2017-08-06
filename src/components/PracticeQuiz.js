@@ -159,7 +159,6 @@ export default class Quiz extends React.Component {
 
 		const tower = createScoreMeter(score, index, numberOfQuestions);
 		const widthPercentage = (100 / numberOfQuestions);
-
 		return (
 			<div className='studyWrapper'>
 				<div className='studyContainer'>
@@ -195,63 +194,71 @@ export default class Quiz extends React.Component {
 								</span>}
 						</div>
 
-						{!complete && <h1 className='questionTitle'>
-							{this.renderMarkup(currentQuestion.get('title'))}
-						</h1>}
+						<div className="container">
+							<div className="row questionContainer">
+								<div className="col-sm-6">
+									{!complete && <h1 className='questionTitle'>
+										{this.renderMarkup(currentQuestion.get('title'))}
+									</h1>}
+								</div>
 
-						{!complete && currentQuestion.get('choices').map((choice, idx) => {
-							const key = (choice + idx);
-							/* User has not selected an answer yet: */
-							if (answer === null) {
-								return (
-									<div
-										key={key}
-										className={renderClassName(idx)}
-										onMouseEnter={this.onHover}
-										onClick={() => this.handleAnswer(idx, solution)}>
-										<p>{this.renderMarkup(choice)}</p>
-									</div>
-								)
-							/* User selected the correct answer: */
-							} else if (answer) {
-								if (solution === idx) {
-									return (
-										<div
-											key={key}
-											className='choice' id='correctWinner'>
-											<p>{this.renderMarkup(choice)}</p>
-										</div>
-									)
-								} else {
-									return (
-										<div
-											key={key}
-											className='choice' id='wrongWinner'>
-											<p>{this.renderMarkup(choice)}</p>
-										</div>
-									)
-								}
-							/* User selected the wrong answer: */
-							} else {
-								if (solution === idx) {
-									return (
-										<div
-											key={key}
-											className='choice' id='correctLoser'>
-											<p>{this.renderMarkup(choice)}</p>
-										</div>
-									)
-								} else {
-									return (
-										<div
-											key={key}
-											className='choice' id='wrongLoser'>
-											<p>{this.renderMarkup(choice)}</p>
-										</div>
-									)
-								}
-							}
-						})}
+								<div className="col-sm-6">
+									{!complete && currentQuestion.get('choices').map((choice, idx) => {
+										const key = (choice + idx);
+										/* User has not selected an answer yet: */
+										if (answer === null) {
+											return (
+												<div
+													key={key}
+													className={renderClassName(idx)}
+													onMouseEnter={this.onHover}
+													onClick={() => this.handleAnswer(idx, solution)}>
+													<p>{this.renderMarkup(choice)}</p>
+												</div>
+											)
+										/* User selected the correct answer: */
+										} else if (answer) {
+											if (solution === idx) {
+												return (
+													<div
+														key={key}
+														className='choice' id='correctWinner'>
+														<p>{this.renderMarkup(choice)}</p>
+													</div>
+												)
+											} else {
+												return (
+													<div
+														key={key}
+														className='choice' id='wrongWinner'>
+														<p>{this.renderMarkup(choice)}</p>
+													</div>
+												)
+											}
+										/* User selected the wrong answer: */
+										} else {
+											if (solution === idx) {
+												return (
+													<div
+														key={key}
+														className='choice' id='correctLoser'>
+														<p>{this.renderMarkup(choice)}</p>
+													</div>
+												)
+											} else {
+												return (
+													<div
+														key={key}
+														className='choice' id='wrongLoser'>
+														<p>{this.renderMarkup(choice)}</p>
+													</div>
+												)
+											}
+										}
+									})}
+								</div>
+							</div>
+						</div>
 
 					{answer !== null && !complete &&
 						<div className='messageDiv'>

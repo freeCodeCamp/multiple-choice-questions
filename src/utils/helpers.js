@@ -41,6 +41,14 @@ export const shuffleQuiz = (quiz) => {
 	return fromJS(JSquiz);
 };
 
+export const wrapSnippit = function () {
+	const start = `<pre><code class='language-javascript'>`;
+	const end = `</code></pre>`;
+	console.log([...arguments]);
+	const snippits = [...arguments].map(s => `${start}${s}${end}`);
+	return (arguments.length > 1) ? snippits : snippits[0]
+}
+
 /* Given an array of quizes and a title, find the titled quiz in the array */
 export const findQuiz = (selected, quizzes) => {
 	return quizzes.filter(quiz => quiz.get('title') === selected).first();
