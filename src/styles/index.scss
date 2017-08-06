@@ -75,6 +75,10 @@ body {
 	}
 }
 
+.reviewContainer {
+	padding-top: 50px;
+}
+
 .studyComponent {
 	width: 550px;
 	margin: 100px auto;
@@ -129,8 +133,12 @@ body {
 	}
 }
 
+.headerPadding {
+	padding-top: 50px;
+}
+
 .studyWrapper {
-	position: absolute;
+	// position: absolute;
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -163,6 +171,7 @@ body {
 		#score-tower {
 			position: fixed;
 			top: 60px;
+			z-index: 1;
 			height: 5px;
 			width: 100%;
 			display: flex;
@@ -182,6 +191,7 @@ body {
 		}
 		.quizHeader {
 			position: fixed;
+			z-index: 1;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -228,12 +238,18 @@ body {
 			}
 		}
 
+		.questionContainer {
+			padding-top: 100px;
+		}
+
+
+
 		.questionTitle {
 			font-size: 30px;
-			width: 950px;
-			margin: 100px auto 25px auto;
+			// width: 950px;
+			// margin: 100px auto 25px auto;
 			pre {
-				width: 600px;
+				// width: 600px;
 				font-family: 'Ubuntu Mono', monospace;
 				margin: 15px auto;
 				text-align: left;
@@ -248,7 +264,7 @@ body {
 			}
 		}
 		.choice {
-			width: 650px;
+			// width: 650px;
 			font-size: 24px;
 			margin: 12px auto;
 			padding-bottom: 5px;
@@ -314,8 +330,9 @@ body {
 			color: $lightRed;
 		}
 		.explanation {
-			width: 600px;
-			margin: 15px auto;
+			// width: 600px;
+			// margin: 15px auto;
+			padding: 20px;
 			h3 {
 				font-weight: bold;
 			}
@@ -363,7 +380,10 @@ body {
 }
 
 .reviewContainer {
-	padding-bottom: 75px;
+	.reviewItem {
+		border-bottom: 1px solid #999;
+		padding-bottom: 40px;
+	}
 }
 
 @media only screen and (max-width: 1275px) {
